@@ -1,0 +1,676 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head><body>
+<div class="main_wrapper"  data-role="page" id="staticReportPage">                
+<script>
+
+$('#staticReportPage').live('pagehide', function(event, ui){
+        $(this).remove();
+    });
+    
+    $('#staticReportPage').live('pageshow', function(event){ 
+
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+
+        var yyyy = today.getFullYear();
+        if(dd<10){dd='0'+dd;} 
+        if(mm<10){mm='0'+mm;} 
+        today = dd+'/'+mm+'/'+yyyy;
+        $('#consumer_date').html(today);
+        $('#installer_date').html(today);
+                
+        get_loggedin_user_data(function(response) {
+
+            var query = document.URL.split("?")[1];
+            var id = query.replace("id=","");                                   
+            if(response == 1)
+            {
+                $('#loggedin_user_name5').html(logged_in_user_data.name);
+                $('#installerNameDiv').html(logged_in_user_data.name);
+                $('#installerFullNameDiv').html(logged_in_user_data.fullname);
+                
+            }
+            
+            get_saved_filled_data(id,function(response) {
+                                                
+                console.log(response);
+                if(response == 1)
+                {
+                    var previous_spc = "";
+                    var previous_spc_txt = "";
+                    if(last_filled_data_array.previous_spc != '')
+                    {
+                        previous_spc = 'Y';
+                        previous_spc_txt = last_filled_data_array.previous_spc;
+                    }else{
+                        
+                        previous_spc = 'N';
+                    }
+                    
+                    $("#d_first_name").html(last_filled_data_array.first_name);
+                    $("#d_last_name").html(last_filled_data_array.last_name);
+                    $("#d_unit_num").html(last_filled_data_array.unit_num);
+                    $("#d_street_num").html(last_filled_data_array.street_num);
+                    $("#d_street_name").html(last_filled_data_array.street_name);
+                    $("#d_street_type").html(last_filled_data_array.street_type);
+                    $("#d_town").html(last_filled_data_array.town);
+                    
+                    $("#d_state").html(last_filled_data_array.state);
+                    $("#d_postcode").html(last_filled_data_array.postcode);
+                    $("#d_len_of_time").html(last_filled_data_array.len_of_time);
+                    $("#d_duration").html(last_filled_data_array.duration);
+                    $("#d_tenant_or_owner").html(last_filled_data_array.tenant_or_owner);
+                    $("#d_alt_num").html(last_filled_data_array.alt_num);
+                    
+                    if(last_filled_data_array.dob != '')
+                    {
+                        //var dateArray = last_filled_data_array.dob.split("-");
+                        //var date = dateArray[2]+'-'+dateArray[1]+'-'+dateArray[0];
+                        $("#d_dob").html(last_filled_data_array.dob);
+                    }
+                    
+                    
+                    $("#d_cust_email").html(last_filled_data_array.cust_email);
+                    $("#d_previous_spc").html(previous_spc);
+                    $("#d_phone_num").html(last_filled_data_array.phone_num);
+                    $("#cust_sig").attr('src', last_filled_data_array.customer_signature);
+                    $("#cust_sig2").attr('src', last_filled_data_array.customer_signature);
+                    $("#inst_sig").attr('src', last_filled_data_array.installer_signature);
+                    
+                    var datetimemilliseconds = parseInt(last_filled_data_array.create_time)*1000;
+                    var installationDateObj = new Date(datetimemilliseconds);
+                    var dateFormat = installationDateObj.getDate()+"-"+(installationDateObj.getMonth()+1)+"-"+installationDateObj.getFullYear();
+                    $("#installation_date").html(dateFormat);
+                    $("#installation_date2").html(dateFormat);
+                    
+
+                    
+                    if(last_filled_data_array.add_spc_reason.length > 10)
+                    {
+                        last_filled_data_array.add_spc_reason = last_filled_data_array.add_spc_reason.substr(0,10)+"...";
+                    }
+                    
+                    if(previous_spc_txt.length > 10)
+                    {
+                        previous_spc_txt = previous_spc_txt.substr(0,10)+"...";
+                    }
+                    
+                    $("#d_previous_spc_text").html(previous_spc_txt);
+                    $("#d_add_spc_reason").html(last_filled_data_array.add_spc_reason);
+                    
+                    
+                    //totalspc brandname modelnum d_controlappliences1
+                    var productsCount = 1;
+                    $.each(last_filled_data_array.products, function(index, value) {
+                        
+                        if(productsCount == 1)
+                        {
+                            $("#totalspc").html(last_filled_data_array.num_spc_installed);
+                            $("#brandname").html(value.productbrand);
+                            $("#modelnum").html(value.productmodel);
+                        }
+                        
+                        if(value.product_num <= last_filled_data_array.num_spc_installed)
+                        {
+                            $("#d_productserialnum"+value.product_num).html(value.productserialnum);
+                            $("#d_productroomtype"+value.product_num).html(value.productroomtype);
+                            
+                            var productsselectedcount = 0;
+                            
+                            if(value.applicationa != '-' && value.applicationa != ''){ productsselectedcount++; }
+                            if(value.applicationb != '-' && value.applicationb != ''){ productsselectedcount++; }
+                            if(value.applicationc != '-' && value.applicationc != ''){ productsselectedcount++; }
+                            if(value.applicationd != '-' && value.applicationd != ''){ productsselectedcount++; }
+                            
+                            $("#d_controlappliences"+value.product_num).html(productsselectedcount);
+                            
+                            if(productsselectedcount > 0)
+                            {
+                                $('#dclspc1').show();
+                                $('#dclspc2').show();
+                                $('#dcl5').show();
+                                $('#dcle').show();
+                            }
+                            
+                        }
+                        
+                        productsCount++;
+                    });
+
+                    var other_productsCount = 1;
+                    $.each(last_filled_data_array.other_products, function(index, value) {
+                        var prdtypeid = value.producttype.replace(" ", "-");
+                        $("#tr"+prdtypeid).show();
+                        $("#tr"+prdtypeid+"1").show();
+                        $("#section_name"+prdtypeid).html(value.producttype);
+                        $("#product_model"+prdtypeid).html(value.productmodel);
+                        $("#product_brand"+prdtypeid).html(value.productbrand);
+                        $("#measures"+prdtypeid).html(value.measures);
+                        $("#sealed"+prdtypeid).html(value.sealed);
+                        $("#output"+prdtypeid).html(value.output);
+                        $("#lighting"+prdtypeid).html(value.lightting);
+                        $("#manufacturer"+prdtypeid).html(value.manufacturer);
+                        $("#lamps"+prdtypeid).html(value.numberoflamps);
+                        if(prdtypeid == 'IHD')
+                        {
+                            $('#dclihd1').show();
+                            $('#dclihd2').show();
+                            $('#dcl6').show();
+                            $('#dclf').show();
+                        } else if(prdtypeid == 'Door-Seals') {
+                            $('#dclws1').show();
+                            $('#dclws2').show();
+                            $('#dcl7').show();
+                            $('#dclg').show();
+                        } else if(prdtypeid == 'Chimney-Baloons') {
+                            $('#dclws1').show();
+                            $('#dclws2').show();
+                            $('#dcl7').show();
+                            $('#dclg').show();
+                        } else if(prdtypeid == '21A') {
+                            $('#dclli1').show();
+                            $('#dclli2').show();
+                            $('#dcl8').show();
+                            $('#dclh').show();
+                        } else if(prdtypeid == '21C-240V') {
+                            $('#dclli1').show();
+                            $('#dclli2').show();
+                            $('#dcl8').show();
+                            $('#dclh').show();
+                        } else if(prdtypeid == '21C-12V') {
+                            $('#dclli1').show();
+                            $('#dclli2').show();
+                            $('#dcl8').show();
+                            $('#dclh').show();
+                        } else if(prdtypeid == 'A2') {
+                            $("#productbrand21a2g").html('/'+value.productbrand);
+                            $("#productmodel21a2g").html('/'+value.productmodel);
+                            $("#output21a2g").html('/'+value.output);
+                            $("#lighting21a2g").html('/'+value.lightting);
+                            $("#manufacturer21a2g").html('/'+value.manufacturer);
+                            $("#numberoflamps21a2g").html('/'+value.numberoflamps);
+                        } else if(prdtypeid == 'A3') {
+                            $("#productbrand21a3g").html('/'+value.productbrand);
+                            $("#productmodel21a3g").html('/'+value.productmodel);
+                            $("#output21a3g").html('/'+value.output);
+                            $("#lighting21a3g").html('/'+value.lightting);
+                            $("#manufacturer21a3g").html('/'+value.manufacturer);
+                            $("#numberoflamps21a3g").html('/'+value.numberoflamps);
+                        } else if(prdtypeid == 'A4') {
+                            $("#productbrand21a4g").html('/'+value.productbrand);
+                            $("#productmodel21a4g").html('/'+value.productmodel);
+                            $("#output21a4g").html('/'+value.output);
+                            $("#lighting21a4g").html('/'+value.lightting);
+                            $("#manufacturer21a4g").html('/'+value.manufacturer);
+                            $("#numberoflamps21a4g").html('/'+value.numberoflamps);
+                        } else if(prdtypeid == 'C2') {
+                            $("#productbrand21c2").html('/'+value.productbrand);
+                            $("#productmodel21c2").html('/'+value.productmodel);
+                            $("#output21c2").html('/'+value.output);
+                            $("#lighting21c2").html('/'+value.lightting);
+                            $("#manufacturer21c2").html('/'+value.manufacturer);
+                            $("#numberoflamps21c2").html('/'+value.numberoflamps);
+                        } else if(prdtypeid == 'C3') {
+                            $("#productbrand21c3").html('/'+value.productbrand);
+                            $("#productmodel21c3").html('/'+value.productmodel);
+                            $("#output21c3").html('/'+value.output);
+                            $("#lighting21c3").html('/'+value.lightting);
+                            $("#manufacturer21c3").html('/'+value.manufacturer);
+                            $("#numberoflamps21c3").html('/'+value.numberoflamps);
+                        } else if(prdtypeid == 'C4') {
+                            $("#productbrand21c4").html('/'+value.productbrand);
+                            $("#productmodel21c4").html('/'+value.productmodel);
+                            $("#output21c4").html('/'+value.output);
+                            $("#lighting21c4").html('/'+value.lightting);
+                            $("#manufacturer21c4").html('/'+value.manufacturer);
+                            $("#numberoflamps21c4").html('/'+value.numberoflamps);
+                        } else if(prdtypeid == 'D2') {
+                            $("#productbrand21d2x").html('/'+value.productbrand);
+                            $("#productmodel21d2x").html('/'+value.productmodel);
+                            $("#output21d2x").html('/'+value.output);
+                            $("#lighting21d2x").html('/'+value.lightting);
+                            $("#manufacturer21d2x").html('/'+value.manufacturer);
+                            $("#numberoflamps21d2x").html('/'+value.numberoflamps);
+                        } else if(prdtypeid == 'D3') {
+                            $("#productbrand21d3x").html('/'+value.productbrand);
+                            $("#productmodel21d3x").html('/'+value.productmodel);
+                            $("#output21d3x").html('/'+value.output);
+                            $("#lighting21d3x").html('/'+value.lightting);
+                            $("#manufacturer21d3x").html('/'+value.manufacturer);
+                            $("#numberoflamps21d3x").html('/'+value.numberoflamps);
+                        } else if(prdtypeid == 'D4') {
+                            $("#productbrand21d4x").html('/'+value.productbrand);
+                            $("#productmodel21d4x").html('/'+value.productmodel);
+                            $("#output21d4x").html('/'+value.output);
+                            $("#lighting21d4x").html('/'+value.lightting);
+                            $("#manufacturer21d4x").html('/'+value.manufacturer);
+                            $("#numberoflamps21d4x").html('/'+value.numberoflamps);
+                        }
+                        
+                        other_productsCount++;
+                    });
+                    
+                    hideSections();
+
+                }
+            });
+            
+            
+            
+        
+        });
+        
+        
+        
+        
+});
+var previouspage;
+$("#reportPage").live('pagebeforeshow', function(event, data) {
+    
+    previouspage = data.prevPage;
+});
+
+function submitForm()
+{
+    
+    submitLocalForm(function(response) { 
+        if(response == 1)
+        {
+            previouspage.remove();
+            $.mobile.changePage( "listing.html", {transition: "slide", reverse: true});
+        }
+    });
+}
+        
+</script>
+
+  <div class="logo"></div>
+
+
+    <div class="nav_bar">
+    <ul class="nav_bar_icons"> 
+      
+      <li><a href="#" class="new_ticket" data-rel="back">Go Back</a></li>
+      <!--<li><a href="#" class="new_ticket" onclick="submitForm();">Submit</a></li> -->
+      <li><a href="#" class="logout_butt" onclick="logoutUser();">Logout</a></li>
+      <li><div class="loged_user">Logged in User: <span id="loggedin_user_name5">User</span></div></li>   
+      
+    </ul>
+    
+  </div>
+        
+<div class="ticket_list">
+
+
+<table cellspacing="0" width="100%" cellpadding="10" border="1" bordercolor="#CCCCCC" style="color:#2C2C2C!important;text-shadow: none;font-family: Tahoma, Geneva, sans-serif;">
+  <col width="23" span="13" />
+  <col width="31" />
+  <col width="29" />
+  <col width="23" span="17" />
+  <col width="29" />
+  <col width="48" />
+  <col width="29" span="3" />
+  <tr>
+    <td colspan="34" align="center" bgcolor="#CCCCCC"><strong>Mandatory Introductory Information</strong></td>
+  </tr>
+  <tr>
+    <td colspan="34">Consumers in respect of whom a prescribed activity is undertaken can create Victorian energy efficiency certificates (VEECs) under the Victorian Energy Efficiency Target Act 2007. One VEEC represents one tonne of carbon dioxide equivalent (CO2-e) to be reduced by the prescribed activity undertaken by the consumer. Consumers are able to assign their right to create VEECs to an accredited person (Like Auspro Group). In assigning their right to Auspro Group, they will be entitled to create and own the certificates in respect of the prescribed activity undertaken by consumer. In return, the Auspro Group provides consumers with an identifiable benefit for the assignation, such as a price reduction on a product, free installation or a cash-back arrangement. Consumers should be aware that it is their responsibility to negotiate satisfactory terms with the accredited person in return for assigning their right to create VEECs. For more details refer to ESC's website www.esc.vic.gov.au</td>
+  </tr>
+  <tr>
+    <td colspan="34" align="center" bgcolor="#CCCCCC"><strong>Consumer Details</strong></td>
+  </tr>
+  <tr>
+    <td>First Name</td>
+    <td width="70" colspan="15"><span id="d_first_name"></span></td>
+    <td colspan="2" align="center">Surname</td>
+    <td colspan="24"><span id="d_last_name"></span></td>
+  </tr>
+  <tr>
+    <td rowspan="2"> Installation Address</td>
+    <td colspan="4">Unit: <span id="d_unit_num"></span></td>
+    <td colspan="5">Street    No.: <span id="d_street_num"></span></td>
+    <td colspan="14">Street    Name: <span id="d_street_name"></span></td>
+    <td colspan="7">Street Type: <span id="d_street_type"></span></td>
+  </tr>
+  <tr>
+    <td>Suburb</td>
+    <td colspan="14"><span id="d_town"></span></td>
+    <td colspan="2" align="center">State</td>
+    <td colspan="7"><span id="d_state"></span></td>
+    <td colspan="7">Postcode: <span id="d_postcode"></span></td>
+
+  </tr>
+  <tr>
+    <td colspan="34">Postal Address (If different from Installation    address):    </td>
+  </tr>
+  <tr>
+    <td>Telephone</td>
+    <td colspan="9"><span id="d_phone_num"></span></td>
+    <td colspan="5" align="center">Tenure at current address</td>
+    <td> Year</td>
+    <td colspan="2"><span id="d_len_of_time"></span></td>
+    <td width="70">Months</td>
+    <td colspan="13"><span id="d_duration"></span></td>
+  </tr>
+  <tr>
+    <td>Mobile</td>
+    <td colspan="9"><span id="d_alt_num"></span></td>
+    <td colspan="6" align="center">Tenant or Owner?</td>
+    <td colspan="4"><span id="d_tenant_or_owner"></span></td>
+    <td colspan="4">Installation Date: </td>
+    <td colspan="8"><span id="installation_date"></span></td>
+  </tr>
+  <tr>
+    <td>Date of Birth</td>
+    <td colspan="5"><span id="d_dob"></span></td>
+    <td colspan="2">Email</td>
+    <td colspan="23"><span id="d_cust_email"></span></td>
+  </tr>
+
+  <tr>
+    <td colspan="12" align="center" bgcolor="#CCCCCC"><strong>Weather    Seals </strong></td>
+    <td colspan="24" align="left" bgcolor="#CCCCCC"><strong>Have you previously had any of the below    product(s) installed at the property? <span id="d_previous_spc"></span></strong></td>
+  </tr>
+  <tr>
+    <td colspan="2"><strong>Product Type</strong></td>
+    <td colspan="4"><strong>Brand</strong></td>
+    <td colspan="2"><strong>Model</strong></td>
+    <td><strong>#Installed</strong></td>
+    <td colspan="3"><strong>Benefit</strong></td>
+    <td colspan="20" rowspan="4" valign="top">Which product &amp; how many? <br /><span id="d_previous_spc_text"></span></td>
+  </tr>
+  <tr>
+    <td colspan="2"><strong>Door Seal(s)</strong></td>
+    <td colspan="4"><span id="product_brandDoor-Seals"></span></td>
+    <td colspan="2"><span id="product_modelDoor-Seals"></span></td>
+    <td><span id="sealedDoor-Seals"></span></td>
+    <td colspan="3">Free</td>
+  </tr>
+  <tr>
+    <td colspan="2"><strong>Chimney Seal(s)</strong></td>
+    <td colspan="4"><span id="product_brandChimney-Baloons"></span></td>
+    <td colspan="2"><span id="product_modelChimney-Baloons"></span></td>
+    <td><span id="sealedChimney-Baloons"></span></td>
+    <td colspan="3">Free</td>
+  </tr>
+
+
+  <tr>
+    <td colspan="36" align="center" bgcolor="#CCCCCC" ><strong>Lighting - Lamps (CFL) ,LED</strong></td>
+  </tr>
+  <tr>
+    <td colspan="7"><strong>Product Type</strong></td>
+    <td colspan="4"><strong>Brand </strong></td>
+    <td colspan="3"><strong>Model</strong></td>
+    <td colspan="3"><strong>output in Lumens</strong></td>
+    <td colspan="2"><strong>Lighting<br />
+      efficacy</strong></td>
+    <td colspan="4"><strong>Rated Hours</strong></td>
+    <td colspan="3"><strong>No of Lamps</strong></td>
+    <td colspan="3" width="130"><strong>Form Of Benefit</strong></td>
+  </tr>
+  <tr>
+    <td colspan="7"><strong>Efficient GLS lamp </strong></td>
+    <td colspan="4"><span id="product_brand21A"></span><span id="productbrand21a2g"></span><span id="productbrand21a3g"></span><span id="productbrand21a4g"></span></td>
+    <td colspan="3"><span id="product_model21A"></span><span id="productmodel21a2g"></span><span id="productmodel21a3g"></span><span id="productmodel21a4g"></span></td>
+    <td colspan="3"><span id="output21A"></span><span id="output21a2g"></span><span id="output21a3g"></span><span id="output21a4g"></span></td>
+    <td colspan="2"><span id="lighting21A"></span><span id="lighting21a2g"></span><span id="lighting21a3g"></span><span id="lighting21a4g"></span></td>
+    <td colspan="4"><span id="manufacturer21A"></span><span id="manufacturer21a2g"></span><span id="manufacturer21a3g"></span><span id="manufacturer21a4g"></span></td>
+    <td colspan="3"><span id="lamps21A"></span><span id="numberoflamps21a2g"></span><span id="numberoflamps21a3g"></span><span id="numberoflamps21a4g"></span></td>
+    <td colspan="3">Free</td>
+  </tr>
+  
+  <tr>
+    <td colspan="7"><strong>Efficient down light 12V</strong></td>
+    <td colspan="4"><span id="product_brand21C-240V"></span><span id="productbrand21c2"></span><span id="productbrand21c3"></span><span id="productbrand21c4"></span></td>
+    <td colspan="3"><span id="product_model21C-240V"></span></span><span id="productmodel21c2"></span><span id="productmodel21c3"></span><span id="productmodel21c4"></span></td>
+    <td colspan="3"><span id="output21C-240V"></span><span id="output21c2"></span><span id="output21c3"></span><span id="output21c4"></span></td>
+    <td colspan="2"><span id="lighting21C-240V"></span><span id="lighting21c2"></span><span id="lighting21c3"></span><span id="lighting21c4"></span></td>
+    <td colspan="4"><span id="manufacturer21C-240V"></span><span id="manufacturer21c2"></span><span id="manufacturer21c3"></span><span id="manufacturer21c4"></span></td>
+    <td colspan="3"><span id="lamps21C-240V"></span><span id="numberoflamps21c2"></span><span id="numberoflamps21c3"></span><span id="numberoflamps21c4"></span></td>
+    <td colspan="3">Reduced Price</td>
+  </tr>
+  <tr>
+    <td colspan="7"><strong>Efficient down light 240V</strong></td>
+    <td colspan="4"><span id="product_brand21C-12V"></span><span id="productbrand21d2x"></span><span id="productbrand21d3x"></span><span id="productbrand21d4x"></span></td>
+    <td colspan="3"><span id="product_model21C-12V"><span id="productmodel21d2x"></span><span id="productmodel21d3x"></span><span id="productmodel21d4x"></span></td>
+    <td colspan="3"><span id="output21C-12V"></span><span id="output21d2x"></span><span id="output21d3x"></span><span id="output21d4x"></span></td>
+    <td colspan="2"><span id="lighting21C-12V"></span><span id="lighting21d2x"></span><span id="lighting21d3x"></span><span id="lighting21d4x"></span></td>
+    <td colspan="4"><span id="manufacturer21C-12V"></span><span id="manufacturer21d2x"></span><span id="manufacturer21d3x"></span><span id="manufacturer21d4x"></span></td>
+    <td colspan="3"><span id="lamps21C-12V"></span><span id="numberoflamps21d2x"></span><span id="numberoflamps21d3x"></span><span id="numberoflamps21d4"></span></td>
+    <td colspan="3">Reduced Price</td>
+  </tr>
+  <tr>
+    <td colspan="34"><strong>Were any of the above lamps installed in a dimmable circuit? Yes No, if yes, how many?</strong> </td>
+  </tr>
+  <tr>
+    <td colspan="34">In cases of installations conducted under Schedule 21C, what type of transformer(s) are connected to the newly installed lamps: Magnetic Electronic Both</td>
+  </tr>
+  <tr>
+    <td colspan="34">What method was used to identify the type of transformers that are connected to the newly installed lamps? </td>
+  </tr>
+  <tr>
+    <td colspan="34">In cases of installation conducted under Schedule 21C, are all newly installed lamps compatible with the transformers to which they are connected? Yes No</td>
+  </tr>
+  <tr>
+    <td colspan="34" align="left" valign="top">Was wiring work required for work undertaken in respect of the above installation? Yes No. If yes, please provide certificate electrical safety number:</td>
+  </tr>
+  <tr>
+    <td colspan="34">Form of benefit provided: Upfront cash Price reduction Delayed cash Free installation  Other ________ Amount of benefit provided    for assignment of certificates:</td>
+  </tr>
+
+  <tr bgcolor="#CCCCCC">
+    <td colspan="11"><strong>Standby Power Controllers (SPC's)</strong></td>
+    <td width="56"><strong>Brand:</strong></td>
+    <td colspan="4"><strong>Emerald Planet </strong></td>
+    <td><strong>Model:</strong></td>
+    <td width="71"><strong>EP4357</strong></td>
+    <td colspan="12">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="12"><strong>Serial Number</strong></td>
+    <td colspan="3"><strong>Room Type</strong></td>
+    <td width="42"><strong>SPC Type</strong></td>
+    <td width="57"><strong>Master</strong></td>
+    <td colspan="2"><strong>Number of Controlled Appliances</strong></td>
+    <td colspan="6"><strong>Description of Controlled Appliances Connected</strong></td>
+    <td colspan="2"><strong>Inbuilt Surge Protection</strong></td>
+    <td colspan="3"><strong>Benefit</strong></td>
+  </tr>
+  <tr>
+    <td colspan="12"><span id="d_productserialnum1"></span></td>
+    <td colspan="3"><span id="d_productroomtype1"></span></td>
+    <td width="42">AV</td>
+    <td width="57">TV</td>
+    <td colspan="2"><span id="d_controlappliences1"></span></td>
+    <td colspan="6">&nbsp;</td>
+    <td colspan="2">Y</td>
+    <td colspan="3">Free</td>
+  </tr>
+  <tr>
+    <td colspan="12"><span id="d_productserialnum2"></span></td>
+    <td colspan="3"><span id="d_productroomtype2"></span></td>
+    <td width="42">AV</td>
+    <td width="57">TV</td>
+    <td colspan="2"><span id="d_controlappliences2"></span></td>
+    <td colspan="6">&nbsp;</td>
+    <td colspan="2">Y</td>
+    <td colspan="3">Free</td>
+  </tr>
+  <tr>
+    <td colspan="12"><span id="d_productserialnum3"></span></td>
+    <td colspan="3"><span id="d_productroomtype3"></span></td>
+    <td width="42">AV</td>
+    <td width="57">TV</td>
+    <td colspan="2"><span id="d_controlappliences3"></span></td>
+    <td colspan="6">&nbsp;</td>
+    <td colspan="2">Y</td>
+    <td colspan="3">Free</td>
+  </tr>
+  <tr>
+    <td colspan="12"><span id="d_productserialnum4"></span></td>
+    <td colspan="3"><span id="d_productroomtype4"></span></td>
+    <td width="42">AV</td>
+    <td width="57">TV</td>
+    <td colspan="2"><span id="d_controlappliences4"></span></td>
+    <td colspan="6">&nbsp;</td>
+    <td colspan="2">Y</td>
+    <td colspan="3">Free</td>
+  </tr>
+
+  <tr>
+    <td colspan="33" align="center" bgcolor="#CCCCCC"><strong>Installer Details and Declaration</strong></td>
+  </tr>
+  <tr>
+    <td colspan="10">Full Name: <div id="installerFullNameDiv"></div></td>
+    <td colspan="3">ID Number: <div id="installerNameDiv"></div></td>
+    <td colspan="10">Installer contact number: </td>
+    <td colspan="8">Team Leader: </td>
+  </tr>
+  <tr id="dclspc1" style="display:none;">
+    <td colspan="34" align="center" bgcolor="#CCCCCC"><strong>SPC Installer Declaration</strong></td>
+  </tr>
+  <tr id="dclspc2" style="display:none;">
+    <td colspan="34">
+        <p><strong>I hereby declare  that:</strong></p>
+        <ul type="disc">
+          <li><strong>I have installed the above       product(s) in residential premises in accordance with the manufacturer&rsquo;s       guidelines.</strong></li>
+          <li><strong>The  information provided is complete and accurate and that I am aware that  penalties can be applied for providing misleading information in this form  under the <em>Victorian Energy Efficiency Target Act 2007</em>.  </strong></li>
+        </ul>
+    </td>
+  </tr>
+  <tr id="dclihd1" style="display:none;">
+    <td colspan="34" align="center" bgcolor="#CCCCCC"><strong>IHD Installer Declaration</strong></td>
+  </tr>
+  <tr id="dclihd2" style="display:none;">
+    <td colspan="34">
+        <b> I hereby declare that:<br />
+        •   The above product has been installed in a residential premises in accordance with the manufacturer’s guidelines.<br />
+        •   The customer has been informed about how the IHD handles private information and how to clear it. <br />
+        •   Where the installed IHD is Zigbee enabled, I have confirmed that the IHD has been successfully bound to the smart meter.<br />
+        •   Where a clamp-on type, non-Zigbee IHD has been installed, it has been installed by a licensed electrician.<br />
+        •   Where any non-Zigbee IHD has been installed, I have ensured the sensor is correctly reading energy usage data.<br />
+        •   The information provided is complete and accurate and that I am aware that penalties can be applied for providing misleading information in this form under the Victorian Energy Efficiency Target Act 2007. </b>
+    </td>
+  </tr>
+  <tr id="dclws1" style="display:none;">
+    <td colspan="34" align="center" bgcolor="#CCCCCC"><strong>Weather Seal Installer Declaration</strong></td>
+  </tr>
+  <tr id="dclws2" style="display:none;">
+    <td colspan="34">
+        <b> I hereby declare that:<br />
+        •   I have installed the above product(s) in residential premises <br />
+        •   The information provided is complete and accurate and that I am aware that penalties can be applied for providing misleading information in this form under the Victorian Energy Efficiency Target Act 2007. </b>
+    </td>
+  </tr>
+  <tr id="dclli1" style="display:none;">
+    <td colspan="34" align="center" bgcolor="#CCCCCC"><strong>Lighting Installer Declaration</strong></td>
+  </tr>
+  <tr id="dclli2" style="display:none;">
+    <td colspan="34">
+        <b> I hereby declare that:<br />
+        •   I have installed the above product(s) in residential premises.<br />
+        •   Where applicable the consumer has been informed that a Certificate of electrical safety is required for the work undertaken and will be provided a copy of the relevant certificate within five working days of installation.<br />
+        •   The lamps which were removed from the residential premises will be decommissioned.<br />
+        •   Where any product was installed in a dimmable circuit, the product is approved by the manufacturer as suitable for such a circuit.<br />
+        •   Where wiring work was required, I am licensed to undertake the installation of the above lamps<br />
+        •   Where wiring work was required, the installation meets all the relevant standards.<br />
+        •   The information provided is complete and accurate and that I am aware that penalties can be applied for providing misleading information in this form under the Victorian Energy Efficiency Target Act 2007. </b>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="17">Installer Signature: <img src="" id="inst_sig" style="width:150px; height:120px" /></td>
+    <td colspan="16">Date: <span id="installer_date"></span></td>
+  </tr>
+  <tr id="dcl5" style="display:none;">
+    <td colspan="34" align="center" bgcolor="#CCCCCC"><strong>SPC Consumer Declaration</strong></td>
+  </tr>
+  <tr id="dcle" style="display:none;">
+    <td colspan="34">
+        <p><strong>I hereby declare that:</strong></p>
+        <ul>
+          <li><strong>I am  the tenant/landlord/owner  of the residence at  the above installation address.  </strong></li>
+          <li><strong>The  information provided by the installer in Part A is correct and complete.</strong></li>
+          <li><strong>I  understand that by signing this form I am assigning the right to create VEECs  for the installation to Auspro Group Pty.Ltd.. </strong></li>
+          <li><strong>I have received adequate  information about the product and how it operates. </strong></li>
+          <li><strong>I have  received an identifiable benefit from Auspro Group Pty.Ltd in exchange for assigning my  rights to create the certificates for the above installation.</strong></li>
+          <li><strong>The  Essential Services Commission has the right to inspect the installation with  reasonable notice.</strong></li>
+          <li><strong>I  understand that information on this form will be disclosed to the Essential  Services Commission for the purpose of creating VEECs under the <em>Victorian  Energy Efficiency Target Act 2007 </em>and for related verification, audit and  scheme monitoring purposes.</strong></li>
+          <li><strong>I am  aware that penalties can be applied for providing misleading information in  this form under the <em>Victorian Energy Efficiency Target Act 2007</em></strong></li>
+        </ul>
+    </td>
+  </tr>
+  <tr id="dcl7" style="display:none;">
+    <td colspan="34" align="center" bgcolor="#CCCCCC"><strong>Weather Seal Consumer Declaration</strong></td>
+  </tr>
+  <tr id="dclg" style="display:none;">
+    <td colspan="34">
+        <p><strong>I hereby declare that:</strong></p>
+        <ul>
+          <li><strong>I am  the tenant/landlord/owner of the residence at  the above installation address.  </strong></li>
+          <li><strong>The  information provided by the installer in Part A is correct and complete</strong></li>
+          <li><strong>I  understand that by signing this form I am assigning the right to create VEECs  for the installation to Auspro Group Pty.Ltd. </strong></li>
+          <li><strong>I have  received an identifiable benefit from Auspro Group Pty.Ltd in exchange for assigning my  rights to create the VEECs for the above installation.  </strong></li>
+          <li><strong>The  Essential Services Commission has the right to inspect the installation with reasonable  notice</strong></li>
+          <li><strong>I  understand that information on this form will be disclosed to the Essential  Services Commission for the purpose of creating VEECs under the <em>Victorian  Energy Efficiency Target Act 2007 </em>and for related verification, audit and  scheme monitoring purposes.  </strong></li>
+          <li><strong>I am  aware that penalties can be applied for providing misleading information in  this form under the <em>Victorian Energy Efficiency Target Act 2007</em></strong></li>
+        </ul>
+    </td>
+  </tr>
+  <tr id="dcl6" style="display:none;">
+    <td colspan="34" align="center" bgcolor="#CCCCCC"><strong>IHD Consumer Declaration</strong></td>
+  </tr>
+  <tr id="dclf" style="display:none;">
+    <td colspan="34">
+        <p><strong>I hereby declare that:</strong></p>
+        <ul>
+          <li><strong>I am  the electricity account holder/the electricity account holder&rsquo;s authorised  agent of the residence at the above installation  address.  </strong></li>
+          <li><strong>The  information provided by the installer in Part A is correct and complete.</strong></li>
+          <li><strong>I  understand that by signing this form I am assigning the right to create VEECs  for the installation to Auspro Group Pty.Ltd.. </strong></li>
+          <li><strong>I have received adequate  information about the product and how to use it. </strong></li>
+          <li><strong>I have received adequate  information relating to how my private information is recorded by the IHD and  how to clear this information. </strong></li>
+          <li><strong>I have been informed that  the cost information on my energy bill may not be the same as the cost  information displayed on the product, and I have been informed how the cost  information displayed compares to the cost information on my bill. </strong></li>
+          <li><strong>I have  received an identifiable benefit from Auspro Group Pty.Ltd in exchange for assigning my rights to create the certificates for the above  installation.</strong></li>
+          <li><strong>The  Essential Services Commission has the right to inspect the installation with  reasonable notice.</strong></li>
+          <li><strong>I  understand that information on this form will be disclosed to the Essential  Services Commission for the purpose of creating VEECs under the <em>Victorian  Energy Efficiency Target Act 2007 </em>and for related verification, audit and  scheme monitoring purposes.</strong></li>
+          <li><strong>I am  aware that penalties can be applied for providing misleading information in  this form under the <em>Victorian Energy Efficiency Target Act 2007</em>. </strong></li>
+        </ul>
+    </td>
+  </tr>
+  
+  <tr id="dcl8" style="display:none;">
+    <td colspan="34" align="center" bgcolor="#CCCCCC"><strong>Lighting Consumer Declaration</strong></td>
+  </tr>
+  <tr id="dclh" style="display:none;">
+    <td colspan="34">
+        <p><strong>I hereby declare that:</strong></p>
+        <ul>
+          <li><strong>I am  the tenant/landlord/owner of the residence at  the above installation address.  </strong></li>
+          <li><strong>The  information provided by the installer in Part A is correct and complete.</strong></li>
+          <li><strong>I  understand that by signing this form I am assigning the right to create VEECs  for the installation to Auspro Group Pty.Ltd.. </strong></li>
+          <li><strong>I have  received an identifiable benefit from Auspro Group Pty.Ltd in exchange for assigning my  rights to create the certificates for the above installation.</strong></li>
+          <li><strong>The  Essential Services Commission has the right to inspect the installation with reasonable  notice.</strong></li>
+          <li><strong>I  understand that information on this form will be disclosed to the Essential  Services Commission for the purpose of creating VEECs under the <em>Victorian  Energy Efficiency Target Act 2007 </em>and for related verification, audit and  scheme monitoring purposes.</strong></li>
+          <li><strong>I am  aware that penalties can be applied for providing misleading information in  this form under the <em>Victorian Energy Efficiency Target Act 2007</em>.</strong></li>
+        </ul>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="17">Consumer Signature: <img src="" id="cust_sig" style="width:150px; height:120px" /></td>
+    <td colspan="16">Date: <span id="consumer_date"></span></td>
+  </tr>
+</table>
+
+</div>
+    <div class="nav_bar" style=" margin:0px 0px 0px 0px;">
+        <ul class="nav_bar_icons"> 
+          <li><a href="#" class="new_ticket" data-rel="back">Go Back</a></li>          
+        </ul>
+      </div>
+    </div>
+</body>
+</html>

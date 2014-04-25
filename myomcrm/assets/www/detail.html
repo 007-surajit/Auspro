@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<div class="main_wrapper"  data-role="page" id="detailpage">
+
+<script>
+	$('#detailpage').live('pagecreate', function(event){
+				
+		get_loggedin_user_data(function(response) {
+												
+			console.log(response);
+			if(response == 1)
+			{
+				$('#loggedin_user_name3').html(logged_in_user_data.name);
+				
+				console.log('in detail');
+				console.log(window.localStorage.getItem('customerImagedata'));
+			}
+		
+		});
+		
+	});
+
+</script>
+  <div class="logo"></div>
+
+
+	<div class="nav_bar">
+    <ul class="nav_bar_icons">
+      <li><a href="listing.html" class="new_ticket" data-transition="reverse slide">Go Back</a></li>
+      <li><a href="checklist.html" class="new_ticket" data-transition="slide" >Next</a></li>      
+      <li><a href="#" class="logout_butt" onclick="logoutUser();">Logout</a></li>
+	  <li><div class="loged_user">Logged in User: <span id="loggedin_user_name3">User</span></div></li>	  
+	  
+    </ul>
+	
+  </div>
+		
+
+<div class="ticket_list">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td valign="top"><h1>Have you had any of the following Products?</h1></td>
+    </tr>
+  
+  <tr>
+    <td valign="top"><table width="100%" border="0" cellspacing="25" cellpadding="0">
+    	<tr>
+        <td align="center" valign="middle" bgcolor="#FFFFFF"><a href="#"><img src="images/new-Emerald-Remote-Control-Standby-Saver.png" width="250" /></a></td>
+		<td align="center" valign="middle" bgcolor="#FFFFFF" rowspan="2"><a href="#"><img src="images/pmr166wwhpf.png" width="250" /></a></td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF"><a href="#"><img src="images/door-seals.png" width="250" /></a></td>
+      </tr>
+      <tr>
+        <td align="center" valign="middle" bgcolor="#FFFFFF"><a href="#"><img src="images/lighting.png" width="250" /></a></td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF"><a href="#"><img src="images/chimney-baloon.png" width="250" /></a></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+  </div>		
+	</div>
+</body>
+</html>

@@ -1,0 +1,642 @@
+/* General CSS */
+
+body{ margin:0px 0px 0px 0px; background:#ecf4a8 url(../images/main_bg.png) repeat-x top center; }
+
+img { border:none; }
+
+.yellow{ color:#FFC000; }
+.white{ color:#FFF;}
+.green{ color:#80B000;}
+.orange{ color:#f26422;}
+.blue{color:#50D0FF;}
+.clr{ clear:both;}
+
+.main_wrapper{ margin:0px; position:relative; }
+.logout{ float:right; margin:0px 10px 0px 0px}
+.logout a{ background:url(../images/logout.png) no-repeat left top; display:block; width:20px; height:19px; background-size:100%;}
+
+.logo{ margin:15px auto 38px auto; width:306px; height:103px; background:url(../images/logo.png) no-repeat left top; background-size:100%; display:block;
+filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.../images/logo.png', sizingMethod='scale');
+-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/logo.png', sizingMethod='scale')";
+}
+
+.nav_bar{ background:url(../images/nav_bar.png) left top repeat-x;  height:46px; padding:15px 10px 0px 10px; margin:0px 0px 25px 0px; }
+.nav_bar ul.nav_bar_icons{ margin:0px; padding:0px;}
+.nav_bar ul.nav_bar_icons li{ margin:0px 5px 0px 0px; padding:0px; list-style-type:none; display:inline;}
+
+.nav_bar ul.nav_bar_icons li a.home_icon{ background:url(../images/home_icon.png) no-repeat left top; background-size:100%; width:36px; height:35px; display:inline-block; float:left; margin:0px 5px 0px 0px; }
+
+.nav_bar ul.nav_bar_icons li a.refresh_icon{ background:url(../images/nav_bar_refresh.png) no-repeat left top; background-size:100%; width:36px; height:35px; display:inline-block;margin:0px 5px 0px 0px;  }
+
+.nav_bar ul.nav_bar_icons li a.add_game_btn{ background:url(../images/nav_bar_add_game.png) no-repeat left top; background-size:100%; width:86px; line-height:35px; display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#FFFFFF; text-decoration:none; font-weight:bold; text-align:center; float:left;margin:0px 5px 0px 0px;  }
+
+.nav_bar ul.nav_bar_icons li a.settings_btn{ background:url(../images/nav_bar_settings.png) no-repeat left top; background-size:100%; width:69px; line-height:35px; display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#FFFFFF; text-decoration:none; font-weight:bold; text-align:center; float:left;margin:0px 5px 0px 0px; }
+
+.nav_bar ul.nav_bar_icons li a.add_player_btn{ background:url(../images/nav_bar_add_player.png) no-repeat left top; background-size:100%; width:89px; line-height:35px; display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#FFFFFF; text-decoration:none; font-weight:bold; text-align:center; float:left;margin:0px 5px 0px 0px; }
+
+.nav_bar ul.nav_bar_icons li a.previous_icon{ background:url(../images/nav_bar_previous.png) no-repeat left top; background-size:100%; width:36px; height:35px; display:inline-block; float:left; margin:0px 5px 0px 0px; }
+
+.nav_bar ul.nav_bar_icons li a.next_icon{ background:url(../images/nav_bar_next.png) no-repeat left top; background-size:100%; width:36px; height:35px; display:inline-block; float:left; margin:0px 5px 0px 0px; }
+
+.nav_bar ul.nav_bar_icons li a.new_ticket{ background:url(../images/login_buttons.png) no-repeat left top; background-size:100%; width:125px; line-height:35px; height:35px; display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#FFF; height:35px; text-decoration:none; text-align:center; float:left; margin:0px 10px 0px 0px;}
+
+.nav_bar ul.nav_bar_icons li a.new_ticket2{ background:url(../images/login_buttons2.png) no-repeat left top; background-size:100%; width:175px; line-height:35px; height:35px; display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#FFF; height:35px; text-decoration:none; text-align:center; float:left; margin:0px 10px 0px 15px;}
+
+.nav_bar ul.nav_bar_icons li a.schedule_btn{ background:url(../images/nav_bar_schedule.png) no-repeat left top; background-size:100%; width:80px; line-height:35px; display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#FFFFFF; text-decoration:none; font-weight:bold; text-align:center; float:left;margin:0px 5px 0px 0px; }
+
+.nav_bar ul.nav_bar_icons li a.add_to_schedule_btn{ background:url(../images/nav_bar_add_to_schedule.png) no-repeat left top; background-size:100%; width:122px; line-height:35px; display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#FFFFFF; text-decoration:none; font-weight:bold; text-align:center; float:left;margin:0px 5px 0px 0px; }
+
+.nav_bar ul.nav_bar_icons li a.create_schedule_btn{ background:url(../images/nav_bar_add_to_schedule.png) no-repeat left top; background-size:100%; width:122px; line-height:35px; display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#FFFFFF; text-decoration:none; font-weight:bold; text-align:center; float:left;margin:0px 5px 0px 0px; }
+
+.nav_bar ul.nav_bar_icons li a.evaluate_player_btn{ background:url(../images/nav_bar_evaluate_player_btn.png) no-repeat left top; background-size:100%; width:124px; line-height:35px; display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#FFFFFF; text-decoration:none; font-weight:bold; text-align:center; float:left;margin:0px 5px 0px 0px; }
+
+.nav_bar ul.nav_bar_icons li a.lost_password_btn{ background:url(../images/nav_bar_lost_password.png) no-repeat left top; background-size:100%; width:116px; line-height:35px; display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#FFFFFF; text-decoration:none; font-weight:bold; text-align:center; float:left;margin:0px 5px 0px 0px; }
+
+.nav_bar ul.nav_bar_icons li a.nav_sign_up_btn{ background:url(../images/nav_bar_sign_up_btn.png) no-repeat left top; background-size:100%; width:74px; line-height:35px; display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#FFFFFF; text-decoration:none; font-weight:bold; text-align:center; float:left;margin:0px 5px 0px 0px; }
+
+.nav_bar ul.nav_bar_icons li a.nav_login_btn{ background:url(../images/nav_bar_login_btn.png) no-repeat left top; background-size:100%; width:61px; line-height:35px; display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#FFFFFF; text-decoration:none; font-weight:bold; text-align:center; float:left;margin:0px 5px 0px 0px; }
+
+.nav_bar ul.nav_bar_icons li a.view_all_players{ background:url(../images/nav_bar_view_all_players.png) no-repeat left top; background-size:100%; width:120px; line-height:35px; display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#FFFFFF; text-decoration:none; font-weight:bold; text-align:center; float:left;margin:0px 5px 0px 0px; }
+
+.nav_bar ul.nav_bar_icons li a.players_btn{ background:url(../images/nav_bar_players.png) no-repeat left top; background-size:100%; width:69px; line-height:35px; display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#FFFFFF; text-decoration:none; font-weight:bold; text-align:center; float:left;margin:0px 5px 0px 0px; }
+
+.nav_bar ul.nav_bar_icons li a.other_info_btn, .nav_bar ul.nav_bar_icons li a.nav_formation_btn{ background:url(../images/nav_bar_other_info.png) no-repeat left top; background-size:100%; width:85px; line-height:35px; display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#FFFFFF; text-decoration:none; font-weight:bold; text-align:center; float:left;margin:0px 5px 0px 0px; }
+
+.nav_bar ul.nav_bar_icons li a.upload_pic_btn, .nav_bar ul.nav_bar_icons li a.nav_view_schedule_btn{ background:url(../images/nav_bar_upload_picture.png) no-repeat left top; background-size:100%; width:112px; line-height:35px; display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#FFFFFF; text-decoration:none; font-weight:bold; text-align:center; float:left;margin:0px 5px 0px 0px; }
+
+.nav_bar ul.nav_bar_icons li a.upload_vid_btn, .nav_bar ul.nav_bar_icons li a.upload_aud_btn, .nav_bar ul.nav_bar_icons li a.view_players_btn{ background:url(../images/nav_bar_upload_video.png) no-repeat left top; background-size:100%; width:103px; line-height:35px; display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#FFFFFF; text-decoration:none; font-weight:bold; text-align:center; float:left;margin:0px 5px 0px 0px; }
+
+.nav_bar ul.nav_bar_icons li a.nav_skills_btn{ background:url(../images/nav_bar_skills.png) no-repeat left top; background-size:100%; width:55px; line-height:35px; display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#FFFFFF; text-decoration:none; font-weight:bold; text-align:center; float:left;margin:0px 5px 0px 0px; }
+
+.nav_bar ul.nav_bar_icons li a.logout_butt{ background:url(../images/nav_bar_players.png) no-repeat left top; background-size:100%; width:65px; line-height:25px; height:35px; display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#FFF; height:35px; text-decoration:none; text-align:center; float:right;}
+
+
+.upload_pic{ background:url(../images/upload_pic.png) no-repeat left top; background-size:100%; width:81px; line-height:27px; display:inline-block;font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center;margin-right:5px;}
+
+.upload_vid{background:url(../images/upload_video.png) no-repeat left top; background-size:100%; width:99px; line-height:27px; display:inline-block;font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center; margin-right:5px;}
+
+.upload_aud{background:url(../images/upload_audio.png) no-repeat left top; background-size:100%; width:99px; line-height:27px; display:inline-block;font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center;margin-right:5px;}
+
+.search_btn{ background:url(../images/search_btn.png); background-size:100%; line-height:27px; width:68px; font-size:0px; border:none; display:inline-block; clear:both; margin:0px 0px 0px 0px;font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center;}
+
+.close_btn{background:url(../images/close.png); background-size:100%; line-height:26px; width:68px; font-size:0px; border:none; display:inline-block; clear:both; margin:0px 0px 0px 0px;font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center;}
+
+.add_schedule_player_to_schedule{background:url(../images/add_schedule_player_to_schedule.png); background-size:100%; height:56px; width:153px; display:inline-block; margin:0px 0px 0px 8px; }
+
+/* =========== Splash Screen ========== */
+
+.splash_pic{ width:100%; max-width:766px; height:609px; margin:20px auto 30px auto; border:1px solid #282828; }
+.splash_btns{ margin:0 auto; width:400px;}
+
+.login_btn{ float:left; color:#797979; font-family:Arial, Helvetica, sans-serif; font-size:12px; font-weight:bold; width:170px; margin:0px 10px 5px 0px; }
+.login_btn a.btn{ width:170px; line-height:48px; background:url(../images/login_buttons.png) no-repeat left top; background-size:100%; display:block; color:#FFFFFF; font-family:'HelveticaNue'; font-size:24px; text-align:center; text-decoration:none; margin:0px 0px 5px 0px; font-weight:normal;  }
+
+.sign_up_btn{ float:left; color:#797979; font-family:Arial, Helvetica, sans-serif; font-size:12px; width:170px; margin:0px 0px 5px 0px; font-weight:bold;  }
+.sign_up_btn a.btn{ width:170px; line-height:48px; background:url(../images/login_buttons.png) no-repeat left top; background-size:100%; display:block; color:#FFFFFF; font-family:'HelveticaNue'; font-size:24px; text-align:center; text-decoration:none; margin:0px 0px 5px 0px; font-weight:normal; }
+
+.lost_password{margin:120px auto 0px auto; width:200px; color:#fff; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; padding:0px 0px 0px 50px;}
+.lost_password a{color:#fff; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; text-decoration:none;}
+
+.splash_globe{ margin:0 auto; width:227px; }
+
+
+/* =========== Login Screen ========== */
+
+.login_box{ width:432px; height:273px; margin:0px auto 0px auto; background:url(../images/login_box.png) no-repeat left top; padding:80px 54px 65px 54px; font-family:Arial, Helvetica, sans-serif; color:#878787; font-size:13px; font-weight:bold;}
+h1.login{ color:#3e3e3e; margin:0px 0px 15px 0px; padding:0px; width:100%; font-size:35px; font-family:'LaneNarrow'; font-weight:normal; text-align:center;}
+.login_box label{ color:#878787; font-size:13px; font-weight:bold; font-family:Arial, Helvetica, sans-serif; display:block; margin:0px 0px 5px 0px;}
+.login_box input.text_box{  background:transparent url(../images/login_txt_field.png); height:72px; border:none; line-height:72px; width:416px; padding:0px 8px 8px 8px; margin:0px 0px 20px 0px; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:28px; color:#3a3a3a; text-align:center; }
+
+.login_box a.login_btn{  background:transparent url(../images/login_btn.png); background-size:100%; line-height:50px; width:171px; color:transparent; font-size:30px; border:none; display:block; color:#FFF; text-decoration:none; text-align:center; font-family:'LaneNarrow'; font-weight:normal; text-align:center; margin:10px 0px 0px 127px;}
+
+
+	
+/* =========== Lost Password Screen ========== */
+
+.lost_password_box{ width:360px; height:242px; margin:50px auto 0px auto; background:url(../images/member_box1.png) no-repeat left top; padding:20px;}
+.lost_password_box h1{ color:#FFFFFF; margin:0px 0px 15px 0px; padding:0px; font-size:30px; font-family:'HelveticaNue'; font-weight:normal;}
+
+.lost_password_box label{ color:#878787; font-size:13px; font-weight:bold; font-family:Arial, Helvetica, sans-serif; display:block; margin:0px 0px 5px 0px;}
+
+.lost_password_box input.text_box{  background:transparent url(../images/field_detail_bar.png); height:37px; border:1px solid #565656; width:200px; padding:0px 5px 0px 5px; margin:0px 0px 10px 0px; font-family:Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; }
+
+.lost_password_box a.submit_btn{  background:transparent url(../images/submit_btn.png); background-size:100%; line-height:27px; width:67px; color:transparent; font-size:0px; border:none; display:block;font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center; font-family:Arial, Helvetica, sans-serif;}
+
+/* =========== Change Password Screen ========== */
+
+.change_password_box{ width:360px; height:242px; margin:50px auto 0px auto; background:url(../images/member_box1.png) no-repeat left top; padding:20px;}
+.change_password_box h1{ color:#FFFFFF; margin:0px 0px 15px 0px; padding:0px; font-size:30px; font-family:'HelveticaNue'; font-weight:normal;}
+
+.change_password_box label{ background:transparent url(../images/field_caption_bar.png); color:#878787; font-size:13px; font-weight:bold; line-height:37px; width:125px; padding:0px 10px 0px 10px; margin:0px 5px 5px 0px; font-family:Arial, Helvetica, sans-serif; float:left;}
+
+.change_password_box input.text_box{  background:transparent url(../images/field_detail_bar.png); height:35px; border:1px solid #565656; width:180px; padding:0px 10px 0px 10px; margin:0px 0px 7px 0px; font-family:Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; float:left; }
+
+.change_password_box a.update_btn{ background:transparent url(../images/update_btn.png); background-size:100%; line-height:27px; width:70px; color:transparent; font-size:0px; border:none; display:block; float:left; margin:0px 0px 0px 150px; font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center; font-family:Arial, Helvetica, sans-serif;}
+
+
+/* =========== Sign Up Screen ========== */
+
+.sign_up_box{ width:360px; height:332px; margin:50px auto 0px auto; background:url(../images/member_box2.png) no-repeat left top; padding:20px;}
+.sign_up_box h1{ color:#FFFFFF; margin:0px 0px 0px 0px; padding:0px; font-size:40px; font-family:'HelveticaNue'; font-weight:normal;}
+
+.sign_up_box label{ background:transparent url(../images/field_caption_bar.png); color:#878787; font-size:13px; font-weight:bold; line-height:37px; width:125px; padding:0px 10px 0px 10px; margin:0px 5px 5px 0px; font-family:Arial, Helvetica, sans-serif; float:left;}
+
+.sign_up_box input.text_box{  background:transparent url(../images/field_detail_bar.png); height:35px; border:1px solid #565656; width:180px; padding:0px 10px 0px 10px; margin:0px 0px 7px 0px; font-family:Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; float:left; }
+
+.sign_up_box a.sign_up_btn{ background:transparent url(../images/sign_up.png); background-size:100%; line-height:28px; width:73px; color:transparent; font-size:0px; border:none; display:block; float:left; margin:0px 0px 0px 150px;font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center;}
+
+
+/* =========== Edit Profile Screen ========== */
+.edit_profile_area{ color:#878787; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; padding:0px 15px 0px 15px; position:relative; }
+
+.edit_profile_area .heading_area{ float:left; width:100%;}
+
+.edit_profile_area h1{ font-weight:normal; color:#FFFFFF; font-family:'HelveticaNue'; margin-top:-10px; float:left;}
+
+.edit_profile_area a.save_btn{ margin-top:-10px; background:url(../images/save_btn.png); background-size:100%; width:53px; line-height:27px; display:block; float:right;font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center;}
+
+.edit_profile_area .pic_area{ float:left; }
+
+.edit_profile_area .form_step1 { float:left;}
+.edit_profile_area .form_step1 div{ margin-bottom:10px;}
+.edit_profile_area .form_step1 label{ float:left; margin-right:10px; }
+.edit_profile_area .form_step1 input.text_box{  background:transparent url(../images/field_detail_bar.png); height:37px; border:1px solid #565656; width:200px; padding:0px 5px 0px 5px; margin:0px 0px 10px 0px; font-family:Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; float:left; }
+
+.edit_profile_area .form_step2 { float:left; width:100%;}
+
+.edit_profile_area .form_step2 label{ float:left; margin:0px 10px 5px 0px; background:url(../images/field_caption_bar.png); padding:0px 10px 0px 10px; line-height:37px; width:112px; }
+
+.edit_profile_area .form_step2 input.text_box{ float:left; background:transparent url(../images/field_detail_bar.png); padding:0px 10px 0px 10px; height:35px; border:none; border:1px solid #565656; color:#FFFFFF; margin:0px 10px 5px 0px;}
+
+.edit_profile_area .form_step2 textarea.text_area{ float:left; background:#2E2E2E url(../images/field_detail_bar.png) repeat-x top left; padding:10px 10px 10px 10px; height:35px; border:none; border:1px solid #565656; color:#FFFFFF; margin:0px 10px 5px 0px;}
+
+.edit_profile_area .form_step3 { float:left; width:100%; margin-bottom:10px;}
+.edit_profile_area .form_step3 h1{ background:url(../images/expand_pane.png); line-height:50px; display:block; margin:10px 0px 10px 0px; width:100%; float:left; text-indent:15px; font-size:25px; }
+
+.edit_profile_area .form_step3 label{ float:left; margin:0px 10px 5px 0px; background:url(../images/field_caption_bar.png); padding:0px 10px 0px 10px; line-height:37px; width:168px; }
+
+.edit_profile_area .form_step3 input.text_box{ float:left; background:transparent url(../images/field_detail_bar.png); padding:0px 10px 0px 10px; height:35px; border:none; border:1px solid #565656; color:#FFFFFF; margin:0px 10px 5px 0px;}
+
+
+/* =========== create schedule Screen ========== */
+.create_schedule_area{ color:#878787; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; padding:0px 15px 0px 15px; position:relative; }
+.create_schedule_area .heading_area{ float:left; width:100%;}
+
+.create_schedule_area a.save_btn{ margin-top:-10px; background:url(../images/save_btn.png); background-size:100%; width:53px; line-height:27px; display:block; float:right;font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center;}
+
+.create_schedule_area h1{ font-weight:normal; color:#FFFFFF; font-family:'HelveticaNue'; margin-top:-10px; float:left;}
+
+.create_schedule_area .form_step1 { float:left; width:100%; margin-bottom:10px;}
+.create_schedule_area .form_step1 h1{ background:url(../images/expand_pane.png); line-height:50px; display:block; margin:10px 0px 10px 0px; width:100%; float:left; text-indent:15px; font-size:25px; }
+
+.create_schedule_area .form_step1 label{ float:left; margin:0px 10px 5px 0px; background:url(../images/field_caption_bar.png); padding:0px 10px 0px 10px; line-height:37px; width:112px; }
+
+.create_schedule_area .form_step1 input.text_box{ float:left; background:transparent url(../images/field_detail_bar.png); padding:0px 10px 0px 10px; height:35px; border:none; border:1px solid #565656; color:#FFFFFF; margin:0px 10px 5px 0px;}
+
+.create_schedule_area .form_step1 textarea.text_area{ float:left; background:#2E2E2E url(../images/field_detail_bar.png) repeat-x top left; padding:10px 10px 10px 10px; height:35px; border:none; border:1px solid #565656; color:#FFFFFF; margin:0px 10px 5px 0px; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:13px;}
+
+
+/* =========== view schedule Screen ========== */
+.view_schedule_area{ color:#878787; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; padding:0px 15px 0px 15px; position:relative; }
+.view_schedule_area .heading_area{ float:left; width:100%;}
+
+.view_schedule_area a.edit_btn{ margin-top:-10px; background:url(../images/edit2.png); background-size:100%; width:48px; line-height:28px; display:block; float:right;font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center;}
+
+.view_schedule_area h1{ font-weight:normal; color:#FFFFFF; font-family:'HelveticaNue'; margin-top:-10px; float:left;}
+
+.view_schedule_area .form_step1 { float:left; width:100%; margin-bottom:10px;}
+.view_schedule_area .form_step1 h1{ background:url(../images/expand_pane.png); line-height:50px; display:block; margin:10px 0px 10px 0px; width:100%; float:left; text-indent:15px; font-size:25px; }
+
+.view_schedule_area .form_step1 label{ float:left; margin:0px 10px 5px 0px; background:url(../images/field_caption_bar.png); padding:0px 10px 0px 10px; line-height:37px; width:112px; }
+
+.view_schedule_area .form_step1 input.text_box{ float:left; background:transparent url(../images/field_detail_bar.png); padding:0px 10px 0px 10px; height:35px; border:none; border:1px solid #373737; color:#FFFFFF; margin:0px 10px 5px 0px;font-size:13px;}
+
+.view_schedule_area .form_step1 textarea.text_area{ float:left; background:#2E2E2E url(../images/field_detail_bar.png) repeat-x top left; padding:10px 10px 10px 10px; height:35px; border:none; border:1px solid #373737; color:#FFFFFF; margin:0px 10px 5px 0px; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:13px;}
+
+
+
+.players_list{ color:#878787; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; padding:0px 15px 0px 15px; position:relative; overflow:auto; }
+
+
+.players_list h1{ font-weight:normal; color:#FFFFFF; font-family:'HelveticaNue'; margin:0px 0px 0px 0px; float:left; height:70px; background:url(../images/bar1.png) repeat-x; width:100%; text-indent:15px; padding:10px 0px 0px 0px;}
+
+.players_list h1 a.share_btn{ background:url(../images/share_btn.png); background-size:100%; width:62px; line-height:26px; display:inline-block; float:right; margin:5px 15px 0px 0px;font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center;}
+
+
+.players_list div.bar_panel{ font-weight:normal; color:#B6B6B6; margin:-15px 0px 17px 0px; float:left; background:url(../images/bar2.png); width:97%; float:left; height:71px; padding:13px 15px 10px 15px;}
+
+.players_list div.bar_panel h2{ font-size:15px; color:#FFFFFF; margin:0px 0px 5px 0px; padding:0px;}
+
+.players_list div.bar_panel_end{ margin:-17px 0px 0px 0px; float:left; background:url(../images/panel_end_bar.png); width:100%; float:left; height:7px; padding:0px;}
+
+
+/* ============ All Players List ============ */
+
+.all_players_list{ color:#878787; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; padding:0px 15px 0px 15px; position:relative; overflow:auto; }
+
+.all_players_list h1{ font-weight:normal; color:#FFFFFF; font-family:'HelveticaNue'; margin:0px 0px 0px 0px; float:left; height:70px; background:url(../images/bar1.png) repeat-x; width:100%; text-indent:15px; padding:10px 0px 0px 0px;}
+
+.all_players_list h1 a.share_btn{ background:url(../images/share_btn.png); background-size:100%; width:62px; line-height:26px; display:inline-block; float:right; margin:5px 15px 0px 0px;font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center;}
+
+.all_players_list div.bar_panel{ font-weight:normal; color:#B6B6B6; margin:-15px 0px 17px 0px; float:left; background:url(../images/bar2.png); width:97%; float:left; height:71px; padding:13px 15px 10px 15px;}
+
+.all_players_list div.bar_panel h2{ font-size:15px; color:#FFFFFF; margin:0px 0px 5px 0px; padding:0px;}
+
+.all_players_list div.bar_panel_end{ margin:-17px 0px 0px 0px; float:left; background:url(../images/panel_end_bar.png); width:100%; float:left; height:7px; padding:0px;}
+
+/* =========== View Profile Screen ========== */
+.view_profile_area{ color:#878787; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; padding:0px 15px 0px 15px; position:relative; }
+
+.view_profile_area .heading_area{ float:left; width:100%;}
+
+.view_profile_area h1{ font-weight:normal; color:#FFFFFF; font-family:'HelveticaNue'; margin-top:-10px; float:left;}
+
+.view_profile_area a.view_all_btn{ margin:-10px 10px 0px 0px; background:url(../images/view_all.png); background-size:100%; width:72px; line-height:26px; display:block; float:right;margin:15px 10px 10px 0px;font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center;}
+
+.view_profile_area a.next_player_btn{ margin:-10px 10px 0px 0px; background:url(../images/next_player.png); background-size:100%; width:93px; line-height:26px; display:block; float:right;font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center;}
+
+.view_profile_area a.share_btn{ font-weight:normal; color:#FFFFFF; margin:-10px 10px 0px 0px; background:url(../images/share.png); background-size:100%; width:64px; line-height:26px; display:block; float:right;font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center;}
+
+.view_profile_area a.edit_profile_btn{ margin:-10px 10px 0px 0px; background:url(../images/edit_profile.png); background-size:100%; width:91px; line-height:26px; display:block; float:right;font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center;}
+
+.view_profile_area a.evaluate_player_btn{ margin:-10px 10px 0px 0px; background:url(../images/evaluate_player.png); background-size:100%; width:123px; height:26px; display:block; float:right;font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#FFF; text-decoration:none; font-weight:bold; text-align:center;}
+
+.view_profile_area .pic_area{ float:left; }
+
+.view_profile_area .form_step1 { float:left;}
+.view_profile_area .form_step1 div{ margin-bottom:10px;}
+.view_profile_area .form_step1 label{ float:left; margin-right:10px; }
+
+.view_profile_area .form_step1 a.pic_note{ color:#9CBE00; text-decoration:none;}
+.view_profile_area .form_step1 a.pic_note:hover{ color:#FFF; }
+
+.view_profile_area .form_step1 a.video_note{ color:#56CCF8; text-decoration:none;}
+.view_profile_area .form_step1 a.video_note:hover{ color:#FFF; }
+
+.view_profile_area .form_step1 a.audio_note{ color:#FF7800; text-decoration:none;}
+.view_profile_area .form_step1 a.audio_note:hover{ color:#FFF; }
+
+.view_profile_area .form_step2 { float:left; width:100%;}
+.view_profile_area .form_step2 label{ float:left; margin:0px 10px 5px 0px; background:url(../images/field_caption_bar.png); padding:0px 10px 0px 10px; line-height:37px; width:112px; }
+.view_profile_area .form_step2 input.text_box{ float:left; background:transparent url(../images/field_detail_bar.png); padding:0px 10px 0px 10px; height:35px; border:none; color:#FFFFFF; margin:0px 10px 5px 0px; font-weight:bold;}
+
+.view_profile_area .form_step2 { float:left; width:100%;}
+.view_profile_area .form_step3 h1{ font-size:25px; font-weight:normal; margin:10px 0px 10px 0px; float:left; width:100%; }
+.view_profile_area .form_step3 a{ color:#FFC000;}
+.view_profile_area .form_step3 h2{ background:url(../images/expand_pane.png); line-height:50px; display:block; margin:0px 0px 2px 0px; width:100%; float:left; text-indent:15px; font-size:13px; font-weight:bold; font-family:Arial, Helvetica, sans-serif; height:51px; }
+
+.view_profile_area .form_step3 .rating_area { float:left; padding:0px 15px 10px 15px; width:98%;}
+
+.view_profile_area .form_step3 label{ float:left; margin:0px 10px 5px 0px; background:url(../images/field_caption_bar.png); padding:0px 10px 0px 10px; line-height:37px; width:90px; }
+.view_profile_area .form_step3 input.text_box{ float:left; background:transparent url(../images/field_detail_bar.png); padding:0px 10px 0px 10px; height:35px; border:none; color:#FFFFFF; margin:0px 10px 5px 0px; font-weight:bold; width:100px;}
+
+
+/* =========== Evaluate Player Screen ========== */
+.evaluate_player{ color:#878787; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; padding:0px 15px 0px 15px; position:relative; }
+
+.evaluate_player .heading_area{ float:left; width:100%;}
+
+.evaluate_player a.save_btn{ margin-top:-10px; background:url(../images/save_btn.png); background-size:100%; width:53px; line-height:27px; display:block; float:right;font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center;}
+
+.evaluate_player h1{ font-weight:normal; color:#FFFFFF; font-family:'HelveticaNue'; margin-top:-10px; float:left;}
+
+.evaluate_player .form_step3 h1{ font-size:25px; font-weight:normal; margin:10px 0px 10px 0px; float:left; width:100%; }
+.evaluate_player .form_step3 a{ color:#FFC000;}
+.evaluate_player .form_step3 h2{ background:url(../images/expand_pane.png); line-height:50px; display:block; margin:0px 0px 2px 0px; width:100%; float:left; text-indent:15px; font-size:13px; font-weight:bold; font-family:Arial, Helvetica, sans-serif; height:51px; }
+
+.evaluate_player .form_step3 .rating_area { float:left; padding:0px 15px 10px 15px; width:98%;}
+
+/* =========== Settings Screen ========== */
+.settings_area{ color:#878787; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; padding:0px 15px 0px 15px; position:relative; }
+
+.settings_area .heading_area{ float:left; width:100%;}
+
+.settings_area h1{ font-weight:normal; color:#FFFFFF; font-family:'HelveticaNue'; margin-top:-10px; float:left;}
+
+.settings_area a.save_btn{ margin-top:-10px; background:url(../images/save_btn.png); background-size:100%; width:53px; line-height:27px; display:block; float:right;font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center;}
+
+.settings_area a.chng_pass_btn{ margin:-10px 10px 0px 0px; background:url(../images/change_password.png); background-size:100%; width:131px; line-height:28px; display:block; float:right; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center;}
+
+.settings_area .pic_area{ float:left; }
+
+.settings_area .form_step1 { float:left;}
+.settings_area .form_step1 div{ margin-bottom:10px;}
+.settings_area .form_step1 label{ float:left; margin-right:10px; background:url(../images/field_caption_bar.png); width:131px; line-height:39px; padding:0px 10px 0px 10px;  }
+.settings_area .form_step1 input.text_box{  background:transparent url(../images/field_detail_bar.png); height:37px; border:1px solid #565656; width:200px; padding:0px 5px 0px 5px; margin:0px 0px 7px 0px; font-family:Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; float:left; }
+
+.settings_area .form_step2 { float:left; width:100%;}
+.settings_area .form_step2 h1{ font-size:25px; font-weight:normal; margin:10px 0px 10px 0px; float:left; width:100%; }
+
+.settings_area .form_step2 a{ color:#FFC000;}
+
+.settings_area .form_step2 h2{ background:url(../images/expand_pane.png); line-height:50px; display:block; margin:0px 0px 2px 0px; width:100%; float:left; text-indent:15px; font-size:13px; font-weight:bold; font-family:Arial, Helvetica, sans-serif; height:51px; }
+
+.settings_area .form_step2 table{ border:1px solid #525252;}
+.settings_area .form_step2 td{ 
+border-right:1px solid #000;
+border-top:1px solid #000;
+border-left:1px solid #525252;
+border-bottom:1px solid #525252; height:28px; padding:0px 10px 0px 10px;}
+
+.settings_area .form_step3 { float:left; width:100%;}
+.settings_area .form_step3 h1{ font-size:25px; font-weight:normal; margin:10px 0px 10px 0px; float:left; width:100%; }
+.settings_area .form_step3 textarea.text_area{ float:left; background:#2E2E2E url(../images/field_detail_bar.png) repeat-x top left; padding:10px 10px 10px 10px; height:35px; border:none; border:1px solid #565656; color:#FFFFFF; margin:0px 10px 15px 0px;width:680px; height:90px; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:13px;}
+
+
+/* =========== Add Player Screen ========== */
+.add_player{ color:#878787; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; padding:0px 15px 0px 15px; position:relative; }
+
+.add_player .heading_area{ float:left; width:100%;}
+
+.add_player h1{ font-weight:normal; color:#FFFFFF; font-family:'HelveticaNue'; margin-top:-10px; float:left;}
+
+.add_player a.save_btn{ margin-top:-10px; background:url(../images/save_btn.png); background-size:100%; width:53px; line-height:27px; display:block; float:right;font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center;}
+
+.add_player .pic_area{ float:left; }
+
+.add_player .form_step1 { float:left;}
+.add_player .form_step1 div{ margin-bottom:10px;}
+.add_player .form_step1 label{ float:left; margin-right:10px; }
+.add_player .form_step1 input.text_box{  background:transparent url(../images/field_detail_bar.png); height:37px; border:1px solid #565656; width:200px; padding:0px 5px 0px 5px; margin:0px 0px 10px 0px; font-family:Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; float:left; }
+
+.add_player .form_step2 { float:left; width:100%;}
+
+.add_player .form_step2 label{ float:left; margin:0px 10px 5px 0px; background:url(../images/field_caption_bar.png); padding:0px 10px 0px 10px; line-height:37px; width:112px; }
+
+.add_player .form_step2 input.text_box{ float:left; background:transparent url(../images/field_detail_bar.png); padding:0px 10px 0px 10px; height:35px; border:none; border:1px solid #565656; color:#FFFFFF; margin:0px 10px 5px 0px;}
+
+.add_player .form_step2 textarea.text_area{ float:left; background:#2E2E2E url(../images/field_detail_bar.png) repeat-x top left; padding:10px 10px 10px 10px; height:35px; border:none; border:1px solid #565656; color:#FFFFFF; margin:0px 10px 5px 0px;}
+
+
+/* ============ Add Player in Schedule ============ */
+
+.add_player_in_schedule{ color:#878787; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; padding:0px 15px 0px 15px; position:relative; overflow:auto; }
+
+.add_player_in_schedule h1{ font-weight:normal; color:#FFFFFF; font-family:'HelveticaNue'; margin:0px 0px 0px 0px; float:left; height:70px; background:url(../images/bar1.png) repeat-x; width:100%; text-indent:15px; padding:10px 0px 0px 0px;}
+
+.add_player_in_schedule h1 a.add_btn{ background:url(../images/add_btn.png); background-size:100%; width:49px; height:27px; display:inline-block; float:right; margin:5px 15px 0px 0px;font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center;}
+
+.add_player_in_schedule div.bar_panel{ font-weight:normal; color:#B6B6B6; margin:-15px 0px 17px 0px; float:left; background:url(../images/bar2.png); width:97%; float:left; height:71px; padding:13px 15px 10px 15px;}
+
+.add_player_in_schedule div.bar_panel h2{ font-size:15px; color:#FFFFFF; margin:0px 0px 5px 0px; padding:0px;}
+
+.add_player_in_schedule div.bar_panel_end{ margin:-17px 0px 0px 0px; float:left; background:url(../images/panel_end_bar.png); width:100%; float:left; height:7px; padding:0px;}
+
+
+.add_player_in_schedule div.calendar{ float:left; background:url(../images/calendar.png); width:88px; float:left; height:60px; margin:0px 10px 0px 0px; }
+.add_player_in_schedule div.calendar ul{ margin:0px; padding:0px; }
+.add_player_in_schedule div.calendar ul li{ margin:0px; padding:0px; list-style-type:none; }
+.add_player_in_schedule div.calendar ul li.year{ color:#000000; font-size:16px; font-weight:bold; font-family:Arial, Helvetica, sans-serif;  }
+.add_player_in_schedule div.calendar ul li.date{ color:#FFF; font-size:20px; font-weight:bold; font-family:Arial, Helvetica, sans-serif; margin-top:5px; }
+
+
+/* ============ Shedules List ============ */
+
+.schedule_list{ color:#878787; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; padding:0px 15px 0px 15px; position:relative; overflow:auto; }
+
+.schedule_list h1{ font-weight:normal; color:#FFFFFF; font-family:'HelveticaNue'; margin:-5px 0px 0px 0px; float:left; height:60px; width:100%; text-indent:15px; padding:0px 0px 0px 0px;}
+
+.schedule_list h1 a.share_btn{ background:url(../images/share_btn.png); background-size:100%; width:62px; line-height:26px; display:inline-block; float:right; margin:5px 15px 0px 0px;font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center;}
+
+.schedule_list div.bar_panel{ font-weight:normal; color:#B6B6B6; margin:-15px 0px 17px 0px; float:left; background:url(../images/bar2.png); width:97%; float:left; height:71px; padding:13px 15px 10px 15px;}
+
+.schedule_list div.bar_panel h2{ font-size:15px; color:#FFFFFF; margin:0px 0px 5px 0px; padding:0px;}
+
+.schedule_list div.bar_panel_end{ margin:-17px 0px 0px 0px; float:left; background:url(../images/panel_end_bar.png); width:100%; float:left; height:7px; padding:0px;}
+
+
+.schedule_list div.calendar{ float:left; background:url(../images/calendar.png); width:88px; float:left; height:60px; margin:0px 10px 0px 0px; }
+.schedule_list div.calendar ul{ margin:0px; padding:0px; }
+.schedule_list div.calendar ul li{ margin:0px; padding:0px; list-style-type:none; }
+.schedule_list div.calendar ul li.year{ color:#000000; font-size:16px; font-weight:bold; font-family:Arial, Helvetica, sans-serif;  }
+.schedule_list div.calendar ul li.date{ color:#FFF; font-size:20px; font-weight:bold; font-family:Arial, Helvetica, sans-serif; margin-top:5px; }
+
+
+/* ============ landing screen ============ */
+
+.landing_players_list{ color:#878787; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; padding:0px 15px 0px 15px; position:relative; overflow:auto; }
+
+.landing_players_list h1{ font-weight:normal; color:#FFFFFF; font-family:'HelveticaNue'; margin:-5px 0px 10px -15px; float:left; height:50px; width:100%; text-indent:15px; padding:0px 0px 0px 0px;}
+
+.landing_players_list h1.second{ font-weight:normal; color:#FFFFFF; font-family:'HelveticaNue'; margin:0px 0px 0px -15px; float:left; height:50px; width:100%; text-indent:15px; padding:0px 0px 0px 0px;}
+
+.landing_players_list h1 a.view_all_players{ background:url(../images/view_all_players.png); background-size:100%; width:123px; line-height:27px; display:inline-block; float:right; margin:5px -10px 0px 0px;font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center;}
+
+.landing_players_list h1 a.schedule{ background:url(../images/schedule.png); background-size:100%; width:83px; line-height:27px; display:inline-block; float:right; margin:5px -10px 0px 0px;font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center;}
+
+.landing_players_list div.bar_panel{ font-weight:normal; color:#B6B6B6; margin:-15px 0px 17px 0px; float:left; background:url(../images/bar2.png); width:97%; float:left; height:71px; padding:13px 15px 10px 15px;}
+
+.landing_players_list div.bar_panel h2{ font-size:15px; color:#FFFFFF; margin:0px 0px 5px 0px; padding:0px;}
+
+.landing_players_list div.bar_panel_end{ margin:-17px 0px 0px 0px; float:left; background:url(../images/panel_end_bar.png); width:100%; float:left; height:7px; padding:0px;}
+
+.landing_players_list .labels{ float:left; background:url(../images/upcoming_bar.png) no-repeat left top; line-height:30px; width:98%; margin-bottom:10px; font-weight:normal; padding:0px 10px 0px 10px; }
+
+.upcoming_schedule{ float:left; width:100%; }
+
+.upcoming_schedule .labels span.date{ color:#87B22B; margin-right:25px;}
+.upcoming_schedule .labels span.desc{ color:#E4E4E4; }
+
+
+/* ============ Add Game screen ============ done */
+
+.nav_bar ul li .digital_clock{background:url(../images/nav_bar_start_clock.png) no-repeat top left; background-size:100%;float:right; width:183px;height:30px; margin-right:10px; color:#F10000; font-family:'Digital'; font-size:20px; text-indent:100px; padding-top:2px; }
+
+.nav_bar ul li .digital_clock_disabled{background:url(../images/nav_bar_start_clock_disabled.png) no-repeat top left; background-size:100%; float:right; width:183px;height:30px; margin-right:10px; color:#F10000; font-family:'Digital'; font-size:20px; text-indent:100px; padding-top:2px; }
+
+
+
+
+
+.ticket_list { padding:0px 15px 0px 15px; color:#3D401B; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:normal;}
+.ticket_list a{ color:#737373; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; text-decoration:none;}
+.ticket_list a:hover { color:#FFAE00; }
+
+.ticket_list h1{font-weight:normal; color:#2c2c2c; font-family:'LaneNarrow'; margin:0px 0px 20px 0px; float:left; /*text-indent:15px;*/ padding:0px; font-size:35px;}
+
+a.save_btn{ background:url(../images/save_btn.png); background-size:100%; width:53px; line-height:27px; display:inline-block; float:right;font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center;}
+
+.ticket_list table.table1, .add_game_area table.table2{ border:1px solid #525252;display:none;}
+.ticket_list table.table1 td, .add_game_area table.table2 td{ 
+border-right:1px solid #000;
+border-top:1px solid #000;
+border-left:1px solid #525252;
+border-bottom:1px solid #525252; height:28px; padding:0px 10px 0px 10px; color:#8C8C8C; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold;}
+
+.ticket_list table.table1 tr:hover, .add_game_area table.table2 tr:hover{ background:#000000;cursor: pointer;cursor: hand;} 
+
+.ticket_list table.table1 td.headrow, .add_game_area table.table2 td.headrow{ background:url(../images/thead.png) repeat-x top left; line-height:46px; height:46px; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; color:#f2f8bd; text-align:left;
+border-right:1px solid #000;
+border-top:1px solid #000;
+border-left:1px solid #707446;
+border-bottom:1px solid #707446; padding:0px 10px 0px 10px; 
+}
+
+.ticket_list table.table1 td.highlighted, .add_game_area table.table2 td.highlighted{ color:#FF0000;display:none;} 
+
+.small_player_profile h1{font-weight:normal; color:#FFFFFF; font-family:'HelveticaNue'; margin:-8px 0px 10px -15px; float:left; text-indent:15px; padding:0px; font-size:25px;}
+
+.fields_labels{ background:url(../images/field_labels_bg.png) repeat-x left top; line-height:30px; padding:0px 10px 0px 10px; }
+table.notes td, table.notes td{ 
+border-right:1px solid #525252;
+border-top:1px solid #525252;
+border-left:1px solid #000;
+border-bottom:1px solid #000; }
+
+
+table.skills_area{ border:1px solid #464646;}
+
+table.skills_area td.headrow { background:url(../images/thead.png) repeat-x top left; line-height:46px; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; color:#FFFFFF; text-align:left;
+border-right:1px solid #000;
+border-top:1px solid #000;
+border-left:1px solid #525252;
+border-bottom:1px solid #525252; padding:0px 0px 0px 0px; 
+}
+.skills_area h1{font-weight:normal; color:#FFFFFF; font-family:'HelveticaNue'; margin:-5px 0px 5px 0px; float:left; padding:0px; font-size:25px;}
+table.skills td{ 
+border-right:1px solid #12130c;
+border-top:1px solid #12130c;
+border-left:1px solid #6f7346;
+border-bottom:1px solid #6f7346; height:30px; line-height:30px; padding:0px 10px 0px 10px; color:#FFF; font-family:Arial, Helvetica, sans-serif; font-size:13px; background:#191919; font-weight:normal;}
+
+table.t_head td{ 
+border-right:1px solid #12130c;
+border-top:1px solid #12130c;
+border-left:1px solid #6f7346;
+border-bottom:1px solid #1c1d13;  line-height:45px; /*height:45px; padding:0px 10px 0px 10px;*/ color:#FFF; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold;}
+
+a.active_skills_tab{ background:url(../images/active_skill_tab.png) no-repeat left top; line-height:52px; width:95px; padding:0px 15px 0px 15px; display:block; color:#FFFFFF;}
+.inactive_skills_tab, a.inactive_skills_tab{ background:url(../images/inactive_skill_tab.png) no-repeat left top;  line-height:52px; width:95px;padding:0px 15px 0px 15px;display:block; color:#555555; }
+a.activetab{ color:#FFFFFF;}
+
+table.rating td{ padding:0px; margin:0px; border:none; background:none;}
+
+
+.soccer_field{ background:url(../images/soccer_field.png) top center no-repeat; background-size:100%; width:734px; height:393px; margin:0 auto; position:relative; }
+
+.numbers_boxes{ background:url(../images/numbers_box.png) no-repeat top center; background-size:100%;  width:25px; height:20px;float:left; text-align:center; padding-top:2px; margin:-5px 2px 10px 0px;}
+.numbers_boxes a{ font-family:Arial, Helvetica, sans-serif; text-decoration:none; color:#ccc; font-size:12px; }
+.numbers_boxes a:hover{ color:#FFFFFF;}
+
+.team1_player_position{ background:url(../images/field_player1.png) no-repeat left top; background-size:100%; width:46px; height:35px; color:#FFFFFF; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; text-align:right; cursor: pointer;cursor: hand; position:absolute; padding-top:15px; }
+
+.team1_goal_keeper{ background:url(../images/field_goal_keeper1.png) no-repeat left top; background-size:100%; width:46px; height:35px; color:#FFFFFF; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; text-align:right; cursor: pointer;cursor: hand; position:absolute;padding-top:15px; }
+
+.team2_player_position{ background:url(../images/field_player2.png) no-repeat left top; background-size:100%;width:46px; height:35px; color:#FFFFFF; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; text-align:right; cursor: pointer;cursor: hand; position:absolute;padding-top:15px; }
+
+.team2_goal_keeper{ background:url(../images/field_goal_keeper2.png) no-repeat left top; background-size:100%; width:46px; height:35px; color:#FFFFFF; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; text-align:right; cursor: pointer;cursor: hand; position:absolute;padding-top:15px; }
+
+/* =========== popup players search list ============ */
+
+.popup_players_list{ color:#878787; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; padding:0px 15px 0px 15px; position:relative; overflow:auto; }
+
+.popup_players_list h1{ font-weight:normal; color:#FFC000; font-family:'HelveticaNue'; margin:0px 0px 20px 0px; float:left; height:30px; width:100%; text-indent:15px; padding:0px; font-size:18px;}
+
+.popup_players_list_h1{ font-weight:normal; color:#FFC000; font-family:'HelveticaNue'; margin:0px 0px 20px 0px; float:left; height:30px; width:100%; text-indent:15px; padding:0px; font-size:23px;}
+.popup_players_list_h1 span{ font-weight:bold; color:#FFF; font-family:Arial, Helvetica, sans-serif; font-size:13px; display:inline-block; margin:0px;}
+
+.popup_players_list div.bar_panel{ font-weight:normal; color:#B6B6B6; margin:-14px 0px 17px 0px; float:left; background:url(../images/bar2.png); width:97%; float:left; height:40px; padding:13px 15px 10px 15px;border:2px #1d1d1d solid;  }
+
+.popup_players_list div.bar_panel:hover{ font-weight:normal; color:#B6B6B6; margin:-14px 0px 17px 0px; float:left; background:url(../images/bar3.png); width:97%; float:left; height:40px; padding:13px 15px 10px 15px;border:2px dotted #AAA;  }
+
+input.text_boxes{  background:transparent url(../images/field_detail_bar.png); height:35px; border:1px solid #565656; width:180px; padding:0px 10px 0px 10px; margin:0px 0px 7px 0px; font-family:Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; float:left; }
+
+a.team_btn{ background:url(../images/team_btn.png); line-height:29px; display:inline-block; padding:0px 15px 0px 5px; font-family:Arial, Helvetica, sans-serif; color:#999999; font-weight:bold; font-size:11px; margin:0px 3px 0px 0px; text-decoration:none; text-align:center;}
+
+.popup_players_list div.bar_panel h2{ font-size:15px; color:#FFFFFF; margin:0px 0px 0px 0px; padding:0px; float:left; }
+.popup_players_list div.bar_panel ul{  margin:0px; padding:0px; }
+.popup_players_list div.bar_panel ul li{ margin:0px; padding:0px; list-style-type:none; display:inline; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold;  }
+.popup_players_list div.bar_panel h4{ font-size:12px; color:#FFFFFF; font-weight:normal; }
+
+.search_by{ width:360px; height:332px; }
+.search_by h1{ color:#FFFFFF; margin:0px 0px 0px 0px; padding:0px; font-size:18px; font-family:'HelveticaNue'; font-weight:normal;}
+
+.search_by input.text_box{  background:transparent url(../images/field_detail_bar.png); height:35px; border:1px solid #565656; width:180px; padding:0px 10px 0px 10px; margin:0px 0px 7px 0px; font-family:Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; float:left; }
+
+.search_by a.search_btn{ background:url(../images/search_btn.png); background-size:100%; line-height:27px; width:68px; font-size:0px; border:none; display:inline-block; clear:both; margin:0px 0px 0px 0px;font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#CFCFCF; text-decoration:none; font-weight:bold; text-align:center;}
+
+
+
+
+/* ============= more css styles ============== */
+
+.remove, A.remove, A.remove:link, A.remove:visited{ background:url(../images/remove.png) no-repeat left; padding-left:20px; display:block; color:#FF6000; text-decoration:none; }
+A.remove:hover{ color:#FFF; }
+
+.add, A.add, A.add:link, A.add:visited{ background:url(../images/add.png) no-repeat left; padding-left:20px; display:block; color:#C2D121; text-decoration:none; }
+A.add:hover{ color:#FFF; }
+
+.rename, A.rename, A.rename:link, A.rename:visited{ background:url(../images/edit.png) no-repeat left; padding-left:20px; display:block; color:#54BAEE; text-decoration:none; }
+A.rename:hover{ color:#FFF; }
+
+
+
+.popup{ background:#000; border:1px solid #474747; border-radius:10px; padding:10px; margin:10px auto 10px auto; width:300px; }
+.popup table td{ border:1px solid #444; height:30px; padding:0px 10px 0px 10px; color:#999999; font-family:Arial, Helvetica, sans-serif; font-size:12px; font-weight:bold; }
+
+.popup table th{ background:url(../images/thead.png); line-height:26px; color:#FFF; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; border:1px solid #444; padding:10px; }
+
+
+
+.login_footer	{font-size:18px; line-height:35px; color:#383838; font-family:'HelveticaNue'; font-weight:normal; text-align:center; width:100%;}
+
+.loged_user	{float:right; margin-right:10px; font-family:'LaneNarrow'; color:#FFF; font-size:22px; line-height:35px;}
+
+
+
+/*NEW FORM CSS*/
+
+h3.head	{border-top-left-radius: 0.6em; border-top-right-radius: 0.6em; color:#737373; font-size:16px; font-weight:bold; border-left-width: 1px; border-right-width: 1px; background: linear-gradient(#444444, #2D2D2D) repeat scroll 0 0 #333333;
+    border: 1px solid #111111; text-shadow: 0 1px 1px #111111; padding-left: 20px; display: block; min-width: 0.75em; text-align:left;}
+
+
+
+/* defined custom fonts */
+@font-face {
+        font-family: 'LaneNarrow';
+        src: url('fonts/LANENAR.eot'); /* IE9 Compat Modes */
+        src: url('fonts/LANENAR.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+             url('fonts/LANENAR.woff') format('woff'), /* Modern Browsers */
+             url('fonts/LANENAR.ttf')  format('truetype'), /* Safari, Android, iOS */
+             url('fonts/LANENAR.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+        font-family: 'HelveticaCondensed';
+        src: url('fonts/helvenco.eot'); /* IE9 Compat Modes */
+        src: url('fonts/helvenco.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+             url('fonts/helvenco.woff') format('woff'), /* Modern Browsers */
+             url('fonts/helvenco.ttf')  format('truetype'), /* Safari, Android, iOS */
+             url('fonts/helvenco.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+        font-family: 'HelveticaNue';
+        src: url('fonts/helveticaneueroman.eot'); /* IE9 Compat Modes */
+        src: url('fonts/helveticaneueroman.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+             url('fonts/helveticaneueroman.woff') format('woff'), /* Modern Browsers */
+             url('fonts/helveticaneueroman.ttf')  format('truetype'), /* Safari, Android, iOS */
+             url('fonts/helveticaneueroman.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+        font-family: 'Digital';
+        src: url('fonts/LANGDON_.eot'); /* IE9 Compat Modes */
+        src: url('fonts/LANGDON_.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+             url('fonts/LANGDON_.woff') format('woff'), /* Modern Browsers */
+             url('fonts/LANGDON_.TTF')  format('truetype'), /* Safari, Android, iOS */
+             url('fonts/LANGDON_.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+
+
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) { /* iphone */ }
+@media only screen and (min-device-width: 768px) and (max-device-width: 999px) { /* ipad */ }
+
+
+
+
+
+
+.bot_line { border-bottom:1px solid #000; }

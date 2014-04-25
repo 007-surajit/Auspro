@@ -1,0 +1,251 @@
+<div class="main_wrapper"  data-role="page" id="listingpage">
+
+<script>
+
+    
+    $('#listingpage').live('pagecreate', function(event){
+                
+        /*get_loggedin_user_data(function(response) {
+                                                
+            console.log(response);
+            if(response == 1)
+            {
+                $('#loggedin_user_name2').html(logged_in_user_data.name);
+                
+                
+                get_local_events(function(len, alldata) { 
+                    console.log("length:"+len);
+                    var resHTML = '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="skills">';
+                    var serNo = 1;
+                    
+                    $.each(alldata, function(index, data) {
+                        console.log("data:"+data.create_time);
+                        var date = new Date(data.create_time*1000);
+                        var dateFormat = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
+                        
+                        var uploadedData = '';
+                        if(data.uploaded)
+                        {
+                            //uploadedData = '<span>Ticket No:'+data.uploaded+'</span><br />';
+                        }
+                        
+                        resHTML = resHTML+'<tr><td width="10%" align="center">'+serNo+'</td><td width="30%" align="center">'+data.first_name+'</td><td width="30%" align="center">'+data.last_name+'</td><td width="20%" align="center">'+dateFormat+'</td><td width="10%" align="center">'+uploadedData+'<a href="static-report.html?id='+data.id+'"  data-transition="slide" >View</a></td></tr>';
+                        serNo++;
+                    });
+                    
+                    
+                    resHTML = resHTML+'</table>';
+                    $('#listingDataDiv').html(resHTML);
+                });
+                
+            }
+        
+        }); */
+        
+        refreshPage();
+    });
+    
+
+function refreshListingPage()
+{
+    //$.mobile.showPageLoadingMsg();
+    showLoader();
+    setTimeout(function() { 
+                        refreshPage();
+                    }, 3000);
+}
+function refreshPage()
+{
+    
+    console.log('inside interval');
+    
+    get_loggedin_user_data(function(response) {
+                                                
+            console.log(response);
+            if(response == 1)
+            {
+                $('#loggedin_user_name2').html(logged_in_user_data.name);
+                
+                
+                get_local_events(function(len, alldata) { 
+                    console.log("length:"+len);
+                    var resHTML = '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="skills">';
+                    var serNo = 1;
+                    
+                    $.each(alldata, function(index, data) {
+                        console.log("data:"+data.create_time);
+                        var date = new Date(data.create_time*1000);
+                        var dateFormat = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
+                        
+                        var uploadedData = '';
+                        if(data.uploaded)
+                        {
+                            uploadedData = '<span>'+data.uploaded+'</span><br />';
+                        }
+                        
+                        resHTML = resHTML+'<tr><td width="10%" align="center">'+serNo+'</td><td width="30%" align="center">'+data.first_name+'</td><td width="30%" align="center">'+data.last_name+'</td><td width="20%" align="center">'+dateFormat+'</td><td width="10%" align="center">'+uploadedData+'<a href="static-report.html?id='+data.id+'"  data-transition="slide" >View</a></td></tr>';
+                        serNo++;
+                    });
+                    
+                    
+                    resHTML = resHTML+'</table>';
+                    $('#listingDataDiv').html(resHTML);
+                });
+                
+            }
+        
+        });
+        
+        
+                //$.mobile.hidePageLoadingMsg();
+                hideLoader();
+        
+        
+}
+
+
+function takeInstallerPictureFromCam()
+{
+    get_data_to_upload_count(function(count){
+        
+        if(count < 17)
+        {
+            navigator.camera.getPicture(function(imageURI){
+                /*setTimeout(function() { 
+                        alert('image saved');
+                    }, 0);*/
+                    //imagesUploadArray4imagesUniquePostfix
+                    var file_array = imageURI.split("/tmp/");
+                    
+                    window.resolveLocalFileSystemURI(imageURI, function(fileEntry) {
+                            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSys) { 
+                                fileSys.root.getDirectory("photos", {create: true, exclusive: false}, function(dir) { 
+                                
+                                    var newImageName = (Math.random()*40000)+Math.random()+file_array[1];
+                                        
+                                        fileEntry.file(function(file) {
+                                                        console.log("in file");
+                                                        var reader = new FileReader();
+                                                        reader.onloadend = function(evt) {
+                                                            console.log("Read complete!");
+                                                            
+                                                            window.localStorage.setItem('customerImagedata',evt.target.result); 
+                                                            fileEntry.remove();                                         
+                                                            $.mobile.changePage( "detail.html", { transition: "slide"} );
+                                                            
+                                                            
+                                                        };
+                                                        reader.readAsDataURL(file);
+                                                    },  function(fail){ console.log("fail reading file");console.log(fail.code);  });
+                                                
+                                        }, function (error) {
+                                    console.log(error.code);
+                                }); 
+                            }, function (error) {
+                                console.log(error.code);
+                            }); 
+                        }, function (error) {
+                            console.log(error.code);
+                    });
+                    
+                        
+                }, function(fail){
+                
+                    setTimeout(function() { 
+                        alert('Failed because: ' + message);
+                    }, 0);
+                        
+                }, { quality : 90, 
+                      destinationType : Camera.DestinationType.FILE_URI, 
+                      sourceType : Camera.PictureSourceType.CAMERA, 
+                      allowEdit : true,
+                      encodingType: Camera.EncodingType.JPEG,
+                      targetWidth: 400,
+                      targetHeight: 400,
+                      saveToPhotoAlbum: false }
+                      
+            ); 
+            //CAMERA PHOTOLIBRARY
+            
+        }else{
+            
+            alert("You cannot add more than 17 offline tickets.");
+        }
+    });
+    
+    
+}
+
+
+</script>
+  <div class="logo"></div>
+
+
+    <div class="nav_bar">
+    <ul class="nav_bar_icons">
+      <li><a href="#" onclick="takeInstallerPictureFromCam();" class="new_ticket" data-transition="slide">Create New Ticket</a></li>
+
+    <li><a href="#" class="new_ticket2" onclick="refreshListingPage();">Refresh</a></li>   
+
+      <li>
+        <a href="#" class="logout_butt" onclick="logoutUser();">Logout</a>
+      </li>
+      
+      <li></li>   
+
+
+      <li>
+        <div class="loged_user">
+        Logged in User: <span id="loggedin_user_name2">User</span>
+        </div>
+      </li>   
+      
+    </ul>
+    
+  </div>
+        
+
+<div class="ticket_list">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td valign="top"><h1>Pending Ticket(s) List</h1></td>
+    </tr>
+  
+  <tr>
+    <td valign="top">
+    
+    
+    
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="skills_area">
+      <tr>
+        <td class="headrow"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="t_head">
+  <tr>
+    <td width="10%" align="center">S.No</td>
+    <td width="30%" align="center">Consumer First Name </td>
+    <td width="30%" align="center">Consumer Last Name</td>
+    <td width="20%" align="center">Installation Date</td>
+    <td width="10%" align="center"># </td>
+  </tr>
+</table>
+</td>
+      </tr>
+      <tr>
+        <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="top"><div id="listingDataDiv"></div></td>
+            </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+
+  
+  
+  </div>
+
+
+        
+    </div>
+</body>

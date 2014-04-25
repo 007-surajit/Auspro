@@ -1,0 +1,459 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+    <script>var fileSys;</script>
+    
+    <script type="text/javascript" src="cordova-2.5.0.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script src="js/constants.js"></script>
+   
+    <script type="text/javascript" src="SQLitePlugin.js"></script>
+    
+    
+    <script src="js/xui-2.3.2.js" type="text/javascript"></script>
+    
+    <link rel="stylesheet"  href="jmobile/jquery.mobile-1.2.0.css" />
+    <script src="jmobile/jquery.js"></script>
+    <script src="jmobile/jquery.mobile-1.2.0.js"></script>
+    
+    <script type="text/javascript" charset="utf-8" src="barcodescanner.js"></script>
+    <script type="text/javascript" charset="utf-8" src="datePickerPlugin.js"></script>
+    <!--<script type="text/javascript" charset="utf-8" src="WaitingDialog.js"></script>-->
+    
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/form.css" rel="stylesheet" type="text/css" />
+    
+    <script src="jsignature/jSignature.min.noconflict.js"></script>
+    
+    <script type="text/javascript" src="js/jquery_002.js"></script>
+    
+    <script type="text/javascript" src="js/cps.js"></script>
+    
+    <script>
+    window.addEventListener('load', function () {
+        document.addEventListener('deviceready', function () {
+        }, false);
+    }, false);
+    </script>
+    <script>
+    
+    var lastTimeStamp = 0;
+    
+    var timer;
+    var inQueue = 0;
+    function uploadTickets()
+    {
+        //console.log('aa');
+        var networkState = navigator.connection.type; 
+        //console.log('bb');
+        if(inQueue == 0 && networkState != Connection.NONE)
+        {
+            
+            //console.log('cc');
+            get_data_to_upload(function(response) {
+                inQueue = 1;
+                //console.log('irfantest');
+                if(response != 0)
+                {
+                    
+                    var myRand = Math.floor((Math.random()*1000)+1);
+                    //var url = apiURL+"create_myom_ticket.php";
+                    var url = apiURL+"myftest.php";
+                    console.log(url);
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        cache: false,
+                        data:  { data: filled_data_array_to_upload, para : myRand },
+                        success: function(data){ 
+                        //console.log('irfandd'+data);
+                            var res = jQuery.parseJSON(data);
+                            if(res.error == 0)
+                            {
+                               // console.log('ee');
+                                finish_uploading(filled_data_array_to_upload.id, res.ticketno, function(result){
+                                   // console.log('ff');
+                                    inQueue = 0;
+                                    timer = setTimeout(function(){ uploadTickets(); },2000);
+                                });
+                            }
+                           // console.log(data);
+                        
+                        },
+                        error: function(xhr, textStatus, error){
+                            
+                            inQueue = 0;
+                            timer = setTimeout(function(){ uploadTickets(); },5000);
+                            //console.log(xhr.statusText);
+                            //console.log(textStatus);
+                            //console.log(error);
+                        }
+                    });          
+            
+                    //console.log(filled_data_array_to_upload);
+                    
+                
+                }else{
+                    inQueue = 0;
+                    timer = setTimeout(function(){ uploadTickets(); },5000);
+                }
+            });
+        }else{
+            timer = setTimeout(function(){ uploadTickets(); },5000);
+            //console.log('no internet connection available');
+        }
+    }
+    $('#customFormPage').live('pagecreate', function(event){
+                
+            //collapsible management
+            $('.collapsible').collapsible({
+                defaultOpen: 'section1',
+                cookieName: 'nav'
+            });
+            $('.page_collapsible').collapsible({
+                defaultOpen: 'body-section1',
+                cookieName: 'body'
+            });
+        
+            //assign open/close all to functions
+            function openAll() {
+                $('.page_collapsible').collapsible('open');
+            }
+            function closeAll() {
+                $('.page_collapsible').collapsible('close');
+            }
+        
+            //listen for close/open all
+            $('#closeAll').click(function(event) {
+                event.preventDefault();
+                closeAll();
+        
+            });
+            $('#openAll').click(function(event) {
+                event.preventDefault();
+                openAll();
+        
+            });
+                
+    });
+        
+        function onFSSuccess(fileSystem) {
+            //console.log("in file sys");
+            fileSys = fileSystem;
+            
+            timer = setTimeout(function(){
+                uploadTickets();
+            },5000);
+        }
+        function onFSFail(err) {
+            //console.log("in err");
+            
+        }
+        
+        window.addEventListener('load', function () {
+            document.addEventListener('deviceready', function () {
+                                                               document.addEventListener("backbutton", handleBackButton, false); 
+                deviceisready();
+                checkuserloggedinstatus();
+            //console.log("db opened");
+            
+            }, false);
+    }, false);
+        
+        
+        document.addEventListener("pause", appGoesBackground, false);
+        document.addEventListener("resume", appActivated, false);
+        
+        function appGoesBackground()
+        {
+            lastTimeStamp  = Math.round(+new Date()/1000);
+        }
+        
+        function appActivated()
+        {
+            if(lastTimeStamp > 0)
+            {
+                var timeDiff = Math.round(+new Date()/1000) - lastTimeStamp;
+                
+                //console.log(timeDiff);
+                if(timeDiff > 300)
+                {
+                    lastTimeStamp = 0;
+                    logoutUser();
+                }
+            }
+        }
+        
+        function handleBackButton() { /*navigator.app.exitApp();*/ } 
+        
+        function checkuserloggedinstatus()
+        {
+            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFSSuccess, onFSFail);
+            get_loggedin_user_data(function(response) {
+                //console.log(response);
+                if(response == 1)
+                {
+                    //console.log("in response");
+                     //get_events_to_upload(function(result){ console.log("function returned");});
+                    //$.mobile.changePage( "listing.html", { transition: "slide"} );
+                }
+            
+            });
+        }
+    </script>
+    
+    
+    <script type="text/javascript">
+        app.initialize();
+        </script>
+<style>
+body
+{
+    /*background: url(images/main_bg.png);
+    background-repeat:repeat-x;
+    background-position:top center;
+    background-attachment:scroll;
+    background-size:100% 100%;*/
+    background-color:#FFF !important;
+}
+.ui-page {
+    background: transparent;
+}
+.ui-content{
+    background: transparent;
+}
+
+
+table {
+    color: #3D401B;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: normal;
+}
+
+.ui-loader .ui-icon-myomcrm { 
+	background-color: #000; 
+	display: block; 
+	margin: 0; 
+	width: 100px; 
+	height: 100px; 
+	-webkit-border-radius: 3px; -moz-border-radius: 6px; border-radius: 6px; 
+}
+</style>
+   
+<script>
+    
+    /*
+    CREATE TABLE IF NOT EXISTS test_table (id integer primary key, creator_id integer, title text, first_name text, last_name text, phone_num text, alt_num text, cust_email text, unit_num text, unit_type text, level_num text, level_type text, street_num text, street_name text, street_type text, street_type_suff text, town text, postcode text, len_of_time text, duration text, tenant_or_owner text, dob text, previous_spc text, add_spc_reason text)
+    */
+        function logoutUser(){
+            
+            logout_user(function(res){
+                $.mobile.changePage( "index.html", {transition: "slide", reverse: true});
+            });
+        }
+        
+        
+        function callLocalLogin(){
+            //create url
+            var username = $("#username").val();
+            var password = $("#password").val();
+           // console.log("login call");
+            
+            if(username != "" && password != '')
+            {
+                
+                get_users_count(function(localUserCount){
+                    
+                    //console.log('user count is'+localUserCount+password);
+                    if(localUserCount > 0)
+                    {
+                        var md5pass = $.md5 (password);
+                        
+                        //console.log('md5pass '+md5pass);
+                        checkUserInfo(username, md5pass, function(isValid){
+                            
+                            if(isValid == 1)
+                            {
+                                $("#username").val('');
+                                $("#password").val('');
+                                $.mobile.changePage( "listing.html", { transition: "slide"} );
+                            }else{
+                                
+                                alert("Username / Password do not matched.");
+                            }
+                            
+                        });
+                        
+                    }else{
+                        showLoader();
+                        callWebLogin(username, password);
+                    }
+                    
+                });
+                
+               
+            }else{
+                
+                alert("Please fill all fields.");
+            }
+        }
+        
+        function callWebLogin(username, password){
+ 
+        	var url = apiURL+"user_login_auspro.php?username="+username+"&password="+password;
+            //var url = apiURL+"user_login_myom.php?username="+username+"&password="+password;
+            console.log(url);
+            x$.data = {};
+            x$("#loginBtn").xhr(url,{ 
+                error: function(){ //$.mobile.hidePageLoadingMsg();
+                hideLoader();
+                alert("failed"+this.responseText)},
+                    callback: function(){
+                        
+                                            var jsonResponse = eval("("+this.responseText+")");
+                                            
+                                            if(jsonResponse.userValid == 1)
+                                            {
+                                                delete_users(function(del_user) {
+                                                    
+                                                    //console.log('sdf'+del_user);
+                                                    if(del_user == 1)
+                                                    {
+                                                        //console.log('aaasdfaaaaa'+del_user);
+                                                        /*console.log('aaasdf'+del_user);
+                                                        $.each(jsonResponse.users, function(index, value) {
+                                                            
+                                                            add_user(value.id, value.firstname+" "+value.lastname, value.username, value.password,function(res) { 
+                                                            console.log("resp"+res);
+                                                            });
+                                                        });
+                                                        */
+                                                        add_user(jsonResponse.users ,function(res) { 
+                                                        
+                                                            //console.log("resp"+res);
+                                                            //$.mobile.hidePageLoadingMsg();
+                                                            hideLoader();
+                                                            
+                                                            login_user(jsonResponse.login_user_id, function(res){
+                                                                                                            
+                                                                $("#username").val('');
+                                                                $("#password").val('');
+                                                                $.mobile.changePage( "listing.html", { transition: "slide"} );
+                                                            });
+                                                        
+                                                        });
+                                                        
+                                                        
+                                                        
+                                                    }
+                                                        
+
+                                                });
+
+                                                //var del_user = delete_users();
+                                                
+                                                    
+                                            }else{
+                                                //$.mobile.hidePageLoadingMsg();
+                                                hideLoader();
+                                                alert("Username / Password do not matched.");
+                                            }
+                                            
+                                            
+                                        }
+           });//end of xhr*/
+        }//end of method
+        
+        
+        function refreshUsers(){
+            
+            //$.mobile.showPageLoadingMsg();
+            showLoader();
+            
+            var url = apiURL+"get_all_users.php";
+            //console.log(url);
+            x$.data = {};
+            x$("#loginBtn").xhr(url,{ 
+                error: function(){ 
+                	//$.mobile.hidePageLoadingMsg(); 
+                	hideLoader();
+                	alert("failed"+this.responseText)},
+                    callback: function(){
+                        
+                                            var jsonResponse = eval("("+this.responseText+")");
+                                            
+                                            if(jsonResponse.error == 0)
+                                            {
+                                                delete_users(function(del_user) {
+                                                    
+                                                    //console.log('sdf'+del_user);
+                                                    if(del_user == 1)
+                                                    {
+                                                        //console.log('aaasdfaaaaa'+del_user);
+                                                        /*console.log('aaasdf'+del_user);
+                                                        $.each(jsonResponse.users, function(index, value) {
+                                                            
+                                                            add_user(value.id, value.firstname+" "+value.lastname, value.username, value.password,function(res) { 
+                                                            console.log("resp"+res);
+                                                            });
+                                                        });
+                                                        */
+                                                        add_user(jsonResponse.users ,function(res) { 
+                                                        
+                                                            //console.log("resp"+res);
+                                                            //$.mobile.hidePageLoadingMsg();
+                                                            hideLoader();
+                                                            
+                                                        
+                                                        });
+                                                        
+                                                        
+                                                        
+                                                    }
+                                                        
+
+                                                });
+
+                                                //var del_user = delete_users();
+                                                
+                                                    
+                                            }
+                                            
+                                            
+                                        }
+           });//end of xhr*/
+        }//end of method
+        
+        </script>
+        
+</head>
+
+<body>
+<div class="main_wrapper" id="main_wrapper">
+  <div class="logo"></div>
+
+
+    <h1 class="login"><span class="orange">Login to </span>Auspro Group Application</h1>
+        
+
+        <div class="login_box">
+          <div>
+                <input type="text" value="" name="username" id="username" class="text_box" placeholder="Username" />
+                <input type="password" value="" name="password" id="password" class="text_box" placeholder="Password" />
+                <a href="#" onclick="callLocalLogin();" class="login_btn">Login</a>
+                
+          </div>
+        </div>
+        
+        
+        <div class="login_footer">If you're having trouble logging, Please call Auspro Group<br />
+Support PH:03 836 03531</div>
+
+<div align="left" style="padding-left:15px;"><a href="#" onclick="refreshUsers();"><img src="images/refresh.png" style="width:75px; height:75px;" /></a></div>
+        
+    </div>
+</body>
+</html>
