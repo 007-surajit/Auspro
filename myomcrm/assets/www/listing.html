@@ -83,7 +83,7 @@ function refreshPage()
                             uploadedData = '<span>'+data.uploaded+'</span><br />';
                         }
                         
-                        resHTML = resHTML+'<tr><td width="10%" align="center">'+serNo+'</td><td width="30%" align="center">'+data.first_name+'</td><td width="30%" align="center">'+data.last_name+'</td><td width="20%" align="center">'+dateFormat+'</td><td width="10%" align="center">'+uploadedData+'<a href="static-report.html?id='+data.id+'"  data-transition="slide" >View</a></td></tr>';
+                        resHTML = resHTML+'<tr><td width="10%" align="center">'+serNo+'</td><td width="30%" align="center">'+data.first_name+'</td><td width="30%" align="center">'+data.last_name+'</td><td width="20%" align="center">'+dateFormat+'</td><td width="10%" align="center">'+uploadedData+'<a href="#" onclick="openListDetail(\''+data.id+'\')" data-transition="slide" >View</a></td></tr>';
                         serNo++;
                     });
                     
@@ -103,7 +103,25 @@ function refreshPage()
         
 }
 
-
+function openListDetail(list_id) {	         
+      get_loggedin_user_data(function(response) {
+        
+         get_saved_filled_data(list_id,function(response) {
+                         
+            if(response == 1) {
+                
+           	 if(last_filled_data_array.company_name)
+                {
+                 	// commercial 
+           		 	$.mobile.changePage( "static-report-commercial.html?id="+list_id, { transition: "slide"} );
+                }else{                     
+                    // residential
+                    $.mobile.changePage( "static-report.html?id="+list_id, { transition: "slide"} );
+                }
+             }
+         });
+     });
+}
 function takeInstallerPictureFromCam()
 {
     get_data_to_upload_count(function(count){

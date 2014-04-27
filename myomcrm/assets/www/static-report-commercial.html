@@ -2,52 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet"  href="jmobile_original/jquery.mobile-1.2.0.css" />
-<script src="jmobile_original/jquery.js"></script>
-<script src="jmobile_original/jquery.mobile-1.2.0.js"></script>
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<link href="css/form2.css" rel="stylesheet" type="text/css" />
-<style type="text/css">
-    body {background:#FFF;
-        color: #000!important;}
-</style>
-</head>
-<body>
-<div class="main_wrapper"  data-role="page" id="reportCommercialPage">
-
+</head><body>
+<div class="main_wrapper"  data-role="page" id="staticReportCommercialPage">                
 <script>
-
-function logoutUserFromReport(){
-    logout_user(function(res){
-        previouspage.remove();
-        $.mobile.changePage( "index.html", {transition: "slide", reverse: true});
-    });
-}   
 var previouspage;
-
-function submitForm()
-{
     
-    submitLocalForm(function(response) { 
-        if(response == 1)
-        {
-            previouspage.remove();
-            $.mobile.changePage( "listing.html", {transition: "slide", reverse: true});
-        }
-    });
-}
-        
 </script>
 
- <div class="logo"></div>
+  <div class="logo"></div>
 
 
     <div class="nav_bar">
     <ul class="nav_bar_icons"> 
       
       <li><a href="#" class="new_ticket" data-rel="back">Go Back</a></li>
-      <li><a href="#" class="new_ticket" onclick="submitForm();">Submit</a></li> 
-      <li><a href="#" class="logout_butt" onclick="logoutUserFromReport();">Logout</a></li>
+      <!--<li><a href="#" class="new_ticket" onclick="submitForm();">Submit</a></li> -->
+      <li><a href="#" class="logout_butt" onclick="logoutUser();">Logout</a></li>
       <li><div class="loged_user">Logged in User: <span id="loggedin_user_name5">User</span></div></li>   
       
     </ul>

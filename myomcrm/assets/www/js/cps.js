@@ -163,9 +163,13 @@ function get_saved_filled_data(id,callback)
 function get_filled_data(callback)
 {
 
+	//alert('get_filled_data');
     db.transaction(function(tx) {
         tx.executeSql("select * from customer where creator_id='"+logged_in_user_data.user_id+"' and saved = '0' and uploaded = '0' order by create_time desc limit 1;", [], function(tx, res) {
-            if(res.rows.length > 0)
+        	
+        	//alert('no of rows: '+res.rows.length);
+            
+        	if(res.rows.length > 0)
             {
                 last_filled_data_array = res.rows.item(0);
                 last_filled_data_array.products =  new Array();
@@ -1028,10 +1032,33 @@ function hideLoader() {
 	 console.log('in clog');
  }
  
+ $('#customFormPage').live('pagebeforeshow', function(event){
+ 
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; //January is 0!
+	
+	var yyyy = today.getFullYear();
+	if(dd<10){dd='0'+dd;} 
+	if(mm<10){mm='0'+mm;} 
+	today = mm+'/'+dd+'/'+yyyy;
+	$('.todaydate').html(today);
+		
+	get_loggedin_user_data(function (response) {
+	
+	    console.log('surajit ' + response);
+	    if (response == 1) {
+	       $('.loggedin_user_name').html(logged_in_user_data.name);
+	
+	       console.log('in detail');
+	       console.log(window.localStorage.getItem('customerImagedata'));
+	    }
+	 });
+ });
+ 
  $('#customFormPage').live('pageshow', function(event){
 
- 	//alert('customFormPage --------------------------');
- 	$("#dcl1").hide();
+ 	 $("#dcl1").hide();
      $("#dcla").hide();
      $("#dcl2").hide();
      $("#dclb").hide();
@@ -1418,6 +1445,343 @@ function hideLoader() {
          });        
      });     
 });
+
+$('#staticReportCommercialPage').live('pagehide', function(event, ui){
+     $(this).remove();
+ });
+ 
+
+ $('#staticReportCommercialPage').live('pageshow', function(event){	 
+	 hideSections(); 
+ });
+ 
+$('#staticReportCommercialPage').live('pagebeforeshow', function(event){ 
+	var today = new Date();
+     var dd = today.getDate();
+     var mm = today.getMonth()+1; //January is 0!
+
+     var yyyy = today.getFullYear();
+     if(dd<10){dd='0'+dd;} 
+     if(mm<10){mm='0'+mm;} 
+     today = dd+'/'+mm+'/'+yyyy;
+     $('#consumer_date').html(today);
+     $('#installer_date').html(today);
+	 
+	 get_loggedin_user_data(function(response) {
+         var query = document.URL.split("?")[1];			
+         var id = query.replace("id=","");
+         if(response == 1)
+         {
+             $('#loggedin_user_name5').html(logged_in_user_data.name);
+             $('#installerNameDiv').html(logged_in_user_data.name);
+             $('#installerFullNameDiv').html(logged_in_user_data.fullname);
+         }
+         get_saved_filled_data(id,function(response) {
+             //console.log(response);
+             
+             if(response == 1)
+             {
+                 var previous_spc = "";
+                 var previous_spc_txt = "";
+                 if(last_filled_data_array.previous_spc != '')
+                 {
+                     previous_spc = 'Y';
+                     previous_spc_txt = last_filled_data_array.previous_spc;
+                 }else{
+                     
+                     previous_spc = 'N';
+                 }
+                 
+                 //alert(last_filled_data_array.company_name);
+                 
+                 //alert($("#company_name").attr("id"));
+                 
+                 $("#d_company_name").html(last_filled_data_array.company_name);
+                 $("#d_abn").html(last_filled_data_array.abn);
+                 $("#d_industry_type").html(last_filled_data_array.industry_type);
+                 $("#d_job_title").html(last_filled_data_array.job_title);
+                 $("#d_total_floor_space").html(last_filled_data_array.total_floor_space);
+                 $("#d_number_of_levels").html(last_filled_data_array.number_of_levels);
+                 
+                 if(last_filled_data_array.electricalSafetyCheck)
+                 {
+                     $("#d_has_electrical_safety_certificate").html('Y');
+                 }else{
+                     
+                 	$("#d_has_electrical_safety_certificate").html('N');
+                 }
+                 
+                 //alert('relevantCertificateCheck '+last_filled_data_array.relevantCertificateCheck);
+                 
+                 if(last_filled_data_array.relevantCertificateCheck == 1 )
+                 {
+                     $("#d_provide_relevant_certificate").html('Y');
+                 }else{
+                     
+                 	$("#d_provide_relevant_certificate").html('N');
+                 }                    
+                                    
+                 $(".d_first_name").html(last_filled_data_array.first_name);
+                 $(".d_last_name").html(last_filled_data_array.last_name);
+                 $("#d_unit_num").html(last_filled_data_array.unit_num);
+                 $("#d_street_num").html(last_filled_data_array.street_num);
+                 $("#d_street_name").html(last_filled_data_array.street_name);
+                 $("#d_street_type").html(last_filled_data_array.street_type);
+                 $("#d_town").html(last_filled_data_array.town);
+                 
+                 $("#d_state").html(last_filled_data_array.state);
+                 $("#d_postcode").html(last_filled_data_array.postcode);
+                 $("#d_len_of_time").html(last_filled_data_array.len_of_time);
+                 $("#d_duration").html(last_filled_data_array.duration);
+                 $("#d_tenant_or_owner").html(last_filled_data_array.tenant_or_owner);
+                 $("#d_alt_num").html(last_filled_data_array.alt_num);
+                 
+                 if(last_filled_data_array.dob != '')
+                 {
+                     $("#d_dob").html(last_filled_data_array.dob);
+                 }                    
+                 
+                 if(last_filled_data_array.postal_address != '') {
+                 	$("#postal_address").html(last_filled_data_array.postal_address);                    	
+                 }
+                 
+                 $("#d_cust_email").html(last_filled_data_array.cust_email);
+                 $("#d_previous_spc").html(previous_spc);
+                 $(".d_phone_num").html(last_filled_data_array.phone_num);
+                 $("#cust_sig").attr('src', last_filled_data_array.customer_signature);
+                 $("#cust_sig2").attr('src', last_filled_data_array.customer_signature);
+                 $("#inst_sig").attr('src', last_filled_data_array.installer_signature);
+                 
+                 var datetimemilliseconds = parseInt(last_filled_data_array.create_time)*1000;
+                 var installationDateObj = new Date(datetimemilliseconds);
+                 var dateFormat = installationDateObj.getDate()+"-"+(installationDateObj.getMonth()+1)+"-"+installationDateObj.getFullYear();
+                 $("#installation_date").html(dateFormat);
+                 $("#installation_date2").html(dateFormat);
+                 
+
+                 
+                 if(last_filled_data_array.add_spc_reason.length > 10)
+                 {
+                     last_filled_data_array.add_spc_reason = last_filled_data_array.add_spc_reason.substr(0,10)+"...";
+                 }
+                 
+                 if(previous_spc_txt.length > 10)
+                 {
+                     previous_spc_txt = previous_spc_txt.substr(0,10)+"...";
+                 }
+                 
+                 $("#d_previous_spc_text").html(previous_spc_txt);
+                 $("#d_add_spc_reason").html(last_filled_data_array.add_spc_reason);
+                 
+                 
+                 var productsCount = 1;
+                 $.each(last_filled_data_array.products, function(index, value) {
+
+                     if(value.product_num <= last_filled_data_array.num_spc_installed)
+                     {
+                         $("#d_productserialnum"+value.product_num).html(value.productserialnum);
+                         $("#d_productroomtype"+value.product_num).html(value.productroomtype);
+                         
+                         var productsselectedcount = 0;
+                         
+                         if(value.applicationa != '-' && value.applicationa != ''){ productsselectedcount++; }
+                         if(value.applicationb != '-' && value.applicationb != ''){ productsselectedcount++; }
+                         if(value.applicationc != '-' && value.applicationc != ''){ productsselectedcount++; }
+                         if(value.applicationd != '-' && value.applicationd != ''){ productsselectedcount++; }
+                         
+                         $("#d_controlappliences"+value.product_num).html(productsselectedcount);
+                         if(productsselectedcount > 0)
+                         {
+                             $('#dclspc1').show();
+                             $('#dclspc2').show();
+                             $('#dcl5').show();
+                             $('#dcle').show();
+                         }
+                     }
+                     
+                     productsCount++;
+                 });
+					
+                 var other_productsCount = 1;
+                 var cnt = 2;
+                 $.each(last_filled_data_array.other_products, function(index, value) {
+                    
+                     var prdtypeid = value.producttype.replace(" ", "-");
+						
+						
+
+                     $("#tr"+prdtypeid).show();
+                     $("#tr"+prdtypeid+"1").show();
+                     $("#section_name"+prdtypeid).html(value.producttype);
+                     $("#product_model"+prdtypeid).html(value.productmodel);
+                     $("#product_brand"+prdtypeid).html(value.productbrand);
+                     $("#measures"+prdtypeid).html(value.measures);
+                     
+                     // check duplicate justification text
+                     if(value.djcheck == 1) {
+                     	//$("#before_justification_area").before('<tr><td bgcolor="#CCCCCC" colspan="36">'+value.measures+'</td></tr>');
+                     	$("#installing_additional_product_reasons").before(value.measures+'<br/>');
+                     }
+                     
+                     // measures, djcheck
+                     $("#sealed"+prdtypeid).html(value.sealed);
+                     $("#output"+prdtypeid).html(value.output);
+                     $("#lighting"+prdtypeid).html(value.lightting);
+                     $("#manufacturer"+prdtypeid).html(value.manufacturer);
+                     $("#lamps"+prdtypeid).html(value.numberoflamps);
+                     if(prdtypeid == 'IHD')
+                     {
+                         $('#dclihd1').show();
+                         $('#dclihd2').show();
+                         $('#dcl6').show();
+                         $('#dclf').show();
+                     } else if(prdtypeid == 'Door-Seals') {
+                         $('#dclws1').show();
+                         $('#dclws2').show();
+                         $('#dcl7').show();
+                         $('#dclg').show();
+                     } else if(prdtypeid == 'Chimney-Baloons') {
+                         $('#dclws1').show();
+                         $('#dclws2').show();
+                         $('#dcl7').show();
+                         $('#dclg').show();
+                     } else if(prdtypeid == '21A') {
+                         //$('#dclli1').show();
+                        // $('#dclli2').show();
+                         //$('#dcl8').show();
+                         //$('#dclh').show();
+                         
+                     } else if(prdtypeid == '21C-240V') {
+                         //$('#dclli1').show();
+                         //$('#dclli2').show();
+                         //$('#dcl8').show();
+                         //$('#dclh').show();
+							
+							/*  New Block */
+                         if(!isNaN(value.costper) && value.costper > 0) {
+                         	$("#costperled21CNetPrice").text('Reduced Price');
+                         }
+                         
+                         if(value.circuittext == "Yes") {
+                         	$("#circuitTextDimmable").text("Yes "+value.dimmableCircuitLampInstallations);
+                         }
+                         
+                         if(value.halogen_downlights_replaced_check == 1) {
+                         	$("#halogen_check").text("Yes");
+                         }else{
+                         	$("#halogen_check").text("No");
+                         }
+                         
+                         //alert(value.numberoflamps);
+                                                   
+                         $("#numberOfLamps21C").text(value.numberoflamps);
+                         
+                         $("#transformerType").text(value.installedlamps);                            
+                         
+                         $("#transformerModel").text(value.installedlamps2);
+                         
+                         $("#transformer_name").text(value.productbrand21cTransformerName);
+                         
+                         $("#transformer_model").text(value.productbrand21cTransformerModel);
+                         
+                         $("#electrical_safety_no").text(value.productbrand21cElectricalSafetyNo);
+							
+							/*  New Block */
+                         
+                     } else if(prdtypeid == '21C-12V') {
+                         console.log('mynameisdanish');
+                         //$('#dclli1').show();
+                         //$('#dclli2').show();
+                         //$('#dcl8').show();
+                         //$('#dclh').show();
+							
+							/*  New Block */
+							
+                         if(!isNaN(value.costper) && value.costper > 0) {
+                         	$("#costperled21DNetPrice").text('Reduced Price');
+                         }
+                         
+                         $("#numberOfLamps21D").text(value.numberoflamps);
+                         
+                         $("#above_installation").text(value.above_installation);
+							
+							/*  New Block */
+                         
+                     } else if(prdtypeid == 'A2') {
+                         $("#productbrand21a2g").html('/'+value.productbrand);
+                         $("#productmodel21a2g").html('/'+value.productmodel);
+                         $("#output21a2g").html('/'+value.output);
+                         $("#lighting21a2g").html('/'+value.lightting);
+                         $("#manufacturer21a2g").html('/'+value.manufacturer);
+                         $("#numberoflamps21a2g").html('/'+value.numberoflamps);
+                     } else if(prdtypeid == 'A3') {
+                         $("#productbrand21a3g").html('/'+value.productbrand);
+                         $("#productmodel21a3g").html('/'+value.productmodel);
+                         $("#output21a3g").html('/'+value.output);
+                         $("#lighting21a3g").html('/'+value.lightting);
+                         $("#manufacturer21a3g").html('/'+value.manufacturer);
+                         $("#numberoflamps21a3g").html('/'+value.numberoflamps);
+                     } else if(prdtypeid == 'A4') {
+                         $("#productbrand21a4g").html('/'+value.productbrand);
+                         $("#productmodel21a4g").html('/'+value.productmodel);
+                         $("#output21a4g").html('/'+value.output);
+                         $("#lighting21a4g").html('/'+value.lightting);
+                         $("#manufacturer21a4g").html('/'+value.manufacturer);
+                         $("#numberoflamps21a4g").html('/'+value.numberoflamps);
+                     } else if(prdtypeid == 'C2') {
+                         $("#productbrand21c2").html('/'+value.productbrand);
+                         $("#productmodel21c2").html('/'+value.productmodel);
+                         $("#output21c2").html('/'+value.output);
+                         $("#lighting21c2").html('/'+value.lightting);
+                         $("#manufacturer21c2").html('/'+value.manufacturer);
+                         $("#numberoflamps21c2").html('/'+value.numberoflamps);
+                     } else if(prdtypeid == 'C3') {
+                         $("#productbrand21c3").html('/'+value.productbrand);
+                         $("#productmodel21c3").html('/'+value.productmodel);
+                         $("#output21c3").html('/'+value.output);
+                         $("#lighting21c3").html('/'+value.lightting);
+                         $("#manufacturer21c3").html('/'+value.manufacturer);
+                         $("#numberoflamps21c3").html('/'+value.numberoflamps);
+                     } else if(prdtypeid == 'C4') {
+                         $("#productbrand21c4").html('/'+value.productbrand);
+                         $("#productmodel21c4").html('/'+value.productmodel);
+                         $("#output21c4").html('/'+value.output);
+                         $("#lighting21c4").html('/'+value.lightting);
+                         $("#manufacturer21c4").html('/'+value.manufacturer);
+                         $("#numberoflamps21c4").html('/'+value.numberoflamps);
+                     } else if(prdtypeid == 'D2') {
+                         $("#productbrand21d2x").html('/'+value.productbrand);
+                         $("#productmodel21d2x").html('/'+value.productmodel);
+                         $("#output21d2x").html('/'+value.output);
+                         $("#lighting21d2x").html('/'+value.lightting);
+                         $("#manufacturer21d2x").html('/'+value.manufacturer);
+                         $("#numberoflamps21d2x").html('/'+value.numberoflamps);
+                     } else if(prdtypeid == 'D3') {
+                         $("#productbrand21d3x").html('/'+value.productbrand);
+                         $("#productmodel21d3x").html('/'+value.productmodel);
+                         $("#output21d3x").html('/'+value.output);
+                         $("#lighting21d3x").html('/'+value.lightting);
+                         $("#manufacturer21d3x").html('/'+value.manufacturer);
+                         $("#numberoflamps21d3x").html('/'+value.numberoflamps);
+                     } else if(prdtypeid == 'D4') {
+                         $("#productbrand21d4x").html('/'+value.productbrand);
+                         $("#productmodel21d4x").html('/'+value.productmodel);
+                         $("#output21d4x").html('/'+value.output);
+                         $("#lighting21d4x").html('/'+value.lightting);
+                         $("#manufacturer21d4x").html('/'+value.manufacturer);
+                         $("#numberoflamps21d4x").html('/'+value.numberoflamps);
+                     }
+                     
+                     other_productsCount++;
+                     if(cnt == 4)
+                     {
+                         cnt = 2;
+                     }
+                 });
+             }
+         });         
+     });
+});
  
  $('#reportPage').live('pagecreate', function(event){
      var today = new Date();
@@ -1721,6 +2085,343 @@ function hideLoader() {
  });
  
  $("#reportPage").live('pagebeforeshow', function(event, data) {
+	    
+	    previouspage = data.prevPage;
+});
+ 
+ $('#reportCommercialPage').live('pagehide', function(event, ui){
+     $(this).remove();
+ });
+ $('#reportCommercialPage').live('pagecreate', function(event){
+     //alert('mj');
+	 var today = new Date();
+     var dd = today.getDate();
+     var mm = today.getMonth()+1; //January is 0!
+
+     var yyyy = today.getFullYear();
+     if(dd<10){dd='0'+dd;} 
+     if(mm<10){mm='0'+mm;} 
+     today = dd+'/'+mm+'/'+yyyy;
+     $('#consumer_date').html(today);
+     $('#installer_date').html(today);
+
+     get_loggedin_user_data(function(response) {
+         
+         if(response == 1)
+         {
+             $('#loggedin_user_name5').html(logged_in_user_data.name);
+             $('#installerNameDiv').html(logged_in_user_data.name);
+             $('#installerFullNameDiv').html(logged_in_user_data.fullname);
+         }
+         get_filled_data(function(response) {
+             //console.log(response);
+             
+             if(response == 1)
+             {
+                 var previous_spc = "";
+                 var previous_spc_txt = "";
+                 if(last_filled_data_array.previous_spc != '')
+                 {
+                     previous_spc = 'Y';
+                     previous_spc_txt = last_filled_data_array.previous_spc;
+                 }else{
+                     
+                     previous_spc = 'N';
+                 }
+                 
+                 //alert(last_filled_data_array.company_name);
+                 
+                 //alert($("#company_name").attr("id"));
+                 
+                 $("#d_company_name").html(last_filled_data_array.company_name);
+                 $("#d_abn").html(last_filled_data_array.abn);
+                 $("#d_industry_type").html(last_filled_data_array.industry_type);
+                 $("#d_job_title").html(last_filled_data_array.job_title);
+                 $("#d_total_floor_space").html(last_filled_data_array.total_floor_space);
+                 $("#d_number_of_levels").html(last_filled_data_array.number_of_levels);
+                 
+                 if(last_filled_data_array.electricalSafetyCheck)
+                 {
+                     $("#d_has_electrical_safety_certificate").html('Y');
+                 }else{
+                     
+                 	$("#d_has_electrical_safety_certificate").html('N');
+                 }
+                 
+                 //alert('relevantCertificateCheck '+last_filled_data_array.relevantCertificateCheck);
+                 
+                 if(last_filled_data_array.relevantCertificateCheck == 1 )
+                 {
+                     $("#d_provide_relevant_certificate").html('Y');
+                 }else{
+                     
+                 	$("#d_provide_relevant_certificate").html('N');
+                 }                    
+                                    
+                 $(".d_first_name").html(last_filled_data_array.first_name);
+                 $(".d_last_name").html(last_filled_data_array.last_name);
+                 $("#d_unit_num").html(last_filled_data_array.unit_num);
+                 $("#d_street_num").html(last_filled_data_array.street_num);
+                 $("#d_street_name").html(last_filled_data_array.street_name);
+                 $("#d_street_type").html(last_filled_data_array.street_type);
+                 $("#d_town").html(last_filled_data_array.town);
+                 
+                 $("#d_state").html(last_filled_data_array.state);
+                 $("#d_postcode").html(last_filled_data_array.postcode);
+                 $("#d_len_of_time").html(last_filled_data_array.len_of_time);
+                 $("#d_duration").html(last_filled_data_array.duration);
+                 $("#d_tenant_or_owner").html(last_filled_data_array.tenant_or_owner);
+                 $("#d_alt_num").html(last_filled_data_array.alt_num);
+                 
+                 if(last_filled_data_array.dob != '')
+                 {
+                     $("#d_dob").html(last_filled_data_array.dob);
+                 }                    
+                 
+                 if(last_filled_data_array.postal_address != '') {
+                 	$("#postal_address").html(last_filled_data_array.postal_address);                    	
+                 }
+                 
+                 $("#d_cust_email").html(last_filled_data_array.cust_email);
+                 $("#d_previous_spc").html(previous_spc);
+                 $(".d_phone_num").html(last_filled_data_array.phone_num);
+                 $("#cust_sig").attr('src', last_filled_data_array.customer_signature);
+                 $("#cust_sig2").attr('src', last_filled_data_array.customer_signature);
+                 $("#inst_sig").attr('src', last_filled_data_array.installer_signature);
+                 
+                 var datetimemilliseconds = parseInt(last_filled_data_array.create_time)*1000;
+                 var installationDateObj = new Date(datetimemilliseconds);
+                 var dateFormat = installationDateObj.getDate()+"-"+(installationDateObj.getMonth()+1)+"-"+installationDateObj.getFullYear();
+                 $("#installation_date").html(dateFormat);
+                 $("#installation_date2").html(dateFormat);
+                 
+
+                 
+                 if(last_filled_data_array.add_spc_reason.length > 10)
+                 {
+                     last_filled_data_array.add_spc_reason = last_filled_data_array.add_spc_reason.substr(0,10)+"...";
+                 }
+                 
+                 if(previous_spc_txt.length > 10)
+                 {
+                     previous_spc_txt = previous_spc_txt.substr(0,10)+"...";
+                 }
+                 
+                 $("#d_previous_spc_text").html(previous_spc_txt);
+                 $("#d_add_spc_reason").html(last_filled_data_array.add_spc_reason);
+                 
+                 
+                 var productsCount = 1;
+                 $.each(last_filled_data_array.products, function(index, value) {
+
+                     if(value.product_num <= last_filled_data_array.num_spc_installed)
+                     {
+                         $("#d_productserialnum"+value.product_num).html(value.productserialnum);
+                         $("#d_productroomtype"+value.product_num).html(value.productroomtype);
+                         
+                         var productsselectedcount = 0;
+                         
+                         if(value.applicationa != '-' && value.applicationa != ''){ productsselectedcount++; }
+                         if(value.applicationb != '-' && value.applicationb != ''){ productsselectedcount++; }
+                         if(value.applicationc != '-' && value.applicationc != ''){ productsselectedcount++; }
+                         if(value.applicationd != '-' && value.applicationd != ''){ productsselectedcount++; }
+                         
+                         $("#d_controlappliences"+value.product_num).html(productsselectedcount);
+                         if(productsselectedcount > 0)
+                         {
+                             $('#dclspc1').show();
+                             $('#dclspc2').show();
+                             $('#dcl5').show();
+                             $('#dcle').show();
+                         }
+                     }
+                     
+                     productsCount++;
+                 });
+					
+                 var other_productsCount = 1;
+                 var cnt = 2;
+                 $.each(last_filled_data_array.other_products, function(index, value) {
+                    
+                     var prdtypeid = value.producttype.replace(" ", "-");
+						
+						
+
+                     $("#tr"+prdtypeid).show();
+                     $("#tr"+prdtypeid+"1").show();
+                     $("#section_name"+prdtypeid).html(value.producttype);
+                     $("#product_model"+prdtypeid).html(value.productmodel);
+                     $("#product_brand"+prdtypeid).html(value.productbrand);
+                     $("#measures"+prdtypeid).html(value.measures);
+                     
+                     // check duplicate justification text
+                     if(value.djcheck == 1) {
+                     	//$("#before_justification_area").before('<tr><td bgcolor="#CCCCCC" colspan="36">'+value.measures+'</td></tr>');
+                     	$("#installing_additional_product_reasons").before(value.measures+'<br/>');
+                     }
+                     
+                     // measures, djcheck
+                     $("#sealed"+prdtypeid).html(value.sealed);
+                     $("#output"+prdtypeid).html(value.output);
+                     $("#lighting"+prdtypeid).html(value.lightting);
+                     $("#manufacturer"+prdtypeid).html(value.manufacturer);
+                     $("#lamps"+prdtypeid).html(value.numberoflamps);
+                     if(prdtypeid == 'IHD')
+                     {
+                         $('#dclihd1').show();
+                         $('#dclihd2').show();
+                         $('#dcl6').show();
+                         $('#dclf').show();
+                     } else if(prdtypeid == 'Door-Seals') {
+                         $('#dclws1').show();
+                         $('#dclws2').show();
+                         $('#dcl7').show();
+                         $('#dclg').show();
+                     } else if(prdtypeid == 'Chimney-Baloons') {
+                         $('#dclws1').show();
+                         $('#dclws2').show();
+                         $('#dcl7').show();
+                         $('#dclg').show();
+                     } else if(prdtypeid == '21A') {
+                         //$('#dclli1').show();
+                        // $('#dclli2').show();
+                         //$('#dcl8').show();
+                         //$('#dclh').show();
+                         
+                     } else if(prdtypeid == '21C-240V') {
+                         //$('#dclli1').show();
+                         //$('#dclli2').show();
+                         //$('#dcl8').show();
+                         //$('#dclh').show();
+							
+							/*  New Block */
+                         if(!isNaN(value.costper) && value.costper > 0) {
+                         	$("#costperled21CNetPrice").text('Reduced Price');
+                         }
+                         
+                         if(value.circuittext == "Yes") {
+                         	$("#circuitTextDimmable").text("Yes "+value.dimmableCircuitLampInstallations);
+                         }
+                         
+                         if(value.halogen_downlights_replaced_check == 1) {
+                         	$("#halogen_check").text("Yes");
+                         }else{
+                         	$("#halogen_check").text("No");
+                         }
+                         
+                         //alert(value.numberoflamps);
+                                                   
+                         $("#numberOfLamps21C").text(value.numberoflamps);
+                         
+                         $("#transformerType").text(value.installedlamps);                            
+                         
+                         $("#transformerModel").text(value.installedlamps2);
+                         
+                         $("#transformer_name").text(value.productbrand21cTransformerName);
+                         
+                         $("#transformer_model").text(value.productbrand21cTransformerModel);
+                         
+                         $("#electrical_safety_no").text(value.productbrand21cElectricalSafetyNo);
+							
+							/*  New Block */
+                         
+                     } else if(prdtypeid == '21C-12V') {
+                         console.log('mynameisdanish');
+                         //$('#dclli1').show();
+                         //$('#dclli2').show();
+                         //$('#dcl8').show();
+                         //$('#dclh').show();
+							
+							/*  New Block */
+							
+                         if(!isNaN(value.costper) && value.costper > 0) {
+                         	$("#costperled21DNetPrice").text('Reduced Price');
+                         }
+                         
+                         $("#numberOfLamps21D").text(value.numberoflamps);
+                         
+                         $("#above_installation").text(value.above_installation);
+							
+							/*  New Block */
+                         
+                     } else if(prdtypeid == 'A2') {
+                         $("#productbrand21a2g").html('/'+value.productbrand);
+                         $("#productmodel21a2g").html('/'+value.productmodel);
+                         $("#output21a2g").html('/'+value.output);
+                         $("#lighting21a2g").html('/'+value.lightting);
+                         $("#manufacturer21a2g").html('/'+value.manufacturer);
+                         $("#numberoflamps21a2g").html('/'+value.numberoflamps);
+                     } else if(prdtypeid == 'A3') {
+                         $("#productbrand21a3g").html('/'+value.productbrand);
+                         $("#productmodel21a3g").html('/'+value.productmodel);
+                         $("#output21a3g").html('/'+value.output);
+                         $("#lighting21a3g").html('/'+value.lightting);
+                         $("#manufacturer21a3g").html('/'+value.manufacturer);
+                         $("#numberoflamps21a3g").html('/'+value.numberoflamps);
+                     } else if(prdtypeid == 'A4') {
+                         $("#productbrand21a4g").html('/'+value.productbrand);
+                         $("#productmodel21a4g").html('/'+value.productmodel);
+                         $("#output21a4g").html('/'+value.output);
+                         $("#lighting21a4g").html('/'+value.lightting);
+                         $("#manufacturer21a4g").html('/'+value.manufacturer);
+                         $("#numberoflamps21a4g").html('/'+value.numberoflamps);
+                     } else if(prdtypeid == 'C2') {
+                         $("#productbrand21c2").html('/'+value.productbrand);
+                         $("#productmodel21c2").html('/'+value.productmodel);
+                         $("#output21c2").html('/'+value.output);
+                         $("#lighting21c2").html('/'+value.lightting);
+                         $("#manufacturer21c2").html('/'+value.manufacturer);
+                         $("#numberoflamps21c2").html('/'+value.numberoflamps);
+                     } else if(prdtypeid == 'C3') {
+                         $("#productbrand21c3").html('/'+value.productbrand);
+                         $("#productmodel21c3").html('/'+value.productmodel);
+                         $("#output21c3").html('/'+value.output);
+                         $("#lighting21c3").html('/'+value.lightting);
+                         $("#manufacturer21c3").html('/'+value.manufacturer);
+                         $("#numberoflamps21c3").html('/'+value.numberoflamps);
+                     } else if(prdtypeid == 'C4') {
+                         $("#productbrand21c4").html('/'+value.productbrand);
+                         $("#productmodel21c4").html('/'+value.productmodel);
+                         $("#output21c4").html('/'+value.output);
+                         $("#lighting21c4").html('/'+value.lightting);
+                         $("#manufacturer21c4").html('/'+value.manufacturer);
+                         $("#numberoflamps21c4").html('/'+value.numberoflamps);
+                     } else if(prdtypeid == 'D2') {
+                         $("#productbrand21d2x").html('/'+value.productbrand);
+                         $("#productmodel21d2x").html('/'+value.productmodel);
+                         $("#output21d2x").html('/'+value.output);
+                         $("#lighting21d2x").html('/'+value.lightting);
+                         $("#manufacturer21d2x").html('/'+value.manufacturer);
+                         $("#numberoflamps21d2x").html('/'+value.numberoflamps);
+                     } else if(prdtypeid == 'D3') {
+                         $("#productbrand21d3x").html('/'+value.productbrand);
+                         $("#productmodel21d3x").html('/'+value.productmodel);
+                         $("#output21d3x").html('/'+value.output);
+                         $("#lighting21d3x").html('/'+value.lightting);
+                         $("#manufacturer21d3x").html('/'+value.manufacturer);
+                         $("#numberoflamps21d3x").html('/'+value.numberoflamps);
+                     } else if(prdtypeid == 'D4') {
+                         $("#productbrand21d4x").html('/'+value.productbrand);
+                         $("#productmodel21d4x").html('/'+value.productmodel);
+                         $("#output21d4x").html('/'+value.output);
+                         $("#lighting21d4x").html('/'+value.lightting);
+                         $("#manufacturer21d4x").html('/'+value.manufacturer);
+                         $("#numberoflamps21d4x").html('/'+value.numberoflamps);
+                     }
+                     
+                     other_productsCount++;
+                     if(cnt == 4)
+                     {
+                         cnt = 2;
+                     }
+                 });
+             }
+         });
+         
+     });
+});
+ 
+ $("#reportCommercialPage").live('pagebeforeshow', function(event, data) {
 	    
 	    previouspage = data.prevPage;
 });

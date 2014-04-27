@@ -10,7 +10,7 @@
 </style>
 </head>
 <body>
-<div class="main_wrapper"  data-role="page" id="customFormPage">
+<div class="main_wrapper"  data-role="page" id="customFormPage" data-dom-cache="true">
   <script>
     
     var imagesUniquePostfix = Math.round(new Date().getTime() / 1000);
@@ -241,6 +241,29 @@ function customer_declaration()
     var installerSignature = $("#installerSignature").jSignature("getData");
     var customerSignature = $("#customerSignature").jSignature("getData");
     
+    var company_name = $("#company_name").val();
+    var abn = $("#american_business_no").val();
+    var industry_type = $("#industry_type").val();
+    var job_title = $("#job_title").val();
+    var total_floor_space = $("#total_floor_space").val();
+    var number_of_levels = $("#number_of_levels").val();
+    
+    var electricalSafetyCheck = 0;
+    var relevantCertificateCheck = 0;
+    
+    if($('#has_electrical_safety_certificate').is(':checked')) {
+    	electricalSafetyCheck = 1;
+    } else {
+    	electricalSafetyCheck = 0;
+    }
+    
+    if($('#provide_relevant_certificate').is(':checked')) {
+    	relevantCertificateCheck = 1;
+    } else {
+    	relevantCertificateCheck = 0;
+    }
+    
+    
     var title = $("#title").val();
     var first_name = $("#first_name").val();
     var last_name = $("#last_name").val();
@@ -417,9 +440,27 @@ function customer_declaration()
     var costperled21c = $("#costperled21c").val();
     var costperled21d = $("#costperled21d").val();
     var circuittext21c = $("#circuittext21c").val();
+    
+    var dimmableCircuitLampInstallations = $("#dimmableCircuitLampInstallations").val();
+    
     var installedlamps = $("#installedlamps").val();
     var installedlamps2 = $("#installedlamps2").val();
     var installedlamps3 = $("#installedlamps3").val();
+    
+    var halogen_downlights_replaced_check = 1;
+    
+    if($("#halogen_downlights_checkbox_group .ui-radio:first label").hasClass('ui-btn-active')) {
+    	halogen_downlights_replaced_check = 1;
+        //if(measures21c == "") { errorFieldsArray.push('Please enter 21C Duplicate Justification.'); }
+    } else {
+    	halogen_downlights_replaced_check = 0;
+    }
+    
+    var productbrand21cTransformerName = $("#productbrand21cTransformerName").val();
+    var productbrand21cTransformerModel = $("#productbrand21cTransformerModel").val();
+    var productbrand21cElectricalSafetyNo = $("#productbrand21cElectricalSafetyNo").val();
+    
+    
     var circuittext21d = $("#circuittext21d").val();
     var installedlamps21d = $("#installedlamps21d").val();
     var above_installation = $("#above_installation").val();
@@ -462,32 +503,14 @@ function customer_declaration()
     var town_check = /^[a-zA-Z\u00C0-\u00ff]+$/.test(town);
 
 
+    if(company_name == '') { errorFieldsArray.push('Please fill Company Name.'); }
+    if(abn.length == 0) { errorFieldsArray.push('Please fill ABN.'); }else if(isNaN(abn)){  errorFieldsArray.push('Please enter numeric ABN.'); }
+    
     if($('#djcheckihd').is(':checked')) {
         djcheckihd = 1;
     } else {
         djcheckihd = 0;
-    }
-
-    if($('#djcheck21a').is(':checked')) {
-        if(measures21a == "") { errorFieldsArray.push('Please enter 21A Duplicate Justification.'); }
-        djcheck21a = 1;
-    } else {
-        djcheck21a = 0;
-    }
-
-    if($('#djcheck21c').is(':checked')) {
-        djcheck21c = 1;
-        if(measures21c == "") { errorFieldsArray.push('Please enter 21C Duplicate Justification.'); }
-    } else {
-        djcheck21c = 0;
-    }
-
-    if($('#djcheck21d').is(':checked')) {
-        if(measures21d == "") { errorFieldsArray.push('Please enter 21D Duplicate Justification.'); }
-        djcheck21d = 1;
-    } else {
-        djcheck21d = 0;
-    }
+    }   
 
     if($('#circuitcheck21a').is(':checked')) {
         circuitcheck21a = 1;
@@ -682,6 +705,12 @@ function customer_declaration()
             else if(isNaN(numberoflamps21a4)) { errorFieldsArray.push('Please enter numeric, Number of lamps.'); }
             if(imagesUploadArray13.length == 0) { errorFieldsArray.push('Please upload at least 1 image in 21A - 4.'); } 
         }
+        if($('#djcheck21a').is(':checked')) {
+            if(measures21a == "") { errorFieldsArray.push('Please enter 21A Duplicate Justification.'); }
+            djcheck21a = 1;
+        } else {
+            djcheck21a = 0;
+        }
         v21Avalue = '21A';
     }
 
@@ -695,8 +724,15 @@ function customer_declaration()
         if(numberoflampscv == '') { errorFieldsArray.push('Please enter 21C Number of lamps.');} 
         else if(isNaN(numberoflampscv)) { errorFieldsArray.push('Please enter numeric 21C Number of lamps.'); }
         if(imagesUploadArray9.length == 0) { errorFieldsArray.push('Please upload at least 1 image in 21C.'); } 
-        if(circuittext21c == '') { errorFieldsArray.push('Please select 21C Were any of the above lamps installed in a dimmable circuit?.'); } 
+        if(circuittext21c == '') { errorFieldsArray.push('Please select 21C Were any of the above lamps installed in a dimmable circuit?.'); }
+        else if(circuittext21c != '' && circuittext21c != "No") {
+        	if(dimmableCircuitLampInstallations == '') { errorFieldsArray.push('Please select 21C How many lamps were installed in dimmable circuit?.'); }
+            else if(isNaN(dimmableCircuitLampInstallations)) { errorFieldsArray.push('Please enter numeric 21C How many lamps were installed in dimmable circuit.'); }
+        } 
         if(installedlamps == '') { errorFieldsArray.push('Please enter Type of Transformer Connected.'); }
+        if(productbrand21cTransformerName == '') { errorFieldsArray.push('Please select 21C Name of Transformer.'); }
+        if(productbrand21cTransformerModel == null) { errorFieldsArray.push('Please select 21C Transformer Model.'); }
+        if(productbrand21cElectricalSafetyNo == '') { errorFieldsArray.push('Please select 21C Electrical Safety No.'); }        
         if(num_21c_installed > 1)
         {
             if(productbrandcv2a == '') { errorFieldsArray.push('Please enter 21C - 2 Product Brand.'); }
@@ -729,6 +765,12 @@ function customer_declaration()
             if(numberoflampscv4 == '') { errorFieldsArray.push('Please enter 21C - 4 Number of lamps.');} 
             else if(isNaN(numberoflampscv4)) { errorFieldsArray.push('Please enter numeric, Number of lamps.'); }
             if(imagesUploadArray16.length == 0) { errorFieldsArray.push('Please upload at least 1 image in 21C - 4.'); } 
+        }
+        if($('#djcheck21c').is(':checked')) {
+            djcheck21c = 1;
+            if(measures21c == "") { errorFieldsArray.push('Please enter 21C Duplicate Justification.'); }
+        } else {
+            djcheck21c = 0;
         }
         v21C240Vvalue = '21C 240V';
     }
@@ -778,6 +820,12 @@ function customer_declaration()
             else if(isNaN(numberoflampscv2d)) { errorFieldsArray.push('Please enter numeric, Number of lamps.'); }
             if(imagesUploadArray19.length == 0) { errorFieldsArray.push('Please upload at least 1 image in 21D - 4.'); } 
         }
+        if($('#djcheck21d').is(':checked')) {
+            if(measures21d == "") { errorFieldsArray.push('Please enter 21D Duplicate Justification.'); }
+            djcheck21d = 1;
+        } else {
+            djcheck21d = 0;
+        }
         v21C12Vvalue = '21C 12V';
     } 
 
@@ -820,7 +868,7 @@ function customer_declaration()
         /*
         tx.executeSql("INSERT INTO customer (creator_id, title, first_name, last_name, phone_num, alt_num, cust_email, unit_num, unit_type, level_num, level_type, street_num, street_name, street_type, street_type_suff, town, state, postcode, len_of_time, duration, tenant_or_owner, dob, previous_spc, add_spc_reason, num_spc_installed, create_time, saved, uploaded, installer_signature, customer_signature, installer_image) VALUES ('"+logged_in_user_data.user_id+"', '"+title+"', '"+first_name+"', '"+last_name+"', '"+phone_num+"', '"+alt_num+"', '"+cust_email+"', '"+unit_num+"', '"+unit_type+"', '"+level_num+"', '"+level_type+"', '"+street_num+"', '"+street_name+"', '"+street_type+"', '"+street_type_suff+"', '"+town+"', '"+state+"', '"+postcode+"', '"+len_of_time+"', '"+duration+"', '"+tenant_or_owner+"', '"+dob+"', '"+previous_spc_text+"', '"+add_spc_reason+"', '"+num_spc_installed+"', '"+create_time+"', '"+saved+"', '"+uploaded+"', '"+installerSignature+"', '"+customerSignature+"','"+customerImagedata+"')", []
         */
-        tx.executeSql("INSERT INTO customer (creator_id, title, first_name, last_name, phone_num, alt_num, cust_email, unit_num, unit_type, level_num, level_type, street_num, street_name, street_type, street_type_suff, town, state, postcode, len_of_time, duration, tenant_or_owner, dob, previous_spc, add_spc_reason, num_spc_installed, create_time, saved, uploaded, installer_signature, customer_signature, installer_image, postal_address,latitude,longitude,checklistData) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [logged_in_user_data.user_id,title,first_name,last_name,phone_num,alt_num,cust_email,unit_num,unit_type,level_num,level_type,street_num,street_name,street_type,street_type_suff,town,state,postcode,len_of_time,duration,tenant_or_owner,dob,previous_spc_text,add_spc_reason,num_spc_installed,create_time,saved,uploaded,installerSignature,customerSignature,customerImagedata,postal_address,latitude,longitude,checklistData], function(tx, res) {
+        tx.executeSql("INSERT INTO customer (creator_id,company_name, abn, industry_type,job_title, total_floor_space, number_of_levels, electricalSafetyCheck, relevantCertificateCheck, title, first_name, last_name, phone_num, alt_num, cust_email, unit_num, unit_type, level_num, level_type, street_num, street_name, street_type, street_type_suff, town, state, postcode, len_of_time, duration, tenant_or_owner, dob, previous_spc, add_spc_reason, num_spc_installed, create_time, saved, uploaded, installer_signature, customer_signature, installer_image,latitude,longitude,checklistData) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [logged_in_user_data.user_id,company_name,abn, industry_type,job_title, total_floor_space, number_of_levels, electricalSafetyCheck, relevantCertificateCheck,title,first_name,last_name,phone_num,alt_num,cust_email,unit_num,unit_type,level_num,level_type,street_num,street_name,street_type,street_type_suff,town,state,postcode,len_of_time,duration,tenant_or_owner,dob,previous_spc_text,add_spc_reason,num_spc_installed,create_time,saved,uploaded,installerSignature,customerSignature,customerImagedata,latitude,longitude,checklistData], function(tx, res) {
             
             window.localStorage.removeItem('customerImagedata');
             customer_id = res.insertId;
@@ -870,7 +918,7 @@ function customer_declaration()
 
                                             other_product_id_4 = res8.insertId;
                                         
-                                            tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date, measures, costper, circuitcheck, circuittext, installedlamps, installedlamps2, installedlamps3, djcheck) VALUES ('"+customer_id+"', '"+productbrandcv+"', '"+productmodelcv+"', '"+outputcv+"', '"+lightingcv+"', '"+manufacturercv+"', '"+numberoflampscv+"', '"+v21C240Vvalue+"', '"+create_time+"', '"+measures21c+"', '"+costperled21c+"', '"+circuitcheck21c+"', '"+circuittext21c+"', '"+installedlamps+"', '"+installedlamps2+"', '"+installedlamps3+"', '"+djcheck21c+"')", [], function(tx, res9) {
+                                            tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date, measures, costper, circuitcheck, circuittext, installedlamps, installedlamps2, installedlamps3, djcheck, dimmableCircuitLampInstallations, halogen_downlights_replaced_check, productbrand21cTransformerName, productbrand21cTransformerModel, productbrand21cElectricalSafetyNo ) VALUES ('"+customer_id+"', '"+productbrandcv+"', '"+productmodelcv+"', '"+outputcv+"', '"+lightingcv+"', '"+manufacturercv+"', '"+numberoflampscv+"', '"+v21C240Vvalue+"', '"+create_time+"', '"+measures21c+"', '"+costperled21c+"', '"+circuitcheck21c+"', '"+circuittext21c+"', '"+installedlamps+"', '"+installedlamps2+"', '"+installedlamps3+"', '"+djcheck21c+"', '"+dimmableCircuitLampInstallations+"', '"+halogen_downlights_replaced_check+"','"+productbrand21cTransformerName+"','"+productbrand21cTransformerModel+"','"+productbrand21cElectricalSafetyNo+"')", [], function(tx, res9) {
 
                                                 other_product_id_5 = res9.insertId;
                                             
@@ -1142,7 +1190,7 @@ function customer_declaration()
                                         
                                                                         console.log("all products added");
 
-                                                                        $.mobile.changePage( "report.html", { transition: "slide"} );
+                                                                        $.mobile.changePage( "report-commercial.html", { transition: "slide"} );
 
                                                                     });
 
@@ -1937,13 +1985,27 @@ function changeDropDown(ddid, ddvalue)
 
     }
     
+    if(ddid == 'productbrand21cTransformerModel') {		
+		$.each(product21cTranformerModelData[ddvalue], function( index, value ) {
+			opts += '<option value="'+value+'">'+value+'</option>';
+		});
+		//alert(opts);
+	}
     $("#"+ddid).empty();
     $("#"+ddid).append(opts);
-    
-    if(ddid.indexOf("lighting") != -1) {
+	
+	if(ddid.indexOf("lighting") != -1) {
 		$("#"+ddid).closest('table').find('select').each(function (index, element) {
 			selectDefaultOption($(this).attr('id'),ddvalue);		
 		});
+	}
+	
+	if(ddid == "dimmedInstallation") {
+		if(ddvalue == "Yes") {
+			$("#"+ddid).parent('td').nextUntil('tr').children().show();
+		}else {
+			$("#"+ddid).parent('td').nextUntil('tr').children().show();
+		}
 	}
 }
 
@@ -1955,7 +2017,7 @@ function changeDropDown(ddid, ddvalue)
       <li><a href="#" class="new_ticket2" onclick="customer_declaration();">Consumer Declaration</a></li>
       <li><a href="#" class="logout_butt" onclick="logoutUserFromCustForm();">Logout</a></li>
       <li>
-        <div class="loged_user" >Logged in User: <span id="loggedin_user_name4">User</span></div>
+        <div class="loged_user" >Logged in User: <span class="loggedin_user_name">User</span></div>
       </li>
     </ul>
   </div>
@@ -2742,15 +2804,28 @@ font-size: 35px;">VEEC Assignment Form</td>
               </div>
               <!-- end collapsible -->
                 <br clear="all" />
-            <table>
-                <tr>
-                    <td>Duplicate Justification:</td>
-                    <td> <input name="djcheck21a" id="djcheck21a" type="checkbox" value="1">&nbsp;&nbsp;<br />
-                        <textarea name="measures21a" id="measures21a" rows="5" cols="75"></textarea></td>
-                </tr>
-            </table>
-                <span style="font-size:14px; font-weight:bold; float:right;"> Form of Benefit (Free)</span>
-                <br clear="all" />
+                <div class="content">
+	              <table width="100%">
+	                <tbody>
+	                	<tr>
+	                    <td colspan="2">
+	                    <div data-role="fieldcontain" class="ui-hide-label">
+						    <fieldset data-role="controlgroup">
+							   <legend>Duplicate Justification:</legend>
+							   <input type="checkbox" name="djcheck21a" id="djcheck21a" class="custom" value="1"/>
+							   <label for="djcheck21a">Duplicate Justification:</label>
+						    </fieldset>
+						</div>
+	                    </td>
+	                    <td colspan="2">&nbsp;</td>                    
+		             </tr>
+	                <tr>                	
+	                	<td colspan="3"><textarea name="measures21a" id="measures21a" style="height:100px;max-height:100px"></textarea></td>
+	                	<td style="vertical-align: bottom;"><span style="font-size:14px; font-weight:bold; float:right;"> Form of Benefit (Free)</span></td>                
+	                </tr>
+	                </tbody>
+	                </table>
+	             </div>
               </div>
 
               <!-- collapsible -->
@@ -3053,17 +3128,21 @@ font-size: 35px;">VEEC Assignment Form</td>
                 <tbody>
                 <tr>
                     <td width="25%"><font size="5" color="red">*</font>Cost per LED Installed (Inc GST): </td>
-                    <td><input type="text" tabindex="" name="costperled21c" id="costperled21c" value="" class="detailedViewTextBox"></td>
-                    <td><font size="5" color="red">*</font>Were any of the above lamps installed in a dimmable circuit?</td>
-                    <td><!-- <input name="circuitcheck21c" id="circuitcheck21c" type="checkbox" value="" checked="checked" /> 
-              &nbsp;&nbsp;<br />
-              <input type="text" tabindex="" name="circuittext21c" id="circuittext21c" value="" class="detailedViewTextBox" />-->
-                        <select class="small" tabindex="" name="circuittext21c" id="circuittext21c">
+                    <td><input type="text" tabindex="" name="costperled21c" id="costperled21c" value="" class="detailedViewTextBox" /></td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>                    
+                </tr>
+                <tr>
+                	<td><font size="5" color="red">*</font>Were any of the above lamps installed in a dimmable circuit?</td>
+                    <td>
+                        <select class="small" tabindex="" name="circuittext21c" id="circuittext21c" onchange="showHiddenCell(this)">
                             <option value="" selected="selected"> - </option>
                             <option value="Yes"> Yes </option>
                             <option value="No"> No </option>
                         </select>
                     </td>
+                    <td><label style="display:none" for="dimmableCircuitLampInstallations"><font size="5" color="red">*</font>How many lamps were installed in dimmable circuit ?</label></td>
+                    <td><input style="display:none" value="" id="dimmableCircuitLampInstallations" name="dimmableCircuitLampInstallations" tabindex="" type="number" /></td> 
                 </tr>
                 <tr >
                     <td width="25%"><font size="5" color="red">*</font>Type of Transformer Connected:</td>
@@ -3087,16 +3166,65 @@ font-size: 35px;">VEEC Assignment Form</td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td>Duplicate Justification:</td>
-                    <td colspan="3"><br /><br /><input name="djcheck21c" id="djcheck21c" type="checkbox" value="1" />
-                     &nbsp;&nbsp;<br />
-                     <textarea name="measures21c" id="measures21c" rows="5" cols="75"></textarea></td>
+                   <td colspan="4">
+                   		<fieldset data-role="controlgroup" data-type="horizontal" id="halogen_downlights_checkbox_group" >
+	                         <legend><font size="5" color="red">*</font>I confirm that no 240 volt halogen downlights were replaced or decommissioned for the purposes of VEET during this installation</legend>
+	                         <input type="radio" name="radio-view21c" id="radio-view21c-yes" value="yes" checked="checked" />
+	                         <label for="radio-view21c-yes">Yes</label>
+	                         <input type="radio" name="radio-view21c" id="radio-view21c-no" value="no"  />
+	                         <label for="radio-view21c-no">No</label>				         	
+			            </fieldset>
+                   </td>
+                   
+                 </tr>
+                 <tr>
+                   <td width="25%"><font size="5" color="red">*</font>Name of Transformer:</td>
+                    <td><select class="small" tabindex="" name="productbrand21cTransformerName" id="productbrand21cTransformerName" onchange="changeDropDown('productbrand21cTransformerModel', this.value)">
+                        <option selected="selected" value=""> - </option>
+						<option value="OSRAM"> OSRAM </option>
+                        <option value="Philips"> Philips </option>
+                        <option value="Tridonic"> Tridonic </option>
+                        <option value="Tridonic Atco"> Tridonic Atco</option>
+                        <option value="Actec"> Actec </option>
+                        <option value="Clipsal"> Clipsal </option> 
+                        <option value="Gentech"> Gentech </option>
+                        <option value="Nelson"> Nelson </option>
+                        <option value="Ansell"> Ansell </option>
+                        <option value="TCI"> TCI </option>                      
+                        <option value="SELF"> SELF </option>
+                        <option value="ROLUT"> ROLUT </option>
+                        <option value="AGK"> AGK </option>
+                    </select></td>                    
+                    <td width="25%"><font size="5" color="red">*</font>Transformer Model:</td>
+                    <td><select class="small" tabindex="" name="productbrand21cTransformerModel" id="productbrand21cTransformerModel">   
+                    </select></td>	                
+                 </tr>
+                 
+                 <tr>
+                 	<td width="25%"><font size="5" color="red">*</font>Electrical Safety No. </td>
+                    <td><input value="" id="productbrand21cElectricalSafetyNo" name="productbrand21cElectricalSafetyNo" tabindex="" type="text" /></td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                 </tr>
+                <tr>
+                    <td colspan="2">
+                    <div data-role="fieldcontain" class="ui-hide-label">
+					    <fieldset data-role="controlgroup">
+						   <legend>Duplicate Justification:</legend>
+						   <input type="checkbox" name="djcheck21c" id="djcheck21c" class="custom" value="1"/>
+						   <label for="djcheck21c">Duplicate Justification:</label>
+					    </fieldset>
+					</div>
+                    </td>
+                    <td colspan="2">&nbsp;</td>                    
+                </tr>
+                <tr>                	
+                	<td colspan="3"><textarea name="measures21c" id="measures21c" style="height:100px;max-height:100px"></textarea></td>
+                	<td style="vertical-align:bottom"><span style="font-size:14px; font-weight:bold; float:right;"> Form of Benefit (Free)</span></td>                
                 </tr>
               </tbody>
             </table>
         </div>
-                <span style="font-size:14px; font-weight:bold; float:right;"> Form of Benefit (Free)</span>
-                <br clear="all" />
           </div>
 
           <!-- collapsible -->
@@ -4019,15 +4147,39 @@ font-size: 35px;">VEEC Assignment Form</td>
                         </select>
                     </td>
                 </tr>
-                <tr >
-                    <td  >Duplicate Justification:</td>
-                    <td colspan="3"><br /><br /><input name="djcheck21d" id="djcheck21d" type="checkbox" value="1" />
-           &nbsp;&nbsp;<br />
-                    <textarea name="measures21d" id="measures21d" rows="5" cols="75" style="display:none;"></textarea></td>
-         </tr>
+                <tr>
+                   <td colspan="4">
+                   	<div data-role="collapsible" data-collapsed="false">
+						
+					<fieldset data-role="controlgroup" data-type="horizontal" >
+						 <legend><font size="5" color="red">*</font>I confirm that no 240 volt halogen downlights were replaced or decommissioned for the purposes of VEET during this installation</legend>
+						 <input type="radio" name="radio-view21d" id="radio-view21d-yes" value="yes" checked="checked" />
+						 <label for="radio-view21d-yes">Yes</label>
+						 <input type="radio" name="radio-view21d" id="radio-view21d-no" value="no"  />
+						 <label for="radio-view21d-no">No</label>				         	
+					   </fieldset>
+					   <!--<p>I have removed _______ (quantity) 12 volt lamps for decommissioning.</p>-->
+					</div>
+                   </td>
+                   
+                 </tr>
+                 <tr>
+                    <td colspan="2">
+                    <div data-role="fieldcontain" class="ui-hide-label">
+					    <fieldset data-role="controlgroup">
+						   <legend>Duplicate Justification:</legend>
+						   <input type="checkbox" name="djcheck21d" id="djcheck21d" class="custom" value="1"/>
+						   <label for="djcheck21d">Duplicate Justification:</label>
+					    </fieldset>
+					</div>
+                    </td>
+                    <td colspan="2">&nbsp;</td>                    
+                </tr>
+                <tr>                	
+                	<td colspan="3"><textarea name="measures21d" id="measures21d" style="height:100px;max-height:100px"></textarea></td>
+                	<td style="vertical-align:bottom"><span style="font-size:14px; font-weight:bold; float:right;"> Form of Benefit (Reduced Price)</span></td>                
+                </tr>
             </table>
-              <span style="font-size:14px; font-weight:bold; float:right;"> Form of Benefit (Reduced Price)</span>
-              <br clear="all" />
           </div>
               <!-- collapsible -->
               <h3 class="page_collapsible collapse-close" id="sectionIHD" style="display: none;"><b>IHD</b></h3>
@@ -4136,7 +4288,7 @@ font-size: 35px;">VEEC Assignment Form</td>
                         </td>
                     </tr>
                   <tr>
-                    <td colspan="4"><strong> Date: <span id="todaydate"></span></strong></td>
+                    <td colspan="4"><strong> Date: <span class="todaydate"></span></strong></td>
                   </tr>
                   <tr>
                     <td width="20%"> Installer Signature: </td>
@@ -4232,7 +4384,7 @@ font-size: 35px;">VEEC Assignment Form</td>
                     </td>
                   </tr>
                   <tr>
-                    <td colspan="4"><strong> Dated: <span id="todaydate2"></span></strong></td>
+                    <td colspan="4"><strong> Dated: <span class="todaydate"></span></strong></td>
                   </tr>
                   <tr>
                     <td width="20%"> Consumer Signature: </td>
