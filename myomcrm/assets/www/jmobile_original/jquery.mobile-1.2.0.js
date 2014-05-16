@@ -970,7 +970,7 @@ $.widget( "mobile.widget", {
 		},
 
 		defaultHtml: "<div class='" + loaderClass + "'>" +
-			"<span class='ui-icon-myomcrm ui-icon-loading'></span>" +
+			"<span class='ui-icon ui-icon-loading'></span>" +
 			"<h1></h1>" +
 			"</div>",
 
@@ -3357,8 +3357,7 @@ $.mobile.getMaxScrollForTransition = $.mobile.getMaxScrollForTransition || defau
 		toPage.data( "page" )._trigger( "beforeshow", null, { prevPage: fromPage || $( "" ) } );
 
 		//clear page loader
-		//$.mobile.hidePageLoadingMsg();
-		//hideLoader();
+		$.mobile.hidePageLoadingMsg();
 
 		transition = $.mobile._maybeDegradeTransition( transition );
 
@@ -3587,8 +3586,7 @@ $.mobile.getMaxScrollForTransition = $.mobile.getMaxScrollForTransition || defau
 
 			// This configurable timeout allows cached pages a brief delay to load without showing a message
 			var loadMsgDelay = setTimeout(function() {
-					//$.mobile.showPageLoadingMsg();
-				//showLoader();
+					$.mobile.showPageLoadingMsg();
 				}, settings.loadMsgDelay ),
 
 				// Shared logic for clearing timeout and removing message.
@@ -3598,8 +3596,7 @@ $.mobile.getMaxScrollForTransition = $.mobile.getMaxScrollForTransition || defau
 					clearTimeout( loadMsgDelay );
 
 					// Hide loading message
-					//$.mobile.hidePageLoadingMsg();
-					//hideLoader();
+					$.mobile.hidePageLoadingMsg();
 				};
 		}
 
@@ -3750,8 +3747,7 @@ $.mobile.getMaxScrollForTransition = $.mobile.getMaxScrollForTransition || defau
 						$.mobile.showPageLoadingMsg( $.mobile.pageLoadErrorMessageTheme, $.mobile.pageLoadErrorMessage, true );
 
 						// hide after delay
-						//setTimeout( $.mobile.hidePageLoadingMsg, 1500 );
-						//setTimeout( hideLoader, 1500 );
+						setTimeout( $.mobile.hidePageLoadingMsg, 1500 );
 					}
 
 					deferred.reject( absUrl, options );
@@ -9086,9 +9082,7 @@ $( document ).bind( "pagecreate create", function( e ) {
 			$window.trigger( "pagecontainercreate" );
 
 			// cue page loading message
-			//$.mobile.showPageLoadingMsg();
-			
-			//showLoader();
+			$.mobile.showPageLoadingMsg();
 
 			//remove initial build class (only present on first pageshow)
 			hideRenderingClass();

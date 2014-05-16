@@ -44,10 +44,15 @@
     }
 
     function removePageAndGoBack() {
-        removePage = 1;
-        showLoader();
+    	showLoader();
+    	removePage = 1;
+        
         $.mobile.changePage( "checklist.html", { transition: "slide", reverse: true} );        
     }
+    
+   
+
+    
 
 
 $('#dob').click(function(e){
@@ -117,25 +122,25 @@ function scannerFailure(message) {
 function takePictureFromCam(imageItemNo)
 {
     var canUploadImage = 1;
-    if(imageItemNo == '1'){ if(imagesUploadArray1.length >= 3){ canUploadImage = 0; }}
-    if(imageItemNo == '2'){ if(imagesUploadArray2.length >= 3){ canUploadImage = 0; }}
-    if(imageItemNo == '3'){ if(imagesUploadArray3.length >= 3){ canUploadImage = 0; }}
-    if(imageItemNo == '4'){ if(imagesUploadArray4.length >= 3){ canUploadImage = 0; }}
-    if(imageItemNo == '5'){ if(imagesUploadArray5.length >= 3){ canUploadImage = 0; }}
-    if(imageItemNo == '6'){ if(imagesUploadArray6.length >= 3){ canUploadImage = 0; }}
-    if(imageItemNo == '7'){ if(imagesUploadArray7.length >= 5){ canUploadImage = 0; }}
-    if(imageItemNo == '8'){ if(imagesUploadArray8.length >= 3){ canUploadImage = 0; }}
-    if(imageItemNo == '9'){ if(imagesUploadArray9.length >= 3){ canUploadImage = 0; }}
-    if(imageItemNo == '10'){ if(imagesUploadArray10.length >= 3){ canUploadImage = 0; }}
-    if(imageItemNo == '11'){ if(imagesUploadArray11.length >= 3){ canUploadImage = 0; }}
-    if(imageItemNo == '12'){ if(imagesUploadArray12.length >= 3){ canUploadImage = 0; }}
-    if(imageItemNo == '13'){ if(imagesUploadArray13.length >= 3){ canUploadImage = 0; }}
-    if(imageItemNo == '14'){ if(imagesUploadArray14.length >= 3){ canUploadImage = 0; }}
-    if(imageItemNo == '15'){ if(imagesUploadArray15.length >= 3){ canUploadImage = 0; }}
-    if(imageItemNo == '16'){ if(imagesUploadArray16.length >= 3){ canUploadImage = 0; }}
-    if(imageItemNo == '17'){ if(imagesUploadArray17.length >= 3){ canUploadImage = 0; }}
-    if(imageItemNo == '18'){ if(imagesUploadArray18.length >= 3){ canUploadImage = 0; }}
-    if(imageItemNo == '19'){ if(imagesUploadArray19.length >= 3){ canUploadImage = 0; }}
+    if(imageItemNo == '1'){ if(imagesUploadArray1.length >= 4){ canUploadImage = 0; }}
+    if(imageItemNo == '2'){ if(imagesUploadArray2.length >= 4){ canUploadImage = 0; }}
+    if(imageItemNo == '3'){ if(imagesUploadArray3.length >= 4){ canUploadImage = 0; }}
+    if(imageItemNo == '4'){ if(imagesUploadArray4.length >= 4){ canUploadImage = 0; }}
+    if(imageItemNo == '5'){ if(imagesUploadArray5.length >= 4){ canUploadImage = 0; }}
+    if(imageItemNo == '6'){ if(imagesUploadArray6.length >= 4){ canUploadImage = 0; }}
+    if(imageItemNo == '7'){ if(imagesUploadArray7.length >= 4){ canUploadImage = 0; }}
+    if(imageItemNo == '8'){ if(imagesUploadArray8.length >= 4){ canUploadImage = 0; }}
+    if(imageItemNo == '9'){ if(imagesUploadArray9.length >= 10){ canUploadImage = 0; }}
+    if(imageItemNo == '10'){ if(imagesUploadArray10.length >= 4){ canUploadImage = 0; }}
+    if(imageItemNo == '11'){ if(imagesUploadArray11.length >= 4){ canUploadImage = 0; }}
+    if(imageItemNo == '12'){ if(imagesUploadArray12.length >= 4){ canUploadImage = 0; }}
+    if(imageItemNo == '13'){ if(imagesUploadArray13.length >= 4){ canUploadImage = 0; }}
+    if(imageItemNo == '14'){ if(imagesUploadArray14.length >= 4){ canUploadImage = 0; }}
+    if(imageItemNo == '15'){ if(imagesUploadArray15.length >= 4){ canUploadImage = 0; }}
+    if(imageItemNo == '16'){ if(imagesUploadArray16.length >= 4){ canUploadImage = 0; }}
+    if(imageItemNo == '17'){ if(imagesUploadArray17.length >= 4){ canUploadImage = 0; }}
+    if(imageItemNo == '18'){ if(imagesUploadArray18.length >= 4){ canUploadImage = 0; }}
+    if(imageItemNo == '19'){ if(imagesUploadArray19.length >= 4){ canUploadImage = 0; }}
     
     if(canUploadImage == 1)
     {
@@ -154,12 +159,10 @@ function takePictureFromCam(imageItemNo)
                                 
                                     fileEntry.copyTo(dir, newImageName, function(onCopySuccess){
                                         
-                                            console.log(dir);
-                                            
                                             var newImageDir = dir.fullPath+"/";
                                             var newImageURI = newImageDir+newImageName;
                                             
-                                            console.log(newImageURI);
+                                            //console.log(newImageURI);
                                             if(imageItemNo == '1'){ imagesUploadArray1.push(newImageName);}
                                             if(imageItemNo == '2'){ imagesUploadArray2.push(newImageName);}
                                             if(imageItemNo == '3'){ imagesUploadArray3.push(newImageName);}
@@ -219,9 +222,11 @@ function takePictureFromCam(imageItemNo)
         ); 
         
         //CAMERA PHOTOLIBRARY
+    }else if(imageItemNo == 9) {
+    	alert("You can upload maximum 10 images for Product 21C.");
     }else{
         
-        alert("You can upload maximum 3 images for each product.");
+        alert("You can upload maximum 4 images for all products except 21C.");
     }
 }
 var emptySigData = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAArwAAADICAYAAAAKljK9AAAABHNCSVQICAgIfAhkiAAAAjZJREFUeJztwTEBAAAAwqD1T20JT6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIC3AYzAAAEm6RsMAAAAAElFTkSuQmCC';
@@ -235,1297 +240,1004 @@ function clearSignature(sigid)
     console.log('in clog');
 }
 
-function customer_declaration() {
+function customer_declaration()
+{
+   
+    var installerSignature = $("#installerSignature").jSignature("getData");
+    var customerSignature = $("#customerSignature").jSignature("getData");
+    
+    var title = $("#title").val();
+    var first_name = $("#first_name").val();
+    var last_name = $("#last_name").val();
+    var phone_num = $("#phone_num").val();
+    var alt_num = $("#alt_num").val();
+    var cust_email = $("#cust_email").val();
+    var unit_num = $("#unit_num").val();
+    var unit_type = $("#unit_type").val();
+    var level_num = $("#level_num").val();
+    var level_type = $("#level_type").val();
+    var street_num = $("#street_num").val();
+    var street_name = $("#street_name").val();
+    var street_type = $("#street_type").val();
+    var street_type_suff = $("#street_type_suff").val();
+    var town = $("#town").val();
+    var state = $("#state").val();
+    var postal_address = $("#different_postal_address").val(); 
+    var postcode = $("#postcode").val();
+    var len_of_time = $("#len_of_time").val();
+    var duration = $("#duration").val();
+    var tenant_or_owner = $("#tenant_or_owner").val();
+    var dob = $("#dob").val();
+    var previous_spc = $('input:radio[name=previous_spc]:checked').val();
+    //var add_spc_reason = $("#add_spc_reason").val();
+    var add_spc_reason = '';
+    //var previous_spc_text = $("#previous_spc_text").val();
+    var previous_spc_text = '';
+    
+    console.log('alter num is '+alt_num);
+    
+    var productbrand1 = $("#productbrand1").val();
+    var productmodel1 = $("#productmodel1").val();
+    var productserialnum1 = $("#productserialnum1").val();
+    var productroomtype1 = $("#productroomtype1").val();
+    var applicationa1 = $("#applicationa1").val();
+    var applicationb1 = $("#applicationb1").val();
+    var applicationc1 = $("#applicationc1").val();
+    var applicationd1 = $("#applicationd1").val();
+    
+    var productbrand2 = $("#productbrand2").val();
+    var productmodel2 = $("#productmodel2").val();
+    var productserialnum2 = $("#productserialnum2").val();
+    var productroomtype2 = $("#productroomtype2").val();
+    var applicationa2 = $("#applicationa2").val();
+    var applicationb2 = $("#applicationb2").val();
+    var applicationc2 = $("#applicationc2").val();
+    var applicationd2 = $("#applicationd2").val();
+    
+    var productbrand3 = $("#productbrand3").val();
+    var productmodel3 = $("#productmodel3").val();
+    var productserialnum3 = $("#productserialnum3").val();
+    var productroomtype3 = $("#productroomtype3").val();
+    var applicationa3 = $("#applicationa3").val();
+    var applicationb3 = $("#applicationb3").val();
+    var applicationc3 = $("#applicationc3").val();
+    var applicationd3 = $("#applicationd3").val();
+    
+    var productbrand4 = $("#productbrand4").val();
+    var productmodel4 = $("#productmodel4").val();
+    var productserialnum4 = $("#productserialnum4").val();
+    var productroomtype4 = $("#productroomtype4").val();
+    var applicationa4 = $("#applicationa4").val();
+    var applicationb4 = $("#applicationb4").val();
+    var applicationc4 = $("#applicationc4").val();
+    var applicationd4 = $("#applicationd4").val();
 
-	  var installerSignature = $("#installerSignature").jSignature("getData");
-	  var customerSignature = $("#customerSignature").jSignature("getData");
+    var ihdproductbrand = $("#ihdproductbrand").val();
+    var ihdproductmodel = $("#ihdproductmodel").val();
+    var ihdserialnumber = $("#ihdserialnumber").val();
 
-	  var company_name = $("#company_name").val();
-	  var abn = $("#american_business_no").val();
-	  var industry_type = $("#industry_type").val();
-	  var job_title = $("#job_title").val();
-	  var total_floor_space = $("#total_floor_space").val();
-	  var number_of_levels = $("#number_of_levels").val();
+    var dsproductbrand = $("#dsproductbrand").val();
+    var dsproductmodel = $("#dsproductmodel").val();
+    var dsmeasures = $("#dsmeasures").val();
+    var dsnumberofdoorssealed = $("#dsnumberofdoorssealed").val();
 
-	  var electricalSafetyCheck = 0;
-	  var relevantCertificateCheck = 0;
+    var cbproductbrand = $("#cbproductbrand").val();
+    var cbproductmodel = $("#cbproductmodel").val();
+    var cbmeasures = $("#cbmeasures").val();
+    var cbnocofs = $("#cbnocofs").val();
 
-	  if ($("input[name=has_electrical_safety_certificate]:checked").val() == "yes") {
-	    electricalSafetyCheck = 1;
-	  } else {
-	    electricalSafetyCheck = 0;
-	  }
+    var productbrand21a = $("#productbrand21a").val();
+    var productmodel21a = $("#productmodel21a").val();
+    var lumensl21a = $("#lumensl21a").val();
+    var lighting21a = $("#lighting21a").val();
+    var manufacturer21a = $("#manufacturer21a").val();
+    var numberoflamps21a = $("#numberoflamps21a").val();
 
-	  if ($("input[name=provide_relevant_certificate]:checked").val() == "yes") {
-	    relevantCertificateCheck = 1;
-	  } else {
-	    relevantCertificateCheck = 0;
-	  }
+    var productbrandcv = $("#productbrandcv").val();
+    var productmodelcv = $("#productmodelcv").val();
+    var outputcv = $("#outputcv").val();
+    var lightingcv = $("#lightingcv").val();
+    var manufacturercv = $("#manufacturercv").val();
+    var numberoflampscv = $("#numberoflampscv").val();
 
-	  var title = $("#title").val();
-	  var first_name = $("#first_name").val();
-	  var last_name = $("#last_name").val();
-	  var phone_num = $("#phone_num").val();
-	  var alt_num = $("#alt_num").val();
-	  var cust_email = $("#cust_email").val();
-	  var unit_num = $("#unit_num").val();
-	  var unit_type = $("#unit_type").val();
-	  var level_num = $("#level_num").val();
-	  var level_type = $("#level_type").val();
-	  var street_num = $("#street_num").val();
-	  var street_name = $("#street_name").val();
-	  var street_type = $("#street_type").val();
-	  var street_type_suff = $("#street_type_suff").val();
-	  var town = $("#town").val();
-	  var state = $("#state").val();
-	  var postcode = $("#postcode").val();
-	  var len_of_time = $("#len_of_time").val();
-	  var duration = $("#duration").val();
-	  var tenant_or_owner = $("#tenant_or_owner").val();
-	  var dob = $("#dob").val();
-	  var previous_spc = $('input:radio[name=previous_spc]:checked').val();
-	  //var add_spc_reason = $("#add_spc_reason").val();
-	  var add_spc_reason = '';
-	  //var previous_spc_text = $("#previous_spc_text").val();
-	  var previous_spc_text = '';
+    var productbrandcv2 = $("#productbrandcv2").val();
+    var productmodelcv2 = $("#productmodelcv2").val();
+    var outputcv2 = $("#outputcv2").val();
+    var lightingcv2 = $("#lightingcv2").val();
+    var manufacturercv2 = $("#manufacturercv2").val();
+    var numberoflampscv2 = $("#numberoflampscv2").val();
 
-	  console.log('alter num is ' + alt_num);
+    var productbrandcv2a = $("#productbrandcv2a").val();
+    var productmodelcv2a = $("#productmodelcv2a").val();
+    var outputcv2a = $("#outputcv2a").val();
+    var lightingcv2a = $("#lightingcv2a").val();
+    var manufacturercv2a = $("#manufacturercv2a").val();
+    var numberoflampscv2a = $("#numberoflampscv2a").val();
 
-	  var productbrand1 = $("#productbrand1").val();
-	  var productmodel1 = $("#productmodel1").val();
-	  var productserialnum1 = $("#productserialnum1").val();
-	  var productroomtype1 = $("#productroomtype1").val();
-	  var applicationa1 = $("#applicationa1").val();
-	  var applicationb1 = $("#applicationb1").val();
-	  var applicationc1 = $("#applicationc1").val();
-	  var applicationd1 = $("#applicationd1").val();
+    var productbrandcv3 = $("#productbrandcv3").val();
+    var productmodelcv3 = $("#productmodelcv3").val();
+    var outputcv3 = $("#outputcv3").val();
+    var lightingcv3 = $("#lightingcv3").val();
+    var manufacturercv3 = $("#manufacturercv3").val();
+    var numberoflampscv3 = $("#numberoflampscv3").val();
 
-	  var productbrand2 = $("#productbrand2").val();
-	  var productmodel2 = $("#productmodel2").val();
-	  var productserialnum2 = $("#productserialnum2").val();
-	  var productroomtype2 = $("#productroomtype2").val();
-	  var applicationa2 = $("#applicationa2").val();
-	  var applicationb2 = $("#applicationb2").val();
-	  var applicationc2 = $("#applicationc2").val();
-	  var applicationd2 = $("#applicationd2").val();
+    var productbrandcv4 = $("#productbrandcv4").val();
+    var productmodelcv4 = $("#productmodelcv4").val();
+    var outputcv4 = $("#outputcv4").val();
+    var lightingcv4 = $("#lightingcv4").val();
+    var manufacturercv4 = $("#manufacturercv4").val();
+    var numberoflampscv4 = $("#numberoflampscv4").val();
 
-	  var productbrand3 = $("#productbrand3").val();
-	  var productmodel3 = $("#productmodel3").val();
-	  var productserialnum3 = $("#productserialnum3").val();
-	  var productroomtype3 = $("#productroomtype3").val();
-	  var applicationa3 = $("#applicationa3").val();
-	  var applicationb3 = $("#applicationb3").val();
-	  var applicationc3 = $("#applicationc3").val();
-	  var applicationd3 = $("#applicationd3").val();
+    var productbrandcv2b = $("#productbrandcv2b").val();
+    var productmodelcv2b = $("#productmodelcv2b").val();
+    var outputcv2b = $("#outputcv2b").val();
+    var lightingcv2b = $("#lightingcv2b").val();
+    var manufacturercv2b = $("#manufacturercv2b").val();
+    var numberoflampscv2b = $("#numberoflampscv2b").val();
 
-	  var productbrand4 = $("#productbrand4").val();
-	  var productmodel4 = $("#productmodel4").val();
-	  var productserialnum4 = $("#productserialnum4").val();
-	  var productroomtype4 = $("#productroomtype4").val();
-	  var applicationa4 = $("#applicationa4").val();
-	  var applicationb4 = $("#applicationb4").val();
-	  var applicationc4 = $("#applicationc4").val();
-	  var applicationd4 = $("#applicationd4").val();
+    var productbrandcv2c = $("#productbrandcv2c").val();
+    var productmodelcv2c = $("#productmodelcv2c").val();
+    var outputcv2c = $("#outputcv2c").val();
+    var lightingcv2c = $("#lightingcv2c").val();
+    var manufacturercv2c = $("#manufacturercv2c").val();
+    var numberoflampscv2c = $("#numberoflampscv2c").val();
 
-	  var ihdproductbrand = $("#ihdproductbrand").val();
-	  var ihdproductmodel = $("#ihdproductmodel").val();
-	  var ihdserialnumber = $("#ihdserialnumber").val();
+    var productbrandcv2d = $("#productbrandcv2d").val();
+    var productmodelcv2d = $("#productmodelcv2d").val();
+    var outputcv2d = $("#outputcv2d").val();
+    var lightingcv2d = $("#lightingcv2d").val();
+    var manufacturercv2d = $("#manufacturercv2d").val();
+    var numberoflampscv2d = $("#numberoflampscv2d").val();
 
-	  var dsproductbrand = $("#dsproductbrand").val();
-	  var dsproductmodel = $("#dsproductmodel").val();
-	  var dsmeasures = $("#dsmeasures").val();
-	  var dsnumberofdoorssealed = $("#dsnumberofdoorssealed").val();
+    var productbrand21a2 = $("#productbrand21a2").val();
+    var productmodel21a2 = $("#productmodel21a2").val();
+    var lumensl21a2 = $("#lumensl21a2").val();
+    var lighting21a2 = $("#lighting21a2").val();
+    var manufacturer21a2 = $("#manufacturer21a2").val();
+    var numberoflamps21a2 = $("#numberoflamps21a2").val();
 
-	  var cbproductbrand = $("#cbproductbrand").val();
-	  var cbproductmodel = $("#cbproductmodel").val();
-	  var cbmeasures = $("#cbmeasures").val();
-	  var cbnocofs = $("#cbnocofs").val();
+    var productbrand21a3 = $("#productbrand21a3").val();
+    var productmodel21a3 = $("#productmodel21a3").val();
+    var lumensl21a3 = $("#lumensl21a3").val();
+    var lighting21a3 = $("#lighting21a3").val();
+    var manufacturer21a3 = $("#manufacturer21a3").val();
+    var numberoflamps21a3 = $("#numberoflamps21a3").val();
 
-	  var productbrand21a = $("#productbrand21a").val();
-	  var productmodel21a = $("#productmodel21a").val();
-	  var lumensl21a = $("#lumensl21a").val();
-	  var lighting21a = $("#lighting21a").val();
-	  var manufacturer21a = $("#manufacturer21a").val();
-	  var numberoflamps21a = $("#numberoflamps21a").val();
+    var productbrand21a4 = $("#productbrand21a4").val();
+    var productmodel21a4 = $("#productmodel21a4").val();
+    var lumensl21a4 = $("#lumensl21a4").val();
+    var lighting21a4 = $("#lighting21a4").val();
+    var manufacturer21a4 = $("#manufacturer21a4").val();
+    var numberoflamps21a4 = $("#numberoflamps21a4").val();
+    
+    var num_spc_installed = $("#num_spc_installed").val();
+    var num_21a_installed = $("#num_21a_installed").val();
+    var num_21c_installed = $("#num_21c_installed").val();
+    var num_21d_installed = $("#num_21d_installed").val();
 
-	  var productbrandcv = $("#productbrandcv").val();
-	  var productmodelcv = $("#productmodelcv").val();
-	  var outputcv = $("#outputcv").val();
-	  var lightingcv = $("#lightingcv").val();
-	  var manufacturercv = $("#manufacturercv").val();
-	  var numberoflampscv = $("#numberoflampscv").val();
+    var measures21a = $("#measures21a").val();
+    var measures21c = $("#measures21c").val();
+    var measures21d = $("#measures21d").val();
+    var outputihd = $("#outputihd").val();
+    var costperihd = $("#costperihd").val();
+    var costperled21c = $("#costperled21c").val();
+    var costperled21d = $("#costperled21d").val();
+    var circuittext21c = $("#circuittext21c").val();
+    
+    var dimmableCircuitLampInstallations = $("#dimmableCircuitLampInstallations").val();
+    
+    var installedlamps = $("#installedlamps").val();
+    var installedlamps2 = $("#installedlamps2").val();
+    var installedlamps3 = $("#installedlamps3").val();
+    
+    var halogen_downlights_replaced_check = 1;
+    
+    if($("#halogen_downlights_checkbox_group .ui-radio:first label").hasClass('ui-btn-active')) {
+    	halogen_downlights_replaced_check = 1;
+        //if(measures21c == "") { errorFieldsArray.push('Please enter 21C Duplicate Justification.'); }
+    } else {
+    	halogen_downlights_replaced_check = 0;
+    }
+    
+    var productbrand21cTransformerName = $("#productbrand21cTransformerName").val();
+    var productbrand21cTransformerModel = $("#productbrand21cTransformerModel").val();
+    var productbrand21cElectricalSafetyNo = $("#productbrand21cElectricalSafetyNo").val();
+    
+    var circuittext21d = $("#circuittext21d").val();
+    var installedlamps21d = $("#installedlamps21d").val();
+    var above_installation = $("#above_installation").val();
+    var circuittext21a = $('#circuittext21a').val();
 
-	  var productbrandcv2 = $("#productbrandcv2").val();
-	  var productmodelcv2 = $("#productmodelcv2").val();
-	  var outputcv2 = $("#outputcv2").val();
-	  var lightingcv2 = $("#lightingcv2").val();
-	  var manufacturercv2 = $("#manufacturercv2").val();
-	  var numberoflampscv2 = $("#numberoflampscv2").val();
+    var djcheckihd = 0;
+    var djcheck21a = 0;
+    var djcheck21c = 0;
+    var djcheck21d = 0;
+    var circuitcheck21a = 0;
+    var circuitcheck21c = 0;
+    var circuitcheck21d = 0;
 
-	  var productbrandcv2a = $("#productbrandcv2a").val();
-	  var productmodelcv2a = $("#productmodelcv2a").val();
-	  var outputcv2a = $("#outputcv2a").val();
-	  var lightingcv2a = $("#lightingcv2a").val();
-	  var manufacturercv2a = $("#manufacturercv2a").val();
-	  var numberoflampscv2a = $("#numberoflampscv2a").val();
+    var create_time = Math.round(new Date().getTime() / 1000);
+    var saved = 0;
+    var uploaded = 0;
 
-	  var productbrandcv3 = $("#productbrandcv3").val();
-	  var productmodelcv3 = $("#productmodelcv3").val();
-	  var outputcv3 = $("#outputcv3").val();
-	  var lightingcv3 = $("#lightingcv3").val();
-	  var manufacturercv3 = $("#manufacturercv3").val();
-	  var numberoflampscv3 = $("#numberoflampscv3").val();
+    var ihdvalue = 'null';
+    var DoorSelasvalue = 'null';
+    var ChimneyBaloonsvalue = 'null';
+    var v21Avalue = 'null';
+    var v21C240Vvalue = 'null';
+    var v21C12Vvalue = 'null';
+    var A2 = 'null';
+    var A3 = 'null';
+    var A4 = 'null';
+    var C2 = 'null';
+    var C3 = 'null';
+    var C4 = 'null';
+    var D2 = 'null';
+    var D3 = 'null';
+    var D4 = 'null';
+    
 
-	  var productbrandcv4 = $("#productbrandcv4").val();
-	  var productmodelcv4 = $("#productmodelcv4").val();
-	  var outputcv4 = $("#outputcv4").val();
-	  var lightingcv4 = $("#lightingcv4").val();
-	  var manufacturercv4 = $("#manufacturercv4").val();
-	  var numberoflampscv4 = $("#numberoflampscv4").val();
+    var errorFieldsArray = new Array();
+    
+    var first_name_check = /^[a-zA-Z\u00C0-\u00ff]+$/.test(first_name);
+    var last_name_check = /^[a-zA-Z\u00C0-\u00ff]+$/.test(last_name);
+    var town_check = /^[a-zA-Z\u00C0-\u00ff]+$/.test(town);
 
-	  var productbrandcv2b = $("#productbrandcv2b").val();
-	  var productmodelcv2b = $("#productmodelcv2b").val();
-	  var outputcv2b = $("#outputcv2b").val();
-	  var lightingcv2b = $("#lightingcv2b").val();
-	  var manufacturercv2b = $("#manufacturercv2b").val();
-	  var numberoflampscv2b = $("#numberoflampscv2b").val();
+    if($('#djcheckihd').is(':checked')) {
+        djcheckihd = 1;
+    } else {
+        djcheckihd = 0;
+    }    
+    
+    if($('#circuitcheck21a').is(':checked')) {
+        circuitcheck21a = 1;
+    } else {
+        circuitcheck21a = 0;
+    }
 
-	  var productbrandcv2c = $("#productbrandcv2c").val();
-	  var productmodelcv2c = $("#productmodelcv2c").val();
-	  var outputcv2c = $("#outputcv2c").val();
-	  var lightingcv2c = $("#lightingcv2c").val();
-	  var manufacturercv2c = $("#manufacturercv2c").val();
-	  var numberoflampscv2c = $("#numberoflampscv2c").val();
+    if($('#circuitcheck21c').is(':checked')) {
+        circuitcheck21c = 1;
+    } else {
+        circuitcheck21c = 0;
+    }
 
-	  var productbrandcv2d = $("#productbrandcv2d").val();
-	  var productmodelcv2d = $("#productmodelcv2d").val();
-	  var outputcv2d = $("#outputcv2d").val();
-	  var lightingcv2d = $("#lightingcv2d").val();
-	  var manufacturercv2d = $("#manufacturercv2d").val();
-	  var numberoflampscv2d = $("#numberoflampscv2d").val();
+    if($('#circuitcheck21d').is(':checked')) {
+        circuitcheck21d = 1;
+    } else {
+        circuitcheck21d = 0;
+    }
 
-	  var productbrand21a2 = $("#productbrand21a2").val();
-	  var productmodel21a2 = $("#productmodel21a2").val();
-	  var lumensl21a2 = $("#lumensl21a2").val();
-	  var lighting21a2 = $("#lighting21a2").val();
-	  var manufacturer21a2 = $("#manufacturer21a2").val();
-	  var numberoflamps21a2 = $("#numberoflamps21a2").val();
+    if($('#installedlamps21d').is(':checked')) {
+        installedlamps21d = 1;
+    } else {
+        installedlamps21d = 0;
+    }
+    
+    
+    if(installerSignature == emptySigData) { errorFieldsArray.push('Installer signature required.'); }
+    if(customerSignature == emptySigData) { errorFieldsArray.push('Customer signature required.'); }
+    if(first_name == '') { errorFieldsArray.push('Please fill First Name.'); }else if(!first_name_check){ errorFieldsArray.push('No numberic/special character allow in First Name field.'); }
+    
+    if(last_name == '') { errorFieldsArray.push('Please fill Last Name.'); }else if(!last_name_check){ errorFieldsArray.push('No numberic/special character allow in Last Name field.'); }
+    
+    if(phone_num == '') { errorFieldsArray.push('Please fill Phone Number.'); }else if(isNaN(phone_num)){  errorFieldsArray.push('Please enter numeric phone number.'); }else if(phone_num.length != 10){  errorFieldsArray.push('Please enter 10 digits in phone number.'); }
+    if(cust_email == '') { errorFieldsArray.push('Please fill email address.'); }else if( !isValidEmailAddress( cust_email ) ) { errorFieldsArray.push('Please enter valid email address.');  }
+    if(len_of_time == '') { errorFieldsArray.push('Please select length of time.'); }
+    if(duration == '') { errorFieldsArray.push('Please select duration.'); }
+    
+    
+    if(street_num == '') { errorFieldsArray.push('Please fill Street Number.'); }/*else if (!street_num.match(/^[0-9,_.\/\-]+$/))
+    {
+        errorFieldsArray.push('Please enter numeric Street Number.');
+    }
+    */
+    if (!unit_num.match(/^[0-9,_.\/\-]+$/) && unit_num !="")
+    {
+        errorFieldsArray.push('Please enter numeric unit number or spcial characters.'); 
+    }
+    
+    if (!level_num.match(/^[0-9,_.\/\-]+$/) && level_num !="")
+    {
+        errorFieldsArray.push('Please enter numeric level number or spcial characters.'); 
+    }
+    
+    //if(street_num == '') { errorFieldsArray.push('Please fill Street Number.'); }else if(isNaN(street_num)){  errorFieldsArray.push('Please enter numeric Street Number.'); }
+    if(street_name == '') { errorFieldsArray.push('Please fill Street Name.'); }
+    if(street_type == '') { errorFieldsArray.push('Please fill Street Type.'); }
+    if(town == '') { errorFieldsArray.push('Please fill Town.'); }
+    
+    if(postcode == '') { errorFieldsArray.push('Please fill Postcode.'); }
+    else if(isNaN(postcode)){  errorFieldsArray.push('Please enter numeric Postcode.'); }
+    else if(postcode.length < 4) { errorFieldsArray.push('Postcode must be 4 numeric digit.'); }
+    if(state == '') { errorFieldsArray.push('Please fill State.'); }
+    if(tenant_or_owner == '-') { errorFieldsArray.push('Please select tenant or owner.'); }
+    if(previous_spc == 'yes' && previous_spc_text == '') { errorFieldsArray.push('Please select number of previous spc.'); }
+    
+    if($('#chckSPC').is(':checked')) {
+        //if(num_spc_installed == 1) {
+            if(productbrand1 == '') { errorFieldsArray.push('Please fill Product Brand 1.'); }
+            if(productmodel1 == '') { errorFieldsArray.push('Please fill Product Model 1.'); }
+            if(productserialnum1 == '') { errorFieldsArray.push('Please fill Product Serial Number 1.'); }
+            if(productroomtype1 == '') { errorFieldsArray.push('Please fill Product Room Type 1.'); }
+            if(applicationa1 == '') { errorFieldsArray.push('Please fill Appliance 1A.'); }
+            if(applicationb1 == '') { errorFieldsArray.push('Please fill Appliance 1B.'); }
+            if(num_spc_installed == '') { errorFieldsArray.push('Please select number of spc installed. (In Board (SPC) 4)'); }
+            if(imagesUploadArray1.length == 0) { errorFieldsArray.push('Please upload at least 1 image in product 1.'); } 
+        //}
+        if(num_spc_installed > 1) {
+            if(productbrand2 == '') { errorFieldsArray.push('Please fill Product Brand 2.'); }
+            if(productmodel2 == '') { errorFieldsArray.push('Please fill Product Model 2.'); }
+            if(productserialnum2 == '') { errorFieldsArray.push('Please fill Product Serial Number 2.'); }
+            if(productroomtype2 == '') { errorFieldsArray.push('Please fill Product Room Type 2.'); }
+            if(applicationa2 == '') { errorFieldsArray.push('Please fill Appliance 2A.'); }
+            if(applicationb2 == '') { errorFieldsArray.push('Please fill Appliance 2B.'); }
+            if(imagesUploadArray2.length == 0) { errorFieldsArray.push('Please upload at least 1 image in product 2.'); } 
+        }
+        if(num_spc_installed > 2) {
+            if(productbrand3 == '') { errorFieldsArray.push('Please fill Product Brand 3.'); }
+            if(productmodel3 == '') { errorFieldsArray.push('Please fill Product Model 3.'); }
+            if(productserialnum3 == '') { errorFieldsArray.push('Please fill Product Serial Number 3.'); }
+            if(productroomtype3 == '') { errorFieldsArray.push('Please fill Product Room Type 3.'); }
+            if(applicationa3 == '') { errorFieldsArray.push('Please fill Appliance 3A.'); }
+            if(applicationb3 == '') { errorFieldsArray.push('Please fill Appliance 3B.'); }
+            if(imagesUploadArray3.length == 0) { errorFieldsArray.push('Please upload at least 1 image in product 3.'); } 
+        }
+        if(num_spc_installed > 3) {
+            if(productbrand4 == '') { errorFieldsArray.push('Please fill Product Brand 4.'); }
+            if(productmodel4 == '') { errorFieldsArray.push('Please fill Product Model 4.'); }
+            if(productserialnum4 == '') { errorFieldsArray.push('Please fill Product Serial Number 4.'); }
+            if(productroomtype4 == '') { errorFieldsArray.push('Please fill Product Room Type 4.'); }
+            if(applicationa4 == '') { errorFieldsArray.push('Please fill Appliance 4A.'); }
+            if(applicationb4 == '') { errorFieldsArray.push('Please fill Appliance 4B.'); }
+            if(imagesUploadArray4.length == 0) { errorFieldsArray.push('Please upload at least 1 image in product 4.'); } 
+        }
+        $("#dcl1").show();
+        $("#dcla").show();
+    } 
+    
+    if(productserialnum2 != ''){  if(imagesUploadArray2.length == 0) { errorFieldsArray.push('Please upload at least 1 image in product 2.'); } }
+    if(productserialnum3 != ''){  if(imagesUploadArray3.length == 0) { errorFieldsArray.push('Please upload at least 1 image in product 3.'); } }
+    if(productserialnum4 != ''){  if(imagesUploadArray4.length == 0) { errorFieldsArray.push('Please upload at least 1 image in product 4.'); } }
+    
+    
+    if(alt_num != '' && isNaN(alt_num)){ errorFieldsArray.push('Please enter numeric mobile phone number.');  }else if(alt_num != '' && alt_num.length != 10){  errorFieldsArray.push('Please enter 10 digits in mobile phone number.'); }
+    
+    if(productserialnum1 != '' && isNaN(productserialnum1)){ errorFieldsArray.push('Please enter numeric Serial Number 1.');  }
+    if(productserialnum2 != '' && isNaN(productserialnum2)){ errorFieldsArray.push('Please enter numeric Serial Number 2.');  }
+    if(productserialnum3 != '' && isNaN(productserialnum3)){ errorFieldsArray.push('Please enter numeric Serial Number 3.');  }
+    if(productserialnum4 != '' && isNaN(productserialnum4)){ errorFieldsArray.push('Please enter numeric Serial Number 4.');  }
+    
+    if(phone_num != ''){ if(phone_num.substr(0,1) != '0'){ errorFieldsArray.push('Phone number should start with 0.'); }}
+    if(alt_num != ''){ if(alt_num.substr(0,1) != '0'){ errorFieldsArray.push('Mobile number should start with 0.'); }}
 
-	  var productbrand21a3 = $("#productbrand21a3").val();
-	  var productmodel21a3 = $("#productmodel21a3").val();
-	  var lumensl21a3 = $("#lumensl21a3").val();
-	  var lighting21a3 = $("#lighting21a3").val();
-	  var manufacturer21a3 = $("#manufacturer21a3").val();
-	  var numberoflamps21a3 = $("#numberoflamps21a3").val();
+    if($('#chckIHD').is(':checked')) {
+        if(ihdproductbrand == '') { errorFieldsArray.push('Please enter IHD Product Brand.'); }
+        if(ihdproductmodel == '') { errorFieldsArray.push('Please enter IHD Product Model.'); }
+        if(ihdserialnumber == '') { errorFieldsArray.push('Please enter IHD Serial Number.'); }
+        if(costperihd == '') { errorFieldsArray.push('Please enter IHD Cost per IHD Installed (Inc GST).'); }
+        //if(imagesUploadArray5.length == 0) { errorFieldsArray.push('Please upload at least 1 image in IHD.'); } 
+        ihdvalue = 'IHD';
+    } 
 
-	  var productbrand21a4 = $("#productbrand21a4").val();
-	  var productmodel21a4 = $("#productmodel21a4").val();
-	  var lumensl21a4 = $("#lumensl21a4").val();
-	  var lighting21a4 = $("#lighting21a4").val();
-	  var manufacturer21a4 = $("#manufacturer21a4").val();
-	  var numberoflamps21a4 = $("#numberoflamps21a4").val();
+    if($('#chckDoorSelas').is(':checked')) {
+        if(dsproductbrand == '') { errorFieldsArray.push('Please enter Door Seals  Product Brand.'); }
+        if(dsproductmodel == '') { errorFieldsArray.push('Please enter Door Seals Product Model.'); }
+        if(dsmeasures == '') { errorFieldsArray.push('Please enter Door Seals Measures.'); }
+        if(dsnumberofdoorssealed == '' && isNaN(dsnumberofdoorssealed) && dsnumberofdoorssealed > 5 && dsnumberofdoorssealed < 1) { errorFieldsArray.push('Please enter between 1 to 5 Number of door sealed.'); }
+        if(imagesUploadArray6.length == 0) { errorFieldsArray.push('Please upload at least 1 image in Door Seals.'); }
+        DoorSelasvalue = 'Door Seals';
+    } 
 
-	  var num_spc_installed = $("#num_spc_installed").val();
-	  var num_21a_installed = $("#num_21a_installed").val();
-	  var num_21c_installed = $("#num_21c_installed").val();
-	  var num_21d_installed = $("#num_21d_installed").val();
+    if($('#chckChimneyBaloons').is(':checked')) {
+        if(cbproductbrand == '') { errorFieldsArray.push('Please enter Chimney Baloons  Product Brand.'); }
+        if(cbproductmodel == '') { errorFieldsArray.push('Please enter Chimney Baloons Product Model.'); }
+        if(cbmeasures == '') { errorFieldsArray.push('Please enter Chimney Baloons Measures.'); }
+        if(cbnocofs == '') { errorFieldsArray.push('Please fill Number of door sealed.');} 
+        else if(isNaN(cbnocofs)) { errorFieldsArray.push('Please enter numeric, Number of door sealed.');}
+        else if(cbnocofs > 5) { errorFieldsArray.push('Please enter between 1 to 5 Number of door sealed.');} 
+        else if(cbnocofs < 1) { errorFieldsArray.push('Please enter between 1 to 5 Number of door sealed.'); }
+        else if(imagesUploadArray7.length < cbnocofs) { errorFieldsArray.push('Please upload at least '+cbnocofs+' image in Chimney Baloons.'); }
+        ChimneyBaloonsvalue = 'Chimney Baloons';
+    } 
 
-	  var measures21a = $("#measures21a").val();
-	  var measures21c = $("#measures21c").val();
-	  var measures21d = $("#measures21d").val();
-	  var outputihd = $("#outputihd").val();
-	  var costperihd = $("#costperihd").val();
-	  var costperled21c = $("#costperled21c").val();
-	  var costperled21d = $("#costperled21d").val();
-	  var circuittext21c = $("#circuittext21c").val();
+    if($('#chck21A').is(':checked')) {
+        if(productbrand21a == '') { errorFieldsArray.push('Please enter 21A  Product Brand.'); }
+        if(productmodel21a == '') { errorFieldsArray.push('Please enter 21A Product Model.'); }
+        if(lumensl21a == '') { errorFieldsArray.push('Please enter 21A Output (lumens).'); }
+        if(lighting21a == '') { errorFieldsArray.push('Please enter 21A Lighting efficacy.'); }
+        if(manufacturer21a == '') { errorFieldsArray.push('Please enter 21A Manufacturer rated hours.'); }
+        if(numberoflamps21a == '') { errorFieldsArray.push('Please enter 21A Number of lamps.');} 
+        else if(isNaN(numberoflamps21a)) { errorFieldsArray.push('Please enter numeric, Number of lamps.'); }
+        if(imagesUploadArray8.length == 0) { errorFieldsArray.push('Please upload at least 1 image in 21A.'); } 
+        if(num_21a_installed > 1)
+        {
+            if(productbrand21a2 == '') { errorFieldsArray.push('Please enter 21A - 2 Product Brand.'); }
+            if(productmodel21a2 == '') { errorFieldsArray.push('Please enter 21A - 2 Product Model.'); }
+            if(lumensl21a2 == '') { errorFieldsArray.push('Please enter 21A - 2 Output (lumens).'); }
+            if(lighting21a2 == '') { errorFieldsArray.push('Please enter 21A - 2 Lighting efficacy.'); }
+            if(manufacturer21a2 == '') { errorFieldsArray.push('Please enter 21A - 2 Manufacturer rated hours.'); }
+            if(numberoflamps21a2 == '') { errorFieldsArray.push('Please enter 21A - 2 Number of lamps.');} 
+            else if(isNaN(numberoflamps21a2)) { errorFieldsArray.push('Please enter numeric, Number of lamps.'); }
+            if(imagesUploadArray11.length == 0) { errorFieldsArray.push('Please upload at least 1 image in 21A - 2.'); } 
+        }
+        if(num_21a_installed > 2)
+        {
+            if(productbrand21a3 == '') { errorFieldsArray.push('Please enter 21A - 3 Product Brand.'); }
+            if(productmodel21a3 == '') { errorFieldsArray.push('Please enter 21A - 3 Product Model.'); }
+            if(lumensl21a3 == '') { errorFieldsArray.push('Please enter 21A - 3 Output (lumens).'); }
+            if(lighting21a3 == '') { errorFieldsArray.push('Please enter 21A - 3 Lighting efficacy.'); }
+            if(manufacturer21a3 == '') { errorFieldsArray.push('Please enter 21A - 3 Manufacturer rated hours.'); }
+            if(numberoflamps21a3 == '') { errorFieldsArray.push('Please enter 21A - 3 Number of lamps.');} 
+            else if(isNaN(numberoflamps21a3)) { errorFieldsArray.push('Please enter numeric, Number of lamps.'); }
+            if(imagesUploadArray12.length == 0) { errorFieldsArray.push('Please upload at least 1 image in 21A - 3.'); } 
+        }
+        if(num_21a_installed > 3)
+        {
+            if(productbrand21a4 == '') { errorFieldsArray.push('Please enter 21A - 4 Product Brand.'); }
+            if(productmodel21a4 == '') { errorFieldsArray.push('Please enter 21A - 4 Product Model.'); }
+            if(lumensl21a4 == '') { errorFieldsArray.push('Please enter 21A - 4 Output (lumens).'); }
+            if(lighting21a4 == '') { errorFieldsArray.push('Please enter 21A - 4 Lighting efficacy.'); }
+            if(manufacturer21a4 == '') { errorFieldsArray.push('Please enter 21A - 4 Manufacturer rated hours.'); }
+            if(numberoflamps21a4 == '') { errorFieldsArray.push('Please enter 21A - 4 Number of lamps.');} 
+            else if(isNaN(numberoflamps21a4)) { errorFieldsArray.push('Please enter numeric, Number of lamps.'); }
+            if(imagesUploadArray13.length == 0) { errorFieldsArray.push('Please upload at least 1 image in 21A - 4.'); } 
+        }
+        if($('#djcheck21a').is(':checked')) {
+            if(measures21a == "") { errorFieldsArray.push('Please enter 21A Duplicate Justification.'); }
+            djcheck21a = 1;
+        } else {
+            djcheck21a = 0;
+        }
+        v21Avalue = '21A';
+    }
 
-	  var dimmableCircuitLampInstallations = $("#dimmableCircuitLampInstallations").val();
-
-	  var installedlamps = $("#installedlamps").val();
-	  var installedlamps2 = $("#installedlamps2").val();
-	  var installedlamps3 = $("#installedlamps3").val();
-
-	  var halogen_downlights_replaced_check = 1;
-
-	  if ($("#halogen_downlights_checkbox_group .ui-radio:first label").hasClass('ui-btn-active')) {
-	    halogen_downlights_replaced_check = 1;
-	    //if(measures21c == "") { errorFieldsArray.push('Please enter 21C Duplicate Justification.'); }
-	  } else {
-	    halogen_downlights_replaced_check = 0;
-	  }
-
-	  var productbrand21cTransformerName = $("#productbrand21cTransformerName").val();
-	  var productbrand21cTransformerModel = $("#productbrand21cTransformerModel").val();
-	  var productbrand21cElectricalSafetyNo = $("#productbrand21cElectricalSafetyNo").val();
-
-	  var circuittext21d = $("#circuittext21d").val();
-	  var installedlamps21d = $("#installedlamps21d").val();
-	  var above_installation = $("#above_installation").val();
-	  var circuittext21a = $('#circuittext21a').val();
-
-	  var djcheckihd = 0;
-	  var djcheck21a = 0;
-	  var djcheck21c = 0;
-	  var djcheck21d = 0;
-	  var circuitcheck21a = 0;
-	  var circuitcheck21c = 0;
-	  var circuitcheck21d = 0;
-
-	  var create_time = Math.round(new Date().getTime() / 1000);
-	  var saved = 0;
-	  var uploaded = 0;
-
-	  var ihdvalue = 'null';
-	  var DoorSelasvalue = 'null';
-	  var ChimneyBaloonsvalue = 'null';
-	  var v21Avalue = 'null';
-	  var v21C240Vvalue = 'null';
-	  var v21C12Vvalue = 'null';
-	  var A2 = 'null';
-	  var A3 = 'null';
-	  var A4 = 'null';
-	  var C2 = 'null';
-	  var C3 = 'null';
-	  var C4 = 'null';
-	  var D2 = 'null';
-	  var D3 = 'null';
-	  var D4 = 'null';
-
-	  var errorFieldsArray = new Array();
-
-	  var first_name_check = /^[a-zA-Z\u00C0-\u00ff]+$/.test(first_name);
-	  var last_name_check = /^[a-zA-Z\u00C0-\u00ff]+$/.test(last_name);
-	  var town_check = /^[a-zA-Z\u00C0-\u00ff]+$/.test(town);
-
-	  if (company_name == '') {
-	    errorFieldsArray.push('Please fill Company Name.');
-	  }
-	  if (abn.length == 0) {
-	    errorFieldsArray.push('Please fill ABN.');
-	  } else if (isNaN(abn)) {
-	    errorFieldsArray.push('Please enter numeric ABN.');
-	  } else if (abn.length != 11) {
-	    errorFieldsArray.push('Please enter 11 digits in ABN.');
-	  }
-	  if (industry_type == '') {
-	    errorFieldsArray.push('Please fill Industry Type.');
-	  }
-	  if (job_title == '') {
-	    errorFieldsArray.push('Please fill Job Title.');
-	  }
-	  if (total_floor_space == '') {
-	    errorFieldsArray.push('Please fill Total Floor Space.');
-	  }
-	  if (number_of_levels == '') {
-	    errorFieldsArray.push('Please fill Total No. Of Levels.');
-	  }
-
-	  if ($('#djcheckihd').is(':checked')) {
-	    djcheckihd = 1;
-	  } else {
-	    djcheckihd = 0;
-	  }
-
-	  if ($('#circuitcheck21a').is(':checked')) {
-	    circuitcheck21a = 1;
-	  } else {
-	    circuitcheck21a = 0;
-	  }
-
-	  if ($('#circuitcheck21c').is(':checked')) {
-	    circuitcheck21c = 1;
-	  } else {
-	    circuitcheck21c = 0;
-	  }
-
-	  if ($('#circuitcheck21d').is(':checked')) {
-	    circuitcheck21d = 1;
-	  } else {
-	    circuitcheck21d = 0;
-	  }
-
-	  if ($('#installedlamps21d').is(':checked')) {
-	    installedlamps21d = 1;
-	  } else {
-	    installedlamps21d = 0;
-	  }
-
-	  if (installerSignature == emptySigData) {
-	    errorFieldsArray.push('Installer signature required.');
-	  }
-	  if (customerSignature == emptySigData) {
-	    errorFieldsArray.push('Customer signature required.');
-	  }
-	  if (first_name == '') {
-	    errorFieldsArray.push('Please fill First Name.');
-	  } else if (!first_name_check) {
-	    errorFieldsArray.push('No numberic/special character allow in First Name field.');
-	  }
-
-	  if (last_name == '') {
-	    errorFieldsArray.push('Please fill Last Name.');
-	  } else if (!last_name_check) {
-	    errorFieldsArray.push('No numberic/special character allow in Last Name field.');
-	  }
-
-	  if (phone_num == '') {
-	    errorFieldsArray.push('Please fill Phone Number.');
-	  } else if (isNaN(phone_num)) {
-	    errorFieldsArray.push('Please enter numeric phone number.');
-	  } else if (phone_num.length != 10) {
-	    errorFieldsArray.push('Please enter 10 digits in phone number.');
-	  }
-	  if (cust_email == '') {
-	    errorFieldsArray.push('Please fill email address.');
-	  } else if (!isValidEmailAddress(cust_email)) {
-	    errorFieldsArray.push('Please enter valid email address.');
-	  }
-	  if (len_of_time == '') {
-	    errorFieldsArray.push('Please select length of time.');
-	  }
-	  if (duration == '') {
-	    errorFieldsArray.push('Please select duration.');
-	  }
-
-	  if (street_num == '') {
-	    errorFieldsArray.push('Please fill Street Number.');
-	  }
-	  /*else if (!street_num.match(/^[0-9,_.\/\-]+$/))
-	        {
-	        errorFieldsArray.push('Please enter numeric Street Number.');
-	        }
-	        */
-	  if (!unit_num.match(/^[0-9,_.\/\-]+$/) && unit_num != "") {
-	    errorFieldsArray.push('Please enter numeric unit number or spcial characters.');
-	  }
-
-	  if (!level_num.match(/^[0-9,_.\/\-]+$/) && level_num != "") {
-	    errorFieldsArray.push('Please enter numeric level number or spcial characters.');
-	  }
-
-	  //if(street_num == '') { errorFieldsArray.push('Please fill Street Number.'); }else if(isNaN(street_num)){  errorFieldsArray.push('Please enter numeric Street Number.'); }
-	  if (street_name == '') {
-	    errorFieldsArray.push('Please fill Street Name.');
-	  }
-	  if (street_type == '') {
-	    errorFieldsArray.push('Please fill Street Type.');
-	  }
-	  if (town == '') {
-	    errorFieldsArray.push('Please fill Town.');
-	  }
-
-	  if (postcode == '') {
-	    errorFieldsArray.push('Please fill Postcode.');
-	  } else if (isNaN(postcode)) {
-	    errorFieldsArray.push('Please enter numeric Postcode.');
-	  } else if (postcode.length < 4) {
-	    errorFieldsArray.push('Postcode must be 4 numeric digit.');
-	  }
-	  if (state == '') {
-	    errorFieldsArray.push('Please fill State.');
-	  }
-	  if (tenant_or_owner == '-') {
-	    errorFieldsArray.push('Please select tenant or owner.');
-	  }
-	  if (previous_spc == 'yes' && previous_spc_text == '') {
-	    errorFieldsArray.push('Please select number of previous spc.');
-	  }
-
-	  if ($('#chckSPC').is(':checked')) {
-	    //if(num_spc_installed == 1) {
-	    if (productbrand1 == '') {
-	      errorFieldsArray.push('Please fill Product Brand 1.');
-	    }
-	    if (productmodel1 == '') {
-	      errorFieldsArray.push('Please fill Product Model 1.');
-	    }
-	    if (productserialnum1 == '') {
-	      errorFieldsArray.push('Please fill Product Serial Number 1.');
-	    }
-	    if (productroomtype1 == '') {
-	      errorFieldsArray.push('Please fill Product Room Type 1.');
-	    }
-	    if (applicationa1 == '') {
-	      errorFieldsArray.push('Please fill Appliance 1A.');
-	    }
-	    if (applicationb1 == '') {
-	      errorFieldsArray.push('Please fill Appliance 1B.');
-	    }
-	    if (num_spc_installed == '') {
-	      errorFieldsArray.push('Please select number of spc installed. (In Board (SPC) 4)');
-	    }
-	    if (imagesUploadArray1.length == 0) {
-	      errorFieldsArray.push('Please upload at least 1 image in product 1.');
-	    }
-	    //}
-	    if (num_spc_installed >
-	      1) {
-	      if (productbrand2 == '') {
-	        errorFieldsArray.push('Please fill Product Brand 2.');
-	      }
-	      if (productmodel2 == '') {
-	        errorFieldsArray.push('Please fill Product Model 2.');
-	      }
-	      if (productserialnum2 == '') {
-	        errorFieldsArray.push('Please fill Product Serial Number 2.');
-	      }
-	      if (productroomtype2 == '') {
-	        errorFieldsArray.push('Please fill Product Room Type 2.');
-	      }
-	      if (applicationa2 == '') {
-	        errorFieldsArray.push('Please fill Appliance 2A.');
-	      }
-	      if (applicationb2 == '') {
-	        errorFieldsArray.push('Please fill Appliance 2B.');
-	      }
-	      if (imagesUploadArray2.length == 0) {
-	        errorFieldsArray.push('Please upload at least 1 image in product 2.');
-	      }
-	    }
-	    if (num_spc_installed >
-	      2) {
-	      if (productbrand3 == '') {
-	        errorFieldsArray.push('Please fill Product Brand 3.');
-	      }
-	      if (productmodel3 == '') {
-	        errorFieldsArray.push('Please fill Product Model 3.');
-	      }
-	      if (productserialnum3 == '') {
-	        errorFieldsArray.push('Please fill Product Serial Number 3.');
-	      }
-	      if (productroomtype3 == '') {
-	        errorFieldsArray.push('Please fill Product Room Type 3.');
-	      }
-	      if (applicationa3 == '') {
-	        errorFieldsArray.push('Please fill Appliance 3A.');
-	      }
-	      if (applicationb3 == '') {
-	        errorFieldsArray.push('Please fill Appliance 3B.');
-	      }
-	      if (imagesUploadArray3.length == 0) {
-	        errorFieldsArray.push('Please upload at least 1 image in product 3.');
-	      }
-	    }
-	    if (num_spc_installed >
-	      3) {
-	      if (productbrand4 == '') {
-	        errorFieldsArray.push('Please fill Product Brand 4.');
-	      }
-	      if (productmodel4 == '') {
-	        errorFieldsArray.push('Please fill Product Model 4.');
-	      }
-	      if (productserialnum4 == '') {
-	        errorFieldsArray.push('Please fill Product Serial Number 4.');
-	      }
-	      if (productroomtype4 == '') {
-	        errorFieldsArray.push('Please fill Product Room Type 4.');
-	      }
-	      if (applicationa4 == '') {
-	        errorFieldsArray.push('Please fill Appliance 4A.');
-	      }
-	      if (applicationb4 == '') {
-	        errorFieldsArray.push('Please fill Appliance 4B.');
-	      }
-	      if (imagesUploadArray4.length == 0) {
-	        errorFieldsArray.push('Please upload at least 1 image in product 4.');
-	      }
-	    }
-	    $("#dcl1").show();
-	    $("#dcla").show();
-	  }
-
-	  if (productserialnum2 != '') {
-	    if (imagesUploadArray2.length == 0) {
-	      errorFieldsArray.push('Please upload at least 1 image in product 2.');
-	    }
-	  }
-	  if (productserialnum3 != '') {
-	    if (imagesUploadArray3.length == 0) {
-	      errorFieldsArray.push('Please upload at least 1 image in product 3.');
-	    }
-	  }
-	  if (productserialnum4 != '') {
-	    if (imagesUploadArray4.length == 0) {
-	      errorFieldsArray.push('Please upload at least 1 image in product 4.');
-	    }
-	  }
-
-	  if (alt_num != '' && isNaN(alt_num)) {
-	    errorFieldsArray.push('Please enter numeric mobile phone number.');
-	  } else if (alt_num != '' && alt_num.length != 10) {
-	    errorFieldsArray.push('Please enter 10 digits in mobile phone number.');
-	  }
-
-	  if (productserialnum1 != '' && isNaN(productserialnum1)) {
-	    errorFieldsArray.push('Please enter numeric Serial Number 1.');
-	  }
-	  if (productserialnum2 != '' && isNaN(productserialnum2)) {
-	    errorFieldsArray.push('Please enter numeric Serial Number 2.');
-	  }
-	  if (productserialnum3 != '' && isNaN(productserialnum3)) {
-	    errorFieldsArray.push('Please enter numeric Serial Number 3.');
-	  }
-	  if (productserialnum4 != '' && isNaN(productserialnum4)) {
-	    errorFieldsArray.push('Please enter numeric Serial Number 4.');
-	  }
-
-	  if (phone_num != '') {
-	    if (phone_num.substr(0, 1) != '0') {
-	      errorFieldsArray.push('Phone number should start with 0.');
-	    }
-	  }
-	  if (alt_num != '') {
-	    if (alt_num.substr(0, 1) != '0') {
-	      errorFieldsArray.push('Mobile number should start with 0.');
-	    }
-	  }
-
-	  if ($('#chckIHD').is(':checked')) {
-	    if (ihdproductbrand == '') {
-	      errorFieldsArray.push('Please enter IHD Product Brand.');
-	    }
-	    if (ihdproductmodel == '') {
-	      errorFieldsArray.push('Please enter IHD Product Model.');
-	    }
-	    if (ihdserialnumber == '') {
-	      errorFieldsArray.push('Please enter IHD Serial Number.');
-	    }
-	    if (costperihd == '') {
-	      errorFieldsArray.push('Please enter IHD Cost per IHD Installed (Inc GST).');
-	    }
-	    //if(imagesUploadArray5.length == 0) { errorFieldsArray.push('Please upload at least 1 image in IHD.'); } 
-	    ihdvalue = 'IHD';
-	  }
-
-	  if ($('#chckDoorSelas').is(':checked')) {
-	    if (dsproductbrand == '') {
-	      errorFieldsArray.push('Please enter Door Seals  Product Brand.');
-	    }
-	    if (dsproductmodel == '') {
-	      errorFieldsArray.push('Please enter Door Seals Product Model.');
-	    }
-	    if (dsmeasures == '') {
-	      errorFieldsArray.push('Please enter Door Seals Measures.');
-	    }
-	    if (dsnumberofdoorssealed == '' && isNaN(dsnumberofdoorssealed) && dsnumberofdoorssealed >
-	      5 && dsnumberofdoorssealed < 1) {
-	      errorFieldsArray.push('Please enter between 1 to 5 Number of door sealed.');
-	    }
-	    if (imagesUploadArray6.length == 0) {
-	      errorFieldsArray.push('Please upload at least 1 image in Door Seals.');
-	    }
-	    DoorSelasvalue = 'Door Seals';
-	  }
-
-	  if ($('#chckChimneyBaloons').is(':checked')) {
-	    if (cbproductbrand == '') {
-	      errorFieldsArray.push('Please enter Chimney Baloons  Product Brand.');
-	    }
-	    if (cbproductmodel == '') {
-	      errorFieldsArray.push('Please enter Chimney Baloons Product Model.');
-	    }
-	    if (cbmeasures == '') {
-	      errorFieldsArray.push('Please enter Chimney Baloons Measures.');
-	    }
-	    if (cbnocofs == '') {
-	      errorFieldsArray.push('Please fill Number of door sealed.');
-	    } else if (isNaN(cbnocofs)) {
-	      errorFieldsArray.push('Please enter numeric, Number of door sealed.');
-	    } else if (cbnocofs >
-	      5) {
-	      errorFieldsArray.push('Please enter between 1 to 5 Number of door sealed.');
-	    } else if (cbnocofs < 1) {
-	      errorFieldsArray.push('Please enter between 1 to 5 Number of door sealed.');
-	    } else if (imagesUploadArray7.length < cbnocofs) {
-	      errorFieldsArray.push('Please upload at least ' + cbnocofs + ' image in Chimney Baloons.');
-	    }
-	    ChimneyBaloonsvalue = 'Chimney Baloons';
-	  }
-
-	  if ($('#chck21A').is(':checked')) {
-	    if (productbrand21a == '') {
-	      errorFieldsArray.push('Please enter 21A  Product Brand.');
-	    }
-	    if (productmodel21a == '') {
-	      errorFieldsArray.push('Please enter 21A Product Model.');
-	    }
-	    if (lumensl21a == '') {
-	      errorFieldsArray.push('Please enter 21A Output (lumens).');
-	    }
-	    if (lighting21a == '') {
-	      errorFieldsArray.push('Please enter 21A Lighting efficacy.');
-	    }
-	    if (manufacturer21a == '') {
-	      errorFieldsArray.push('Please enter 21A Manufacturer rated hours.');
-	    }
-	    if (numberoflamps21a == '') {
-	      errorFieldsArray.push('Please enter 21A Number of lamps.');
-	    } else if (isNaN(numberoflamps21a)) {
-	      errorFieldsArray.push('Please enter numeric, Number of lamps.');
-	    }
-	    if (imagesUploadArray8.length == 0) {
-	      errorFieldsArray.push('Please upload at least 1 image in 21A.');
-	    }
-	    if (num_21a_installed >
-	      1) {
-	      if (productbrand21a2 == '') {
-	        errorFieldsArray.push('Please enter 21A - 2 Product Brand.');
-	      }
-	      if (productmodel21a2 == '') {
-	        errorFieldsArray.push('Please enter 21A - 2 Product Model.');
-	      }
-	      if (lumensl21a2 == '') {
-	        errorFieldsArray.push('Please enter 21A - 2 Output (lumens).');
-	      }
-	      if (lighting21a2 == '') {
-	        errorFieldsArray.push('Please enter 21A - 2 Lighting efficacy.');
-	      }
-	      if (manufacturer21a2 == '') {
-	        errorFieldsArray.push('Please enter 21A - 2 Manufacturer rated hours.');
-	      }
-	      if (numberoflamps21a2 == '') {
-	        errorFieldsArray.push('Please enter 21A - 2 Number of lamps.');
-	      } else if (isNaN(numberoflamps21a2)) {
-	        errorFieldsArray.push('Please enter numeric, Number of lamps.');
-	      }
-	      if (imagesUploadArray11.length == 0) {
-	        errorFieldsArray.push('Please upload at least 1 image in 21A - 2.');
-	      }
-	    }
-	    if (num_21a_installed > 2) {
-	      if (productbrand21a3 == '') {
-	        errorFieldsArray.push('Please enter 21A - 3 Product Brand.');
-	      }
-	      if (productmodel21a3 == '') {
-	        errorFieldsArray.push('Please enter 21A - 3 Product Model.');
-	      }
-	      if (lumensl21a3 == '') {
-	        errorFieldsArray.push('Please enter 21A - 3 Output (lumens).');
-	      }
-	      if (lighting21a3 == '') {
-	        errorFieldsArray.push('Please enter 21A - 3 Lighting efficacy.');
-	      }
-	      if (manufacturer21a3 == '') {
-	        errorFieldsArray.push('Please enter 21A - 3 Manufacturer rated hours.');
-	      }
-	      if (numberoflamps21a3 == '') {
-	        errorFieldsArray.push('Please enter 21A - 3 Number of lamps.');
-	      } else if (isNaN(numberoflamps21a3)) {
-	        errorFieldsArray.push('Please enter numeric, Number of lamps.');
-	      }
-	      if (imagesUploadArray12.length == 0) {
-	        errorFieldsArray.push('Please upload at least 1 image in 21A - 3.');
-	      }
-	    }
-	    if (num_21a_installed >
-	      3) {
-	      if (productbrand21a4 == '') {
-	        errorFieldsArray.push('Please enter 21A - 4 Product Brand.');
-	      }
-	      if (productmodel21a4 == '') {
-	        errorFieldsArray.push('Please enter 21A - 4 Product Model.');
-	      }
-	      if (lumensl21a4 == '') {
-	        errorFieldsArray.push('Please enter 21A - 4 Output (lumens).');
-	      }
-	      if (lighting21a4 == '') {
-	        errorFieldsArray.push('Please enter 21A - 4 Lighting efficacy.');
-	      }
-	      if (manufacturer21a4 == '') {
-	        errorFieldsArray.push('Please enter 21A - 4 Manufacturer rated hours.');
-	      }
-	      if (numberoflamps21a4 == '') {
-	        errorFieldsArray.push('Please enter 21A - 4 Number of lamps.');
-	      } else if (isNaN(numberoflamps21a4)) {
-	        errorFieldsArray.push('Please enter numeric, Number of lamps.');
-	      }
-	      if (imagesUploadArray13.length == 0) {
-	        errorFieldsArray.push('Please upload at least 1 image in 21A - 4.');
-	      }
-	    }
-	    if ($('#djcheck21a').is(':checked')) {
-	      if (measures21a == "") {
-	        errorFieldsArray.push('Please enter 21A Duplicate Justification.');
-	      }
-	      djcheck21a = 1;
-	    } else {
-	      djcheck21a = 0;
-	    }
-	    v21Avalue = '21A';
-	  }
-
-	  if ($('#chck21C240V').is(':checked')) {
-	    if (productbrandcv == '') {
-	      errorFieldsArray.push('Please enter 21C  Product Brand.');
-	    }
-	    if (productmodelcv == '') {
-	      errorFieldsArray.push('Please enter 21C Product Model.');
-	    }
-	    if (outputcv == '') {
-	      errorFieldsArray.push('Please enter 21C Output (lumens).');
-	    }
-	    if (lightingcv == '') {
-	      errorFieldsArray.push('Please enter 21C Lighting efficacy.');
-	    }
-	    if (manufacturercv == '') {
-	      errorFieldsArray.push('Please enter 21C Manufacturer rated hours.');
-	    }
-	    if (costperled21c == '') {
-	      errorFieldsArray.push('Please enter 21C Cost per LED Installed (Inc GST).');
-	    }
-	    if (numberoflampscv == '') {
-	      errorFieldsArray.push('Please enter 21C Number of lamps.');
-	    } else if (isNaN(numberoflampscv)) {
-	      errorFieldsArray.push('Please enter numeric 21C Number of lamps.');
-	    }
-	    if (imagesUploadArray9.length == 0) {
-	      errorFieldsArray.push('Please upload at least 1 image in 21C.');
-	    }
-	    if (circuittext21c == '') {
-	      errorFieldsArray.push('Please select 21C Were any of the above lamps installed in a dimmable circuit?.');
-	    } else if (circuittext21c != '' && circuittext21c != "No") {
-	      if (dimmableCircuitLampInstallations == '') {
-	        errorFieldsArray.push('Please select 21C How many lamps were installed in dimmable circuit?.');
-	      } else if (isNaN(dimmableCircuitLampInstallations)) {
-	        errorFieldsArray.push('Please enter numeric 21C How many lamps were installed in dimmable circuit.');
-	      }
-	    }
-	    if (installedlamps == '') {
-	      errorFieldsArray.push('Please enter Type of Transformer Connected.');
-	    }
-	    
-	    if (productbrand21cTransformerName == '') {
-	      errorFieldsArray.push('Please select 21C Name of Transformer.');
-	    }else if (productbrand21cTransformerName == 'Other' && $("#productbrand21cTransformerModel_text").val() == "") {
-	      errorFieldsArray.push('Please enter 21C Other Transformer Model.');
-	    }
-	    
-	    if (productbrand21cTransformerName == 'Other' && $("#productbrand21cTransformerName_text").val() == "") {
-	      errorFieldsArray.push('Please enter 21C Other Transformer Name.');
-	    }	   
-	    
-	    if ((productbrand21cTransformerModel == '' || productbrand21cTransformerModel == null) && productbrand21cTransformerName != 'Other') {
-	      errorFieldsArray.push('Please select 21C Transformer Model.');
-	    }else {
+    if($('#chck21C240V').is(':checked')) {
+        if(productbrandcv == '') { errorFieldsArray.push('Please enter 21C  Product Brand.'); }
+        if(productmodelcv == '') { errorFieldsArray.push('Please enter 21C Product Model.'); }
+        if(outputcv == '') { errorFieldsArray.push('Please enter 21C Output (lumens).'); }
+        if(lightingcv == '') { errorFieldsArray.push('Please enter 21C Lighting efficacy.'); }
+        if(manufacturercv == '') { errorFieldsArray.push('Please enter 21C Manufacturer rated hours.'); }
+        if(costperled21c == '') { errorFieldsArray.push('Please enter 21C Cost per LED Installed (Inc GST).');} 
+        if(numberoflampscv == '') { errorFieldsArray.push('Please enter 21C Number of lamps.');} 
+        else if(isNaN(numberoflampscv)) { errorFieldsArray.push('Please enter numeric 21C Number of lamps.'); }
+        if(imagesUploadArray9.length == 0) { errorFieldsArray.push('Please upload at least 1 image in 21C.'); } 
+        if(circuittext21c == '') { errorFieldsArray.push('Please select 21C Were any of the above lamps installed in a dimmable circuit?.'); }
+        else if(circuittext21c != '' && circuittext21c != "No") {
+        	if(dimmableCircuitLampInstallations == '') { errorFieldsArray.push('Please select 21C How many lamps were installed in dimmable circuit?.'); }
+            else if(isNaN(dimmableCircuitLampInstallations)) { errorFieldsArray.push('Please enter numeric 21C How many lamps were installed in dimmable circuit.'); }
+        } 
+        if(installedlamps == '') { errorFieldsArray.push('Please enter Type of Transformer Connected.'); }
+        if (productbrand21cTransformerName == '') {
+  	      errorFieldsArray.push('Please select 21C Name of Transformer.');
+  	    }else if (productbrand21cTransformerName == 'Other' && $("#productbrand21cTransformerModel_text").val() == "") {
+  	      errorFieldsArray.push('Please enter Transformer Model.');
+  	    }  	    
+  	    if ((productbrand21cTransformerModel == '' || productbrand21cTransformerModel == null) && productbrand21cTransformerName != 'Other') {
+  	      errorFieldsArray.push('Please select 21C Transformer Model.');
+  	    }else {
 	    	productbrand21cTransformerModel =  $("#productbrand21cTransformerModel_text").val();
 	    }
-	    
-	    if (productbrand21cTransformerName == 'Other' && $("#productbrand21cTransformerName_text").val() != "") {		      
-	    	productbrand21cTransformerName = $("#productbrand21cTransformerName_text").val();
-		}
-	    
-	    if (productbrand21cElectricalSafetyNo == '') {
-	      errorFieldsArray.push('Please select 21C Electrical Safety No.');
-	    }
-	    if (num_21c_installed > 1) {
-	      if (productbrandcv2a == '') {
-	        errorFieldsArray.push('Please enter 21C - 2 Product Brand.');
-	      }
-	      if (productmodelcv2a == '') {
-	        errorFieldsArray.push('Please enter 21C - 2 Product Model.');
-	      }
-	      if (outputcv2a == '') {
-	        errorFieldsArray.push('Please enter 21C - 2 Output (lumens).');
-	      }
-	      if (lightingcv2a == '') {
-	        errorFieldsArray.push('Please enter 21C - 2 Lighting efficacy.');
-	      }
-	      if (manufacturercv2a == '') {
-	        errorFieldsArray.push('Please enter 21C - 2 Manufacturer rated hours.');
-	      }
-	      if (numberoflampscv2a == '') {
-	        errorFieldsArray.push('Please enter 21C - 2 Number of lamps.');
-	      } else if (isNaN(numberoflampscv2a)) {
-	        errorFieldsArray.push('Please enter numeric, Number of lamps.');
-	      }
-	      if (imagesUploadArray14.length == 0) {
-	        errorFieldsArray.push('Please upload at least 1 image in 21C - 2.');
-	      }
-	    }
-	    if (num_21c_installed >
-	      2) {
-	      if (productbrandcv3 == '') {
-	        errorFieldsArray.push('Please enter 21C - 3 Product Brand.');
-	      }
-	      if (productmodelcv3 == '') {
-	        errorFieldsArray.push('Please enter 21C - 3 Product Model.');
-	      }
-	      if (outputcv3 == '') {
-	        errorFieldsArray.push('Please enter 21C - 3 Output (lumens).');
-	      }
-	      if (lightingcv3 == '') {
-	        errorFieldsArray.push('Please enter 21C - 3 Lighting efficacy.');
-	      }
-	      if (manufacturercv3 == '') {
-	        errorFieldsArray.push('Please enter 21C - 3 Manufacturer rated hours.');
-	      }
-	      if (numberoflampscv3 == '') {
-	        errorFieldsArray.push('Please enter 21C - 3 Number of lamps.');
-	      } else if (isNaN(numberoflampscv3)) {
-	        errorFieldsArray.push('Please enter numeric, Number of lamps.');
-	      }
-	      if (imagesUploadArray15.length == 0) {
-	        errorFieldsArray.push('Please upload at least 1 image in 21C - 3.');
-	      }
-	    }
-	    if (num_21c_installed >
-	      3) {
-	      if (productbrandcv4 == '') {
-	        errorFieldsArray.push('Please enter 21C - 4 Product Brand.');
-	      }
-	      if (productmodelcv4 == '') {
-	        errorFieldsArray.push('Please enter 21C - 4 Product Model.');
-	      }
-	      if (outputcv4 == '') {
-	        errorFieldsArray.push('Please enter 21C - 4 Output (lumens).');
-	      }
-	      if (lightingcv4 == '') {
-	        errorFieldsArray.push('Please enter 21C - 4 Lighting efficacy.');
-	      }
-	      if (manufacturercv4 == '') {
-	        errorFieldsArray.push('Please enter 21C - 4 Manufacturer rated hours.');
-	      }
-	      if (numberoflampscv4 == '') {
-	        errorFieldsArray.push('Please enter 21C - 4 Number of lamps.');
-	      } else if (isNaN(numberoflampscv4)) {
-	        errorFieldsArray.push('Please enter numeric, Number of lamps.');
-	      }
-	      if (imagesUploadArray16.length == 0) {
-	        errorFieldsArray.push('Please upload at least 1 image in 21C - 4.');
-	      }
-	    }
-	    if ($('#djcheck21c').is(':checked')) {
-	      djcheck21c = 1;
-	      if (measures21c == "") {
-	        errorFieldsArray.push('Please enter 21C Duplicate Justification.');
-	      }
-	    } else {
-	      djcheck21c = 0;
-	    }
-	    v21C240Vvalue = '21C 240V';
-	  }
-
-	  if ($('#chck21C12V').is(':checked')) {
-	    if (productbrandcv2 == '') {
-	      errorFieldsArray.push('Please enter 21D Product Brand.');
-	    }
-	    if (productmodelcv2 == '') {
-	      errorFieldsArray.push('Please enter 21D Product Model.');
-	    }
-	    if (outputcv2 == '') {
-	      errorFieldsArray.push('Please enter 21D Output (lumens).');
-	    }
-	    if (lightingcv2 == '') {
-	      errorFieldsArray.push('Please enter 21D Lighting efficacy.');
-	    }
-	    if (manufacturercv2 == '') {
-	      errorFieldsArray.push('Please enter 21D Manufacturer rated hours.');
-	    }
-	    if (numberoflampscv2 == '') {
-	      errorFieldsArray.push('Please enter 21D Number of lamps.');
-	    } else if (isNaN(numberoflampscv2)) {
-	      errorFieldsArray.push('Please enter numeric 21D Number of lamps.');
-	    }
-	    if (costperled21d == '') {
-	      errorFieldsArray.push('Please enter 21D Cost per LED Installed (Inc GST).');
-	    }
-	    if (circuittext21d == '') {
-	      errorFieldsArray.push('Please enter  21D lamps installed.');
-	    }
-	    if (above_installation == '') {
-	      errorFieldsArray.push('Please enter 21D was writing work required.');
-	    }
-	    if (imagesUploadArray10.length == 0) {
-	      errorFieldsArray.push('Please upload at least 1 image in 21D.');
-	    }
-	    if (num_21d_installed >
-	      1) {
-	      if (productbrandcv2b == '') {
-	        errorFieldsArray.push('Please enter 21D - 2 Product Brand.');
-	      }
-	      if (productmodelcv2b == '') {
-	        errorFieldsArray.push('Please enter 21D - 2 Product Model.');
-	      }
-	      if (outputcv2b == '') {
-	        errorFieldsArray.push('Please enter 21D - 2 Output (lumens).');
-	      }
-	      if (lightingcv2b == '') {
-	        errorFieldsArray.push('Please enter 21D - 2 Lighting efficacy.');
-	      }
-	      if (manufacturercv2b == '') {
-	        errorFieldsArray.push('Please enter 21D - 2 Manufacturer rated hours.');
-	      }
-	      if (numberoflampscv2b == '') {
-	        errorFieldsArray.push('Please enter 21D - 2 Number of lamps.');
-	      } else if (isNaN(numberoflampscv2b)) {
-	        errorFieldsArray.push('Please enter numeric, Number of lamps.');
-	      }
-	      if (imagesUploadArray17.length == 0) {
-	        errorFieldsArray.push('Please upload at least 1 image in 21D - 2.');
-	      }
-	    }
-	    if (num_21d_installed >
-	      2) {
-	      if (productbrandcv2c == '') {
-	        errorFieldsArray.push('Please enter 21D - 3 Product Brand.');
-	      }
-	      if (productmodelcv2c == '') {
-	        errorFieldsArray.push('Please enter 21D - 3 Product Model.');
-	      }
-	      if (outputcv2c == '') {
-	        errorFieldsArray.push('Please enter 21D - 3 Output (lumens).');
-	      }
-	      if (lightingcv2c == '') {
-	        errorFieldsArray.push('Please enter 21D - 3 Lighting efficacy.');
-	      }
-	      if (manufacturercv2c == '') {
-	        errorFieldsArray.push('Please enter 21D - 3 Manufacturer rated hours.');
-	      }
-	      if (numberoflampscv2c == '') {
-	        errorFieldsArray.push('Please enter 21D - 3 Number of lamps.');
-	      } else if (isNaN(numberoflampscv2c)) {
-	        errorFieldsArray.push('Please enter numeric, Number of lamps.');
-	      }
-	      if (imagesUploadArray18.length == 0) {
-	        errorFieldsArray.push('Please upload at least 1 image in 21D - 3.');
-	      }
-	    }
-	    if (num_21d_installed >
-	      3) {
-	      if (productbrandcv2d == '') {
-	        errorFieldsArray.push('Please enter 21D - 4 Product Brand.');
-	      }
-	      if (productmodelcv2d == '') {
-	        errorFieldsArray.push('Please enter 21D - 4 Product Model.');
-	      }
-	      if (outputcv2d == '') {
-	        errorFieldsArray.push('Please enter 21D - 4 Output (lumens).');
-	      }
-	      if (lightingcv2d == '') {
-	        errorFieldsArray.push('Please enter 21D - 4 Lighting efficacy.');
-	      }
-	      if (manufacturercv2d == '') {
-	        errorFieldsArray.push('Please enter 21D - 4 Manufacturer rated hours.');
-	      }
-	      if (numberoflampscv2d == '') {
-	        errorFieldsArray.push('Please enter 21D - 4 Number of lamps.');
-	      } else if (isNaN(numberoflampscv2d)) {
-	        errorFieldsArray.push('Please enter numeric, Number of lamps.');
-	      }
-	      if (imagesUploadArray19.length == 0) {
-	        errorFieldsArray.push('Please upload at least 1 image in 21D - 4.');
-	      }
-	    }
-	    if ($('#djcheck21d').is(':checked')) {
-	      if (measures21d == "") {
-	        errorFieldsArray.push('Please enter 21D Duplicate Justification.');
-	      }
-	      djcheck21d = 1;
-	    } else {
-	      djcheck21d = 0;
-	    }
-	    v21C12Vvalue = '21C 12V';
-	  }
-
-	  if (num_21a_installed == 2) {
-	    A2 = 'A2';
-	  }
-	  if (num_21a_installed == 3) {
-	    A2 = 'A2';
-	    A3 = 'A3';
-	  }
-	  if (num_21a_installed == 4) {
-	    A2 = 'A2';
-	    A3 = 'A3';
-	    A4 = 'A4';
-	  }
-
-	  if (num_21c_installed == 2) {
-	    C2 = 'C2';
-	  }
-	  if (num_21c_installed == 3) {
-	    C2 = 'C2';
-	    C3 = 'C3';
-	  }
-	  if (num_21c_installed == 4) {
-	    C2 = 'C2';
-	    C3 = 'C3';
-	    C4 = 'C4';
-	  }
-
-	  if (num_21d_installed == 2) {
-	    D2 = 'D2';
-	  }
-	  if (num_21d_installed == 3) {
-	    D2 = 'D2';
-	    D3 = 'D3';
-	  }
-	  if (num_21d_installed == 4) {
-	    D2 = 'D2';
-	    D3 = 'D3';
-	    D4 = 'D4';
-	  }
-
-	  if (!$('#chck21A').is(':checked') && (!$('#chckDoorSelas').is(':checked')) && (!$('#chck21C240V').is(':checked')) && (!$('#chckChimneyBaloons').is(':checked')) && (!$('#chckSPC').is(':checked')) && (!$('#chck21C12V').is(':checked')) && (!$('#chckIHD').is(':checked'))) {
-	    errorFieldsArray.push('Please select any one product.');
-	  }
-
-	  if (errorFieldsArray.length > 0) {
-	    var msg = errorFieldsArray.join(', ');
-	    alert(msg);
-	  } else {
-	    showLoader();
-
-	    db.transaction(function (tx) {
-
-	      if (previous_spc == 'no') {
-	        previous_spc_text = '';
-	      }
-
-	      var customerImagedata = window.localStorage.getItem('customerImagedata');
-	      var checklistData = localStorage.getItem('checklist_data');
-
-	      var latitude = localStorage.getItem("latitude");
-	      var longitude = localStorage.getItem("longitude");
-	      
-	      tx.executeSql("INSERT INTO customer (creator_id,company_name, abn, industry_type,job_title, total_floor_space, number_of_levels, electricalSafetyCheck, relevantCertificateCheck, title, first_name, last_name, phone_num, alt_num, cust_email, unit_num, unit_type, level_num, level_type, street_num, street_name, street_type, street_type_suff, town, state, postcode, len_of_time, duration, tenant_or_owner, dob, previous_spc, add_spc_reason, num_spc_installed, create_time, saved, uploaded, installer_signature, customer_signature, installer_image,latitude,longitude,checklistData) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [logged_in_user_data.user_id, company_name, abn, industry_type, job_title, total_floor_space, number_of_levels, electricalSafetyCheck, relevantCertificateCheck, title, first_name, last_name, phone_num, alt_num, cust_email, unit_num, unit_type, level_num, level_type, street_num, street_name, street_type, street_type_suff, town, state, postcode, len_of_time, duration, tenant_or_owner, dob, previous_spc_text, add_spc_reason, num_spc_installed, create_time, saved, uploaded, installerSignature, customerSignature, customerImagedata, latitude, longitude, checklistData], function (tx, res) {
-
-	        window.localStorage.removeItem('customerImagedata');
-	        customer_id = res.insertId;
-	        var product_id_1 = 0;
-	        var product_id_2 = 0;
-	        var product_id_3 = 0;
-	        var product_id_4 = 0;
-	        var other_product_id_1 = 0;
-	        var other_product_id_2 = 0;
-	        var other_product_id_3 = 0;
-	        var other_product_id_4 = 0;
-	        var other_product_id_5 = 0;
-	        var other_product_id_6 = 0;
-	        var other_product_id_7 = 0;
-	        var other_product_id_8 = 0;
-
-	        tx.executeSql("INSERT INTO products (cust_num, productbrand, productmodel, productserialnum, productroomtype, applicationa, applicationb, applicationc, applicationd, product_num, add_date) VALUES ('" + customer_id + "', '" + productbrand1 + "', '" + productmodel1 + "', '" + productserialnum1 + "', '" + productroomtype1 + "', '" + applicationa1 + "', '" + applicationb1 + "', '" + applicationc1 + "', '" + applicationd1 + "', '1', '" + create_time + "')", [], function (tx, res1) {
-
-	          product_id_1 = res1.insertId;
-
-	          tx.executeSql("INSERT INTO products (cust_num, productbrand, productmodel, productserialnum, productroomtype, applicationa, applicationb, applicationc, applicationd, product_num, add_date) VALUES ('" + customer_id + "', '" + productbrand2 + "', '" + productmodel2 + "', '" + productserialnum2 + "', '" + productroomtype2 + "', '" + applicationa2 + "', '" + applicationb2 + "', '" + applicationc2 + "', '" + applicationd2 + "', '2', '" + create_time + "')", [], function (tx, res2) {
-
-	            product_id_2 = res2.insertId;
-
-	            tx.executeSql("INSERT INTO products (cust_num, productbrand, productmodel, productserialnum, productroomtype, applicationa, applicationb, applicationc, applicationd, product_num, add_date) VALUES ('" + customer_id + "', '" + productbrand3 + "', '" + productmodel3 + "', '" + productserialnum3 + "', '" + productroomtype3 + "', '" + applicationa3 + "', '" + applicationb3 + "', '" + applicationc3 + "', '" + applicationd3 + "', '3', '" + create_time + "')", [], function (tx, res3) {
-
-	              product_id_3 = res3.insertId;
-
-	              tx.executeSql("INSERT INTO products (cust_num, productbrand, productmodel, productserialnum, productroomtype, applicationa, applicationb, applicationc, applicationd, product_num, add_date) VALUES ('" + customer_id + "', '" + productbrand4 + "', '" + productmodel4 + "', '" + productserialnum4 + "', '" + productroomtype4 + "', '" + applicationa4 + "', '" + applicationb4 + "', '" + applicationc4 + "', '" + applicationd4 + "', '4', '" + create_time + "')", [], function (tx, res4) {
-
-	                product_id_4 = res4.insertId;
-
-	                tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, measures, producttype, create_date, output, costper, djcheck) VALUES ('" + customer_id + "', '" + ihdproductbrand + "', '" + ihdproductmodel + "', '" + ihdserialnumber + "', '" + ihdvalue + "', '" + create_time + "', '" + outputihd + "', '" + costperihd + "', '" + djcheckihd + "')", [], function (tx, res5) {
-
-	                  other_product_id_1 = res5.insertId;
-
-	                  tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, measures, sealed, producttype, create_date) VALUES ('" + customer_id + "', '" + dsproductbrand + "', '" + dsproductmodel + "', '" + dsmeasures + "', '" + dsnumberofdoorssealed + "', '" + DoorSelasvalue + "', '" + create_time + "')", [], function (tx, res6) {
-
-	                    other_product_id_2 = res6.insertId;
-
-	                    tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, measures, sealed, producttype, create_date) VALUES ('" + customer_id + "', '" + cbproductbrand + "', '" + cbproductmodel + "', '" + cbmeasures + "', '" + cbnocofs + "', '" + ChimneyBaloonsvalue + "', '" + create_time + "')", [], function (tx, res7) {
-
-	                      other_product_id_3 = res7.insertId;
-
-	                      tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date, measures, djcheck) VALUES ('" + customer_id + "', '" + productbrand21a + "', '" + productmodel21a + "', '" + lumensl21a + "', '" + lighting21a + "', '" + manufacturer21a + "', '" + numberoflamps21a + "', '" + v21Avalue + "', '" + create_time + "', '" + measures21a + "', '" + djcheck21a + "')", [], function (tx, res8) {
-
-	                        other_product_id_4 = res8.insertId;
-
-	                        tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date, measures, costper, circuitcheck, circuittext, installedlamps, installedlamps2, installedlamps3, djcheck, dimmableCircuitLampInstallations, halogen_downlights_replaced_check, productbrand21cTransformerName, productbrand21cTransformerModel, productbrand21cElectricalSafetyNo ) VALUES ('" + customer_id + "', '" + productbrandcv + "', '" + productmodelcv + "', '" + outputcv + "', '" + lightingcv + "', '" + manufacturercv + "', '" + numberoflampscv + "', '" + v21C240Vvalue + "', '" + create_time + "', '" + measures21c + "', '" + costperled21c + "', '" + circuitcheck21c + "', '" + circuittext21c + "', '" + installedlamps + "', '" + installedlamps2 + "', '" + installedlamps3 + "', '" + djcheck21c + "', '" + dimmableCircuitLampInstallations + "', '" + halogen_downlights_replaced_check + "','" + productbrand21cTransformerName + "','" + productbrand21cTransformerModel + "','" + productbrand21cElectricalSafetyNo + "')", [], function (tx, res9) {
-
-	                          other_product_id_5 = res9.insertId;
-
-	                          tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date, measures, costper, circuitcheck, circuittext, djcheck, installedlamps, above_installation) VALUES ('" + customer_id + "', '" + productbrandcv2 + "', '" + productmodelcv2 + "', '" + outputcv2 + "', '" + lightingcv2 + "', '" + manufacturercv2 + "', '" + numberoflampscv2 + "', '" + v21C12Vvalue + "', '" + create_time + "', '" + measures21d + "', '" + costperled21d + "', '" + circuitcheck21d + "', '" + circuittext21d + "', '" + djcheck21d + "', '" + installedlamps21d + "', '" + above_installation + "')", [], function (tx, res10) {
-
-	                            other_product_id_6 = res10.insertId;
-
-	                            tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date) VALUES ('" + customer_id + "', '" + productbrand21a2 + "', '" + productmodel21a2 + "', '" + lumensl21a2 + "', '" + lighting21a2 + "', '" + manufacturer21a2 + "', '" + numberoflamps21a2 + "', '" + A2 + "', '" + create_time + "')", [], function (tx, res11) {
-
-	                              other_product_id_7 = res11.insertId;
-
-	                              tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date) VALUES ('" + customer_id + "', '" + productbrand21a3 + "', '" + productmodel21a3 + "', '" + lumensl21a3 + "', '" + lighting21a3 + "', '" + manufacturer21a3 + "', '" + numberoflamps21a3 + "', '" + A3 + "', '" + create_time + "')", [], function (tx2, res12) {
-
-	                                other_product_id_8 = res12.insertId;
-
-	                                console.log("customer_id :" + customer_id + " product_id_1" + product_id_1 + " len:" + imagesUploadArray1.length);
-	                                save_uploaded_images(customer_id, product_id_1, imagesUploadArray1, function (response) {
-
-	                                  save_uploaded_images(customer_id, product_id_2, imagesUploadArray2, function (response) {
-
-	                                    save_uploaded_images(customer_id, product_id_3, imagesUploadArray3, function (response) {
-
-	                                      save_uploaded_images(customer_id, product_id_4, imagesUploadArray4, function (response) {
-
-	                                        save_uploaded_other_images(customer_id, other_product_id_1, imagesUploadArray5, function (response) {
-
-	                                          save_uploaded_other_images(customer_id, other_product_id_2, imagesUploadArray6, function (response) {
-
-	                                            save_uploaded_other_images(customer_id, other_product_id_3, imagesUploadArray7, function (response) {
-
-	                                              save_uploaded_other_images(customer_id, other_product_id_4, imagesUploadArray8, function (response) {
-
-	                                                save_uploaded_other_images(customer_id, other_product_id_5, imagesUploadArray9, function (response) {
-
-	                                                  save_uploaded_other_images(customer_id, other_product_id_6, imagesUploadArray10, function (response) {
+        if(productbrand21cElectricalSafetyNo == '') { errorFieldsArray.push('Please select 21C Electrical Safety No.'); }        
+        if(num_21c_installed > 1)
+        {
+            if(productbrandcv2a == '') { errorFieldsArray.push('Please enter 21C - 2 Product Brand.'); }
+            if(productmodelcv2a == '') { errorFieldsArray.push('Please enter 21C - 2 Product Model.'); }
+            if(outputcv2a == '') { errorFieldsArray.push('Please enter 21C - 2 Output (lumens).'); }
+            if(lightingcv2a == '') { errorFieldsArray.push('Please enter 21C - 2 Lighting efficacy.'); }
+            if(manufacturercv2a == '') { errorFieldsArray.push('Please enter 21C - 2 Manufacturer rated hours.'); }
+            if(numberoflampscv2a == '') { errorFieldsArray.push('Please enter 21C - 2 Number of lamps.');} 
+            else if(isNaN(numberoflampscv2a)) { errorFieldsArray.push('Please enter numeric, Number of lamps.'); }
+            if(imagesUploadArray14.length == 0) { errorFieldsArray.push('Please upload at least 1 image in 21C - 2.'); } 
+        }
+        if(num_21c_installed > 2)
+        {
+            if(productbrandcv3 == '') { errorFieldsArray.push('Please enter 21C - 3 Product Brand.'); }
+            if(productmodelcv3 == '') { errorFieldsArray.push('Please enter 21C - 3 Product Model.'); }
+            if(outputcv3 == '') { errorFieldsArray.push('Please enter 21C - 3 Output (lumens).'); }
+            if(lightingcv3 == '') { errorFieldsArray.push('Please enter 21C - 3 Lighting efficacy.'); }
+            if(manufacturercv3 == '') { errorFieldsArray.push('Please enter 21C - 3 Manufacturer rated hours.'); }
+            if(numberoflampscv3 == '') { errorFieldsArray.push('Please enter 21C - 3 Number of lamps.');} 
+            else if(isNaN(numberoflampscv3)) { errorFieldsArray.push('Please enter numeric, Number of lamps.'); }
+            if(imagesUploadArray15.length == 0) { errorFieldsArray.push('Please upload at least 1 image in 21C - 3.'); } 
+        }
+        if(num_21c_installed > 3)
+        {
+            if(productbrandcv4 == '') { errorFieldsArray.push('Please enter 21C - 4 Product Brand.'); }
+            if(productmodelcv4 == '') { errorFieldsArray.push('Please enter 21C - 4 Product Model.'); }
+            if(outputcv4 == '') { errorFieldsArray.push('Please enter 21C - 4 Output (lumens).'); }
+            if(lightingcv4 == '') { errorFieldsArray.push('Please enter 21C - 4 Lighting efficacy.'); }
+            if(manufacturercv4 == '') { errorFieldsArray.push('Please enter 21C - 4 Manufacturer rated hours.'); }
+            if(numberoflampscv4 == '') { errorFieldsArray.push('Please enter 21C - 4 Number of lamps.');} 
+            else if(isNaN(numberoflampscv4)) { errorFieldsArray.push('Please enter numeric, Number of lamps.'); }
+            if(imagesUploadArray16.length == 0) { errorFieldsArray.push('Please upload at least 1 image in 21C - 4.'); } 
+        }
+        if($('#djcheck21c').is(':checked')) {
+            djcheck21c = 1;
+            if(measures21c == "") { errorFieldsArray.push('Please enter 21C Duplicate Justification.'); }
+        } else {
+            djcheck21c = 0;
+        }
+        v21C240Vvalue = '21C 240V';
+    }
+
+    if($('#chck21C12V').is(':checked')) {
+        if(productbrandcv2 == '') { errorFieldsArray.push('Please enter 21D Product Brand.'); }
+        if(productmodelcv2 == '') { errorFieldsArray.push('Please enter 21D Product Model.'); }
+        if(outputcv2 == '') { errorFieldsArray.push('Please enter 21D Output (lumens).'); }
+        if(lightingcv2 == '') { errorFieldsArray.push('Please enter 21D Lighting efficacy.'); }
+        if(manufacturercv2 == '') { errorFieldsArray.push('Please enter 21D Manufacturer rated hours.'); }
+        if(numberoflampscv2 == '') { errorFieldsArray.push('Please enter 21D Number of lamps.');} 
+        else if(isNaN(numberoflampscv2)) { errorFieldsArray.push('Please enter numeric 21D Number of lamps.'); }
+        if(costperled21d == '') { errorFieldsArray.push('Please enter 21D Cost per LED Installed (Inc GST).');} 
+        if(circuittext21d == '') { errorFieldsArray.push('Please enter  21D lamps installed.'); }
+        if(above_installation == '') { errorFieldsArray.push('Please enter 21D was writing work required.'); }
+        if(imagesUploadArray10.length == 0) { errorFieldsArray.push('Please upload at least 1 image in 21D.'); } 
+        if(num_21d_installed > 1)
+        {
+            if(productbrandcv2b == '') { errorFieldsArray.push('Please enter 21D - 2 Product Brand.'); }
+            if(productmodelcv2b == '') { errorFieldsArray.push('Please enter 21D - 2 Product Model.'); }
+            if(outputcv2b == '') { errorFieldsArray.push('Please enter 21D - 2 Output (lumens).'); }
+            if(lightingcv2b == '') { errorFieldsArray.push('Please enter 21D - 2 Lighting efficacy.'); }
+            if(manufacturercv2b == '') { errorFieldsArray.push('Please enter 21D - 2 Manufacturer rated hours.'); }
+            if(numberoflampscv2b == '') { errorFieldsArray.push('Please enter 21D - 2 Number of lamps.');} 
+            else if(isNaN(numberoflampscv2b)) { errorFieldsArray.push('Please enter numeric, Number of lamps.'); }
+            if(imagesUploadArray17.length == 0) { errorFieldsArray.push('Please upload at least 1 image in 21D - 2.'); } 
+        }
+        if(num_21d_installed > 2)
+        {
+            if(productbrandcv2c == '') { errorFieldsArray.push('Please enter 21D - 3 Product Brand.'); }
+            if(productmodelcv2c == '') { errorFieldsArray.push('Please enter 21D - 3 Product Model.'); }
+            if(outputcv2c == '') { errorFieldsArray.push('Please enter 21D - 3 Output (lumens).'); }
+            if(lightingcv2c == '') { errorFieldsArray.push('Please enter 21D - 3 Lighting efficacy.'); }
+            if(manufacturercv2c == '') { errorFieldsArray.push('Please enter 21D - 3 Manufacturer rated hours.'); }
+            if(numberoflampscv2c == '') { errorFieldsArray.push('Please enter 21D - 3 Number of lamps.');} 
+            else if(isNaN(numberoflampscv2c)) { errorFieldsArray.push('Please enter numeric, Number of lamps.'); }
+            if(imagesUploadArray18.length == 0) { errorFieldsArray.push('Please upload at least 1 image in 21D - 3.'); } 
+        }
+        if(num_21d_installed > 3)
+        {
+            if(productbrandcv2d == '') { errorFieldsArray.push('Please enter 21D - 4 Product Brand.'); }
+            if(productmodelcv2d == '') { errorFieldsArray.push('Please enter 21D - 4 Product Model.'); }
+            if(outputcv2d == '') { errorFieldsArray.push('Please enter 21D - 4 Output (lumens).'); }
+            if(lightingcv2d == '') { errorFieldsArray.push('Please enter 21D - 4 Lighting efficacy.'); }
+            if(manufacturercv2d == '') { errorFieldsArray.push('Please enter 21D - 4 Manufacturer rated hours.'); }
+            if(numberoflampscv2d == '') { errorFieldsArray.push('Please enter 21D - 4 Number of lamps.');} 
+            else if(isNaN(numberoflampscv2d)) { errorFieldsArray.push('Please enter numeric, Number of lamps.'); }
+            if(imagesUploadArray19.length == 0) { errorFieldsArray.push('Please upload at least 1 image in 21D - 4.'); } 
+        }
+        if($('#djcheck21d').is(':checked')) {
+            if(measures21d == "") { errorFieldsArray.push('Please enter 21D Duplicate Justification.'); }
+            djcheck21d = 1;
+        } else {
+            djcheck21d = 0;
+        }
+        v21C12Vvalue = '21C 12V';
+    } 
+
+    if(num_21a_installed == 2) { A2 = 'A2'; }
+    if(num_21a_installed == 3) { A2 = 'A2'; A3 = 'A3'; }
+    if(num_21a_installed == 4) { A2 = 'A2'; A3 = 'A3'; A4 = 'A4'; }
+
+    if(num_21c_installed == 2) { C2 = 'C2'; }
+    if(num_21c_installed == 3) { C2 = 'C2'; C3 = 'C3'; }
+    if(num_21c_installed == 4) { C2 = 'C2'; C3 = 'C3'; C4 = 'C4'; }
+
+    if(num_21d_installed == 2) { D2 = 'D2'; }
+    if(num_21d_installed == 3) { D2 = 'D2'; D3 = 'D3'; }
+    if(num_21d_installed == 4) { D2 = 'D2'; D3 = 'D3'; D4 = 'D4'; }
+
+    if(!$('#chck21A').is(':checked') && (!$('#chckDoorSelas').is(':checked')) && (!$('#chck21C240V').is(':checked')) && (!$('#chckChimneyBaloons').is(':checked')) && (!$('#chckSPC').is(':checked'))  && (!$('#chck21C12V').is(':checked')) && (!$('#chckIHD').is(':checked')))
+    {
+        errorFieldsArray.push('Please select any one product.');
+    }
+    
+    if(errorFieldsArray.length > 0)
+    {
+        var msg = errorFieldsArray.join(', ');
+        alert(msg);
+    }else
+    {
+        db.transaction(function(tx) {
+        
+        if(previous_spc == 'no')
+        {
+            previous_spc_text = '';
+        }
+        
+        var customerImagedata = window.localStorage.getItem('customerImagedata');
+        var checklistData = localStorage.getItem('checklist_data');
+                
+        var latitude = localStorage.getItem("latitude");
+        var longitude = localStorage.getItem("longitude");
+        
+        
+        /*tx.executeSql("INSERT INTO customer (creator_id, title, first_name, last_name, phone_num, alt_num, cust_email, unit_num, unit_type, level_num, level_type, street_num, street_name, street_type, street_type_suff, town, state, postcode, len_of_time, duration, tenant_or_owner, dob, previous_spc, add_spc_reason, num_spc_installed, create_time, saved, uploaded, installer_signature, customer_signature, installer_image, postal_address,latitude,longitude,checklistData) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [logged_in_user_data.user_id,title,first_name,last_name,phone_num,alt_num,cust_email,unit_num,unit_type,level_num,level_type,street_num,street_name,street_type,street_type_suff,town,state,postcode,len_of_time,duration,tenant_or_owner,dob,previous_spc_text,add_spc_reason,num_spc_installed,create_time,saved,uploaded,installerSignature,customerSignature,customerImagedata,postal_address,latitude,longitude,checklistData]*/
+        
+        tx.executeSql("INSERT INTO customer (creator_id, title, first_name, last_name, phone_num, alt_num, cust_email, unit_num, unit_type, level_num, level_type, street_num, street_name, street_type, street_type_suff, town, state, postcode, len_of_time, duration, tenant_or_owner, dob, previous_spc, add_spc_reason, num_spc_installed, create_time, saved, uploaded, installer_signature, customer_signature, installer_image, postal_address) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [logged_in_user_data.user_id,title,first_name,last_name,phone_num,alt_num,cust_email,unit_num,unit_type,level_num,level_type,street_num,street_name,street_type,street_type_suff,town,state,postcode,len_of_time,duration,tenant_or_owner,dob,previous_spc_text,add_spc_reason,num_spc_installed,create_time,saved,uploaded,installerSignature,customerSignature,customerImagedata,postal_address], function(tx, res) {
+            
+            window.localStorage.removeItem('customerImagedata');
+            customer_id = res.insertId;
+            var product_id_1 = 0;
+            var product_id_2 = 0;
+            var product_id_3 = 0;
+            var product_id_4 = 0;
+            var other_product_id_1 = 0;
+            var other_product_id_2 = 0;
+            var other_product_id_3 = 0;
+            var other_product_id_4 = 0;
+            var other_product_id_5 = 0;
+            var other_product_id_6 = 0;
+            var other_product_id_7 = 0;
+            var other_product_id_8 = 0;
+            
+
+            tx.executeSql("INSERT INTO products (cust_num, productbrand, productmodel, productserialnum, productroomtype, applicationa, applicationb, applicationc, applicationd, product_num, add_date) VALUES ('"+customer_id+"', '"+productbrand1+"', '"+productmodel1+"', '"+productserialnum1+"', '"+productroomtype1+"', '"+applicationa1+"', '"+applicationb1+"', '"+applicationc1+"', '"+applicationd1+"', '1', '"+create_time+"')", [], function(tx, res1) {
+                
+                product_id_1 = res1.insertId;
+                
+                tx.executeSql("INSERT INTO products (cust_num, productbrand, productmodel, productserialnum, productroomtype, applicationa, applicationb, applicationc, applicationd, product_num, add_date) VALUES ('"+customer_id+"', '"+productbrand2+"', '"+productmodel2+"', '"+productserialnum2+"', '"+productroomtype2+"', '"+applicationa2+"', '"+applicationb2+"', '"+applicationc2+"', '"+applicationd2+"', '2', '"+create_time+"')", [], function(tx, res2) {
+                
+                    product_id_2 = res2.insertId;
+                    
+                    tx.executeSql("INSERT INTO products (cust_num, productbrand, productmodel, productserialnum, productroomtype, applicationa, applicationb, applicationc, applicationd, product_num, add_date) VALUES ('"+customer_id+"', '"+productbrand3+"', '"+productmodel3+"', '"+productserialnum3+"', '"+productroomtype3+"', '"+applicationa3+"', '"+applicationb3+"', '"+applicationc3+"', '"+applicationd3+"', '3', '"+create_time+"')", [], function(tx, res3) {
+                        
+                        product_id_3 = res3.insertId;
+                        
+                        tx.executeSql("INSERT INTO products (cust_num, productbrand, productmodel, productserialnum, productroomtype, applicationa, applicationb, applicationc, applicationd, product_num, add_date) VALUES ('"+customer_id+"', '"+productbrand4+"', '"+productmodel4+"', '"+productserialnum4+"', '"+productroomtype4+"', '"+applicationa4+"', '"+applicationb4+"', '"+applicationc4+"', '"+applicationd4+"', '4', '"+create_time+"')", [], function(tx, res4) {
+                            
+                            product_id_4 = res4.insertId;
+
+                            tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, measures, producttype, create_date, output, costper, djcheck) VALUES ('"+customer_id+"', '"+ihdproductbrand+"', '"+ihdproductmodel+"', '"+ihdserialnumber+"', '"+ihdvalue+"', '"+create_time+"', '"+outputihd+"', '"+costperihd+"', '"+djcheckihd+"')", [], function(tx, res5) {    
+                                
+                                other_product_id_1 = res5.insertId;
+
+                                tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, measures, sealed, producttype, create_date) VALUES ('"+customer_id+"', '"+dsproductbrand+"', '"+dsproductmodel+"', '"+dsmeasures+"', '"+dsnumberofdoorssealed+"', '"+DoorSelasvalue+"', '"+create_time+"')", [], function(tx, res6) {
+
+                                    other_product_id_2 = res6.insertId;
+
+                                    tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, measures, sealed, producttype, create_date) VALUES ('"+customer_id+"', '"+cbproductbrand+"', '"+cbproductmodel+"', '"+cbmeasures+"', '"+cbnocofs+"', '"+ChimneyBaloonsvalue+"', '"+create_time+"')", [], function(tx, res7) {
+
+                                        other_product_id_3 = res7.insertId;
+
+                                        tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date, measures, djcheck) VALUES ('"+customer_id+"', '"+productbrand21a+"', '"+productmodel21a+"', '"+lumensl21a+"', '"+lighting21a+"', '"+manufacturer21a+"', '"+numberoflamps21a+"', '"+v21Avalue+"', '"+create_time+"', '"+measures21a+"', '"+djcheck21a+"')", [], function(tx, res8) {
+
+                                            other_product_id_4 = res8.insertId;
+                                        
+                                            tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date, measures, costper, circuitcheck, circuittext, installedlamps, installedlamps2, installedlamps3, djcheck, dimmableCircuitLampInstallations, halogen_downlights_replaced_check, productbrand21cTransformerName, productbrand21cTransformerModel, productbrand21cElectricalSafetyNo ) VALUES ('"+customer_id+"', '"+productbrandcv+"', '"+productmodelcv+"', '"+outputcv+"', '"+lightingcv+"', '"+manufacturercv+"', '"+numberoflampscv+"', '"+v21C240Vvalue+"', '"+create_time+"', '"+measures21c+"', '"+costperled21c+"', '"+circuitcheck21c+"', '"+circuittext21c+"', '"+installedlamps+"', '"+installedlamps2+"', '"+installedlamps3+"', '"+djcheck21c+"', '"+dimmableCircuitLampInstallations+"', '"+halogen_downlights_replaced_check+"','"+productbrand21cTransformerName+"','"+productbrand21cTransformerModel+"','"+productbrand21cElectricalSafetyNo+"')", [], function(tx, res9) {
+
+                                                other_product_id_5 = res9.insertId;
+                                            
+                                                tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date, measures, costper, circuitcheck, circuittext, djcheck, installedlamps, above_installation) VALUES ('"+customer_id+"', '"+productbrandcv2+"', '"+productmodelcv2+"', '"+outputcv2+"', '"+lightingcv2+"', '"+manufacturercv2+"', '"+numberoflampscv2+"', '"+v21C12Vvalue+"', '"+create_time+"', '"+measures21d+"', '"+costperled21d+"', '"+circuitcheck21d+"', '"+circuittext21d+"', '"+djcheck21d+"', '"+installedlamps21d+"', '"+above_installation+"')", [], function(tx, res10) {
+
+                                                    other_product_id_6 = res10.insertId;
+
+                                                    tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date) VALUES ('"+customer_id+"', '"+productbrand21a2+"', '"+productmodel21a2+"', '"+lumensl21a2+"', '"+lighting21a2+"', '"+manufacturer21a2+"', '"+numberoflamps21a2+"', '"+A2+"', '"+create_time+"')", [], function(tx, res11) {
+
+                                                        other_product_id_7 = res11.insertId;
+
+                                                        tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date) VALUES ('"+customer_id+"', '"+productbrand21a3+"', '"+productmodel21a3+"', '"+lumensl21a3+"', '"+lighting21a3+"', '"+manufacturer21a3+"', '"+numberoflamps21a3+"', '"+A3+"', '"+create_time+"')", [], function(tx2, res12) {
+
+                                                            other_product_id_8 = res12.insertId;
+
+                                                            /*tx2.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date) VALUES ('"+customer_id+"', '"+productbrand21a4+"', '"+productmodel21a4+"', '"+lumensl21a4+"', '"+lighting21a4+"', '"+manufacturer21a4+"', '"+numberoflamps21a4+"', '"+v21Avalue+"', '"+create_time+"')", [], function(tx, res13) {
+
+                                                                other_product_id_9 = res13.insertId;
+
+                                                                tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date) VALUES ('"+customer_id+"', '"+productbrandcv2a+"', '"+productmodelcv2a+"', '"+outputcv2a+"', '"+lightingcv2a+"', '"+manufacturercv2a+"', '"+numberoflampscv2a+"', '"+v21C240Vvalue+"', '"+create_time+"')", [], function(tx, res14) {
 
-	                                                    save_uploaded_other_images(customer_id, other_product_id_7, imagesUploadArray11, function (response) {
+                                                                    other_product_id_10 = res14.insertId;
 
-	                                                      save_uploaded_other_images(customer_id, other_product_id_8, imagesUploadArray12, function (response) {
+                                                                    tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date) VALUES ('"+customer_id+"', '"+productbrandcv3+"', '"+productmodelcv3+"', '"+outputcv3+"', '"+lightingcv3+"', '"+manufacturercv3+"', '"+numberoflampscv3+"', '"+v21C240Vvalue+"', '"+create_time+"')", [], function(tx, res15) {
 
-	                                                      });
+                                                                        other_product_id_11 = res15.insertId;
 
-	                                                    });
+                                                                        tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date) VALUES ('"+customer_id+"', '"+productbrandcv4+"', '"+productmodelcv4+"', '"+outputcv4+"', '"+lightingcv4+"', '"+manufacturercv4+"', '"+numberoflampscv4+"', '"+v21C240Vvalue+"', '"+create_time+"')", [], function(tx, res16) {
 
-	                                                  });
+                                                                            other_product_id_12 = res16.insertId;
 
-	                                                });
+                                                                            tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date) VALUES ('"+customer_id+"', '"+productbrandcv2b+"', '"+productmodelcv2b+"', '"+outputcv2b+"', '"+lightingcv2b+"', '"+manufacturercv2b+"', '"+numberoflampscv2b+"', '"+v21C12Vvalue+"', '"+create_time+"')", [], function(tx, res17) {
 
-	                                              });
+                                                                                other_product_id_13 = res17.insertId;
 
-	                                            });
+                                                                                tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date) VALUES ('"+customer_id+"', '"+productbrandcv2c+"', '"+productmodelcv2c+"', '"+outputcv2c+"', '"+lightingcv2c+"', '"+manufacturercv2c+"', '"+numberoflampscv2c+"', '"+v21C12Vvalue+"', '"+create_time+"')", [], function(tx, res18) {
 
-	                                          });
+                                                                                    other_product_id_14 = res18.insertId;
 
-	                                        });
+                                                                                    setTimeout(function() {
+                                                                                          
+                                                                                    }, 2000);
+                                                                                    console.log('isirfan 5th');
 
-	                                      });
+                                                                                    tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date) VALUES ('"+customer_id+"', '"+productbrandcv2d+"', '"+productmodelcv2d+"', '"+outputcv2d+"', '"+lightingcv2d+"', '"+manufacturercv2d+"', '"+numberoflampscv2d+"', '"+v21C12Vvalue+"', '"+create_time+"')", [], function(tx, res19) {
 
-	                                    });
+                                                                                        other_product_id_15 = res19.insertId;*/
 
-	                                  });
+                                                                                        console.log("customer_id :"+customer_id+" product_id_1"+product_id_1+" len:"+imagesUploadArray1.length);
+                                                                                        save_uploaded_images(customer_id, product_id_1, imagesUploadArray1, function(response) { 
+                                                                                            
+                                                                                            save_uploaded_images(customer_id, product_id_2, imagesUploadArray2, function(response) { 
+                                                                                            
+                                                                                                save_uploaded_images(customer_id, product_id_3, imagesUploadArray3, function(response) { 
+                                                                                                    
+                                                                                                    save_uploaded_images(customer_id, product_id_4, imagesUploadArray4, function(response) { 
 
-	                                });
+                                                                                                        save_uploaded_other_images(customer_id, other_product_id_1, imagesUploadArray5, function(response) { 
 
-	                              }, sqlError);
+                                                                                                            save_uploaded_other_images(customer_id, other_product_id_2, imagesUploadArray6, function(response) { 
 
-	                            }, sqlError);
+                                                                                                                save_uploaded_other_images(customer_id, other_product_id_3, imagesUploadArray7, function(response) { 
+                                                                                                        
+                                                                                                                    save_uploaded_other_images(customer_id, other_product_id_4, imagesUploadArray8, function(response) { 
 
-	                          }, sqlError);
+                                                                                                                        save_uploaded_other_images(customer_id, other_product_id_5, imagesUploadArray9, function(response) { 
 
-	                        }, sqlError);
+                                                                                                                            save_uploaded_other_images(customer_id, other_product_id_6, imagesUploadArray10, function(response) { 
+                                                                                                                    
+                                                                                                                                save_uploaded_other_images(customer_id, other_product_id_7, imagesUploadArray11, function(response) { 
 
-	                      }, sqlError);
+                                                                                                                                    save_uploaded_other_images(customer_id, other_product_id_8, imagesUploadArray12, function(response) { 
+                                                                                                                                    
+                                                                                                                                        /*save_uploaded_other_images(customer_id, other_product_id_9, imagesUploadArray13, function(response) { 
+                                                                                                                                    
+                                                                                                                                            save_uploaded_other_images(customer_id, other_product_id_10, imagesUploadArray14, function(response) { 
 
-	                    }, sqlError);
+                                                                                                                                                console.log('isirfan 6th ');
 
-	                  }, sqlError);
+                                                                                                                                                setTimeout(function() {
+                                                                                                                                                      
+                                                                                                                                                }, 2000);
+                                                                                                                                    
+                                                                                                                                                save_uploaded_other_images(customer_id, other_product_id_11, imagesUploadArray15, function(response) { 
+                                                                                                                                    
+                                                                                                                                                    save_uploaded_other_images(customer_id, other_product_id_12, imagesUploadArray16, function(response) { 
+                                                                                                                                    
+                                                                                                                                                        save_uploaded_other_images(customer_id, other_product_id_13, imagesUploadArray17, function(response) { 
 
-	                }, sqlError);
+                                                                                                                                                            console.log('isirfan 7th ');
 
-	              }, sqlError);
+                                                                                                                                                            setTimeout(function() {
+                                                                                                                                                                  
+                                                                                                                                                            }, 2000);
+                                                                                                                                                        
+                                                                                                                                                            save_uploaded_other_images(customer_id, other_product_id_14, imagesUploadArray18, function(response) { 
+                                                                                                                                    
+                                                                                                                                                                save_uploaded_other_images(customer_id, other_product_id_15, imagesUploadArray19, function(response) { 
+                                                                                                                                    */
+                                                                                                                                                                    //console.log("all products added");
 
-	            }, sqlError);
+                                                                                                                                                                    //$.mobile.changePage( "report.html", { transition: "slide"} );
 
-	          }, sqlError);
+                                                                                                                                                                /*});
 
-	        }, sqlError);
+                                                                                                                                                            });
+                                                                                                                                                                
+                                                                                                                                                        });
 
-	        db.transaction(function (tx) {
+                                                                                                                                                    });
+
+                                                                                                                                                });
+
+                                                                                                                                            });
+
+                                                                                                                                        });*/
+
+                                                                                                                                    });
+
+                                                                                                                                });
+
+                                                                                                                            });
+
+                                                                                                                        });
+
+                                                                                                                    });
+
+                                                                                                                });
+
+                                                                                                            });
+
+                                                                                                        });
+                                                                                            
+                                                                                                    });
+                                                                                            
+                                                                                                });
+
+                                                                                            });
+
+                                                                                        });
 
-	          var other_product_id_9 = 0;
-	          var other_product_id_10 = 0;
-	          var other_product_id_11 = 0;
-	          var other_product_id_12 = 0;
-	          var other_product_id_13 = 0;
-	          var other_product_id_14 = 0;
-	          var other_product_id_15 = 0;
+                                                                                    /*}, function(e) {
+                                                                                        console.log("Irfan ERROR: " + e.message);
+                                                                                    });
 
-	          tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date) VALUES ('" + customer_id + "', '" + productbrand21a4 + "', '" + productmodel21a4 + "', '" + lumensl21a4 + "', '" + lighting21a4 + "', '" + manufacturer21a4 + "', '" + numberoflamps21a4 + "', '" + A4 + "', '" + create_time + "')", [], function (tx, res13) {
+                                                                                }, function(e) {
+                                                                                    console.log("Irfan ERROR: " + e.message);
+                                                                                });
 
-	            other_product_id_9 = res13.insertId;
+                                                                            }, function(e) {
+                                                                                console.log("Irfan ERROR: " + e.message);
+                                                                            });
 
-	            tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date) VALUES ('" + customer_id + "', '" + productbrandcv2a + "', '" + productmodelcv2a + "', '" + outputcv2a + "', '" + lightingcv2a + "', '" + manufacturercv2a + "', '" + numberoflampscv2a + "', '" + C2 + "', '" + create_time + "')", [], function (tx, res14) {
+                                                                        }, function(e) {
+                                                                            console.log("Irfan ERROR: " + e.message);
+                                                                        });
 
-	              other_product_id_10 = res14.insertId;
+                                                                    }, function(e) {
+                                                                        console.log("Irfan ERROR: " + e.message);
+                                                                    });
 
-	              tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date) VALUES ('" + customer_id + "', '" + productbrandcv3 + "', '" + productmodelcv3 + "', '" + outputcv3 + "', '" + lightingcv3 + "', '" + manufacturercv3 + "', '" + numberoflampscv3 + "', '" + C3 + "', '" + create_time + "')", [], function (tx, res15) {
+                                                                }, function(e) {
+                                                                    console.log("Irfan ERROR: " + e.message);
+                                                                });
 
-	                other_product_id_11 = res15.insertId;
+                                                            }, function(e) {
+                                                                console.log("Irfan ERROR: " + e.message);
+                                                            });*/
 
-	                tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date) VALUES ('" + customer_id + "', '" + productbrandcv4 + "', '" + productmodelcv4 + "', '" + outputcv4 + "', '" + lightingcv4 + "', '" + manufacturercv4 + "', '" + numberoflampscv4 + "', '" + C4 + "', '" + create_time + "')", [], function (tx, res16) {
+                                                        }, function(e) {
+                                                            console.log("Irfan ERROR: " + e.message);
+                                                        });
 
-	                  other_product_id_12 = res16.insertId;
+                                                    }, function(e) {
+                                                        console.log("Irfan ERROR: " + e.message);
+                                                    });
 
-	                  tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date) VALUES ('" + customer_id + "', '" + productbrandcv2b + "', '" + productmodelcv2b + "', '" + outputcv2b + "', '" + lightingcv2b + "', '" + manufacturercv2b + "', '" + numberoflampscv2b + "', '" + D2 + "', '" + create_time + "')", [], function (tx, res17) {
+                                                }, function(e) {
+                                                    console.log("Irfan ERROR: " + e.message);
+                                                });
+                                            
+                                            }, function(e) {
+                                                console.log("Irfan ERROR: " + e.message);
+                                            });
 
-	                    other_product_id_13 = res17.insertId;
+                                        }, function(e) {
+                                            console.log("Irfan ERROR: " + e.message);
+                                        });
 
-	                    tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date) VALUES ('" + customer_id + "', '" + productbrandcv2c + "', '" + productmodelcv2c + "', '" + outputcv2c + "', '" + lightingcv2c + "', '" + manufacturercv2c + "', '" + numberoflampscv2c + "', '" + D3 + "', '" + create_time + "')", [], function (tx, res18) {
+                                    }, function(e) {
+                                        console.log("Irfan ERROR: " + e.message);
+                                    });
 
-	                      other_product_id_14 = res18.insertId;
+                                }, function(e) {
+                                    console.log("Irfan ERROR: " + e.message);
+                                });
 
-	                      tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date) VALUES ('" + customer_id + "', '" + productbrandcv2d + "', '" + productmodelcv2d + "', '" + outputcv2d + "', '" + lightingcv2d + "', '" + manufacturercv2d + "', '" + numberoflampscv2d + "', '" + D4 + "', '" + create_time + "')", [], function (tx, res19) {
+                            }, function(e) {
+                                console.log("Irfan ERROR: " + e.message);
+                            });             
+                
+                        }, function(e) {
+                            console.log("222 ERROR: " + e.message);
+                        });
+                    
+                    }, function(e) {
+                        console.log("222 ERROR: " + e.message);
+                    });
+                    
+                }, function(e) {
+                    console.log("222 ERROR: " + e.message);
+                });
+        
+            }, function(e) {
+                console.log("222 ERROR: " + e.message);
+            });
 
-	                        other_product_id_15 = res19.insertId;
+            db.transaction(function(tx) {
 
-	                        save_uploaded_other_images(customer_id, other_product_id_9, imagesUploadArray13, function (response) {
+                var other_product_id_9 = 0;
+                var other_product_id_10 = 0;
+                var other_product_id_11 = 0;
+                var other_product_id_12 = 0;
+                var other_product_id_13 = 0;
+                var other_product_id_14 = 0;
+                var other_product_id_15 = 0;
+            
+                tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date) VALUES ('"+customer_id+"', '"+productbrand21a4+"', '"+productmodel21a4+"', '"+lumensl21a4+"', '"+lighting21a4+"', '"+manufacturer21a4+"', '"+numberoflamps21a4+"', '"+A4+"', '"+create_time+"')", [], function(tx, res13) {
 
-	                          save_uploaded_other_images(customer_id, other_product_id_10, imagesUploadArray14, function (response) {
+                    other_product_id_9 = res13.insertId;
 
-	                            save_uploaded_other_images(customer_id, other_product_id_11, imagesUploadArray15, function (response) {
+                    tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date) VALUES ('"+customer_id+"', '"+productbrandcv2a+"', '"+productmodelcv2a+"', '"+outputcv2a+"', '"+lightingcv2a+"', '"+manufacturercv2a+"', '"+numberoflampscv2a+"', '"+C2+"', '"+create_time+"')", [], function(tx, res14) {
 
-	                              save_uploaded_other_images(customer_id, other_product_id_12, imagesUploadArray16, function (response) {
+                        other_product_id_10 = res14.insertId;
 
-	                                save_uploaded_other_images(customer_id, other_product_id_13, imagesUploadArray17, function (response) {
+                        tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date) VALUES ('"+customer_id+"', '"+productbrandcv3+"', '"+productmodelcv3+"', '"+outputcv3+"', '"+lightingcv3+"', '"+manufacturercv3+"', '"+numberoflampscv3+"', '"+C3+"', '"+create_time+"')", [], function(tx, res15) {
 
-	                                  save_uploaded_other_images(customer_id, other_product_id_14, imagesUploadArray18, function (response) {
+                            other_product_id_11 = res15.insertId;
 
-	                                    save_uploaded_other_images(customer_id, other_product_id_15, imagesUploadArray19, function (response) {
+                            tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date) VALUES ('"+customer_id+"', '"+productbrandcv4+"', '"+productmodelcv4+"', '"+outputcv4+"', '"+lightingcv4+"', '"+manufacturercv4+"', '"+numberoflampscv4+"', '"+C4+"', '"+create_time+"')", [], function(tx, res16) {
 
-	                                      console.log("all products added");
+                                other_product_id_12 = res16.insertId;
 
-	                                      $.mobile.changePage("report-commercial.html", {
-	                                        transition: "slide"
-	                                      });
+                                tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date) VALUES ('"+customer_id+"', '"+productbrandcv2b+"', '"+productmodelcv2b+"', '"+outputcv2b+"', '"+lightingcv2b+"', '"+manufacturercv2b+"', '"+numberoflampscv2b+"', '"+D2+"', '"+create_time+"')", [], function(tx, res17) {
 
-	                                    });
+                                    other_product_id_13 = res17.insertId;
 
-	                                  });
+                                    tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date) VALUES ('"+customer_id+"', '"+productbrandcv2c+"', '"+productmodelcv2c+"', '"+outputcv2c+"', '"+lightingcv2c+"', '"+manufacturercv2c+"', '"+numberoflampscv2c+"', '"+D3+"', '"+create_time+"')", [], function(tx, res18) {
 
-	                                });
+                                        other_product_id_14 = res18.insertId;
 
-	                              });
+                                        tx.executeSql("INSERT INTO other_products (cust_num, productbrand, productmodel, output, lightting, manufacturer, numberoflamps, producttype, create_date) VALUES ('"+customer_id+"', '"+productbrandcv2d+"', '"+productmodelcv2d+"', '"+outputcv2d+"', '"+lightingcv2d+"', '"+manufacturercv2d+"', '"+numberoflampscv2d+"', '"+D4+"', '"+create_time+"')", [], function(tx, res19) {
 
-	                            });
+                                            other_product_id_15 = res19.insertId;
+                                            
+                                            save_uploaded_other_images(customer_id, other_product_id_9, imagesUploadArray13, function(response) { 
+                                        
+                                                save_uploaded_other_images(customer_id, other_product_id_10, imagesUploadArray14, function(response) { 
 
-	                          });
+                                                    save_uploaded_other_images(customer_id, other_product_id_11, imagesUploadArray15, function(response) { 
+                                        
+                                                        save_uploaded_other_images(customer_id, other_product_id_12, imagesUploadArray16, function(response) { 
+                                        
+                                                            save_uploaded_other_images(customer_id, other_product_id_13, imagesUploadArray17, function(response) { 
 
-	                        });
+                                                                save_uploaded_other_images(customer_id, other_product_id_14, imagesUploadArray18, function(response) { 
+                                        
+                                                                    save_uploaded_other_images(customer_id, other_product_id_15, imagesUploadArray19, function(response) { 
+                                        
+                                                                        console.log("all products added");
 
-	                      }, sqlError);
+                                                                        $.mobile.changePage( "report.html", { transition: "slide"} );
 
-	                    }, sqlError);
+                                                                    });
 
-	                  }, sqlError);
+                                                                });
+                                                                    
+                                                            });
 
-	                }, sqlError);
+                                                        });
 
-	              }, sqlError);
+                                                    });
 
-	            }, sqlError);
+                                                });
 
-	          }, sqlError);
+                                            });                                                                        
 
-	        });
+                                        }, function(e) {
+                                            console.log("Irfan ERROR: " + e.message);
+                                        });
 
-	      },sqlError);
+                                    }, function(e) {
+                                        console.log("Irfan ERROR: " + e.message);
+                                    });
 
-	    });
+                                }, function(e) {
+                                    console.log("Irfan ERROR: " + e.message);
+                                });
 
-	  }
+                            }, function(e) {
+                                console.log("Irfan ERROR: " + e.message);
+                            });
 
-	}
+                        }, function(e) {
+                            console.log("Irfan ERROR: " + e.message);
+                        });
 
-function sqlError(e) {
-	hideLoader();
-	console.log("SQL ERROR: " + e.message);
+                    }, function(e) {
+                        console.log("Irfan ERROR: " + e.message);
+                    });
+
+                }, function(e) {
+                    console.log("Irfan ERROR: " + e.message);
+                });
+
+
+            });
+        
+        }, function(e) {
+            console.log("222 ERROR: " + e.message);
+        });
+
+    
+});
+
+
+
+
+
+    }
+    
+    
 }
+
 function changeProductCountVal()
 {
     var currentCount = 0;
@@ -1623,17 +1335,6 @@ $('#level_num').keyup(function() {
     }
 
 });
-
-
-$("#american_business_no").keyup(function() {
-	  var length = this.value.length;
-	  if(length > 11) {
-	    //alert(length);
-	    var newval= this.value.substr(0,11);
-	    this.value = newval;
-	    $('#american_business_no').blur(); 
-	  }
-	});
 
 
 $("#phone_num").keyup(function() {
@@ -2266,13 +1967,11 @@ function changeDropDown(ddid, ddvalue)
         opts += '<option value="48+">48+</option>';
     } else if(ddid == 'lightingcv2d') {
         opts += '<option value="58+">58+</option>';
-
     }
-    
+
     if(ddid == 'productbrand21cTransformerModel') {
     	if(ddvalue != "Other") {
     		$("#productbrand21cTransformerModel_text").hide();
-    		$("#other_transformer_row").attr('style','display:none');
     		$("#productbrand21cTransformerModel").closest('.ui-select').show();
     		$.each(product21cTranformerModelData[ddvalue], function( index, value ) {
     			opts += '<option value="'+value+'">'+value+'</option>';
@@ -2280,11 +1979,11 @@ function changeDropDown(ddid, ddvalue)
     	}else{
     		$("#productbrand21cTransformerModel").closest('.ui-select').hide();
     		$("#productbrand21cTransformerModel_text").show();
-    		$("#other_transformer_row").attr('style','display:table-row');    		
     	}
 		
 		//alert(opts);
 	}
+    
     $("#"+ddid).empty();
     $("#"+ddid).append(opts);
 	
@@ -2301,7 +2000,7 @@ function changeDropDown(ddid, ddvalue)
 			$("#"+ddid).parent('td').nextUntil('tr').children().show();
 		}
 	}
-}
+  }
 
 </script>
   <div class="logo"></div>
@@ -2329,7 +2028,7 @@ font-size: 35px;">VEEC Assignment Form</td>
       </tr>
       <tr>
         <td valign="top"><!-- collapsible -->
-          <h3 class="page_collapsible collapse-close" id="body-section1">Company Information</h3>
+          <h3 class="page_collapsible collapse-close" id="body-section1">Consumer Information</h3>
           <div style="display: none;" class="container">
             <div class="content">
               <table border="0" cellpadding="5" cellspacing="0" width="100%">
@@ -2337,51 +2036,6 @@ font-size: 35px;">VEEC Assignment Form</td>
                   <tr>
                     <td id="autocom" colspan="4"></td>
                   </tr>
-				  <tr >
-                    <td><font color="red">*</font>Company Name</td>
-                    <td><input  name="company_name" id="company_name" type="text" class="mytextfield capfirstchar"  style="height:35px; width:250px;" tabindex=""  value="" /></td>
-                    <td><font color="red">*</font>ABN  </td>
-                    <td><input  name="american_business_no" id="american_business_no"  value=""  tabindex="" type="number" /></td>
-                  </tr>
-				  <tr>
-					<td><font color="red">*</font>Industry Type</td>
-                    <td colspan="3"><textarea  name="industry_type" id="industry_type"  tabindex=""  style="height:60px;max-height:60px"></textarea></td>
-				  </tr>
-				  <tr >
-                    <td><font color="red">*</font>Job Title</td>
-                    <td><input  name="job_title" id="job_title" type="text" class="mytextfield capfirstchar"  style="height:35px; width:250px;" tabindex=""  value="" /></td>
-                    <td><font color="red">*</font>Total floor space</td>
-                    <td><input  name="total_floor_space" id="total_floor_space"  value=""  tabindex="" type="text" style="height:35px; width:250px;"  /></td>
-                  </tr>
-				  <tr >
-                    <td><font color="red">*</font>Number of levels</td>
-                    <td><input  name="number_of_levels" id="number_of_levels" type="number" class="mytextfield"  style="height:35px; width:250px;" tabindex=""  value="" /></td>
-                    <td>&nbsp;</td>
-					<td>&nbsp;</td>										
-                  </tr>	
-				  <tr>
-					<td colspan="4">						
-					  <fieldset data-role="controlgroup" data-type="horizontal" >
-                        <legend>Have you received a certificate of electrical safety for the work ?</legend>
-                        <input type="radio" name="has_electrical_safety_certificate" id="has_electrical_safety_certificate_yes" value="yes" checked="checked" />
-                        <label for="has_electrical_safety_certificate_yes">Yes</label>
-                        <input type="radio" name="has_electrical_safety_certificate" id="has_electrical_safety_certificate_no" value="no"  />
-                        <label for="has_electrical_safety_certificate_no">No</label>				         	
-                      </fieldset>
-                    </td>
-				 </tr>
-				 <tr>
-				  	<td colspan="4">
-				  		<fieldset data-role="controlgroup" data-type="horizontal" >
-                        <legend>I have been informed that certificate of electrical safety is required for the work undertaken and that I will be provided a copy of the relevant certificate</legend>
-                        <input type="radio" name="provide_relevant_certificate" id="provide_relevant_certificate_yes" value="yes" checked="checked" />
-                        <label for="provide_relevant_certificate_yes">Yes</label>
-                        <input type="radio" name="provide_relevant_certificate" id="provide_relevant_certificate_no" value="no"  />
-                        <label for="provide_relevant_certificate_no">No</label>				         	
-                      </fieldset>
-					</td>
-					<td>&nbsp;</td>					
-				</tr>
                   <tr >
                     <td width="20%"  ><font color="red"></font> Consumer Title </td>
                     <td><select  tabindex="" name="title" id="title" >
@@ -2393,27 +2047,27 @@ font-size: 35px;">VEEC Assignment Form</td>
                         <option value="Prof."> Prof. </option>
                       </select></td>
                     <td width="20%"  ><font color="red">*</font>First Name</td>
-                    <td><input name="first_name" id="first_name" value="" tabindex="" class="capfirstchar" type="text" /></td>
+                    <td><input name="first_name" id="first_name" value="a" tabindex="" class="capfirstchar" type="text" /></td>
                   </tr>
                   <tr >
                     <td><font color="red">*</font>Last Name</td>
-                    <td><input  name="last_name" id="last_name" type="text" class="mytextfield capfirstchar"  style="height:35px; width:250px;" tabindex=""  value="" /></td>
-                    <td><font color="red">*</font>Phone Number </td>
-                    <td><input  name="phone_num" id="phone_num"  value=""  tabindex="" type="number"  /></td>
+                    <td><input  name="last_name" id="last_name" type="text" class="mytextfield capfirstchar"  style="height:35px; width:250px;" tabindex=""  value="b" /></td>
+                    <td><font color="red">*</font>Contact Number </td>
+                    <td><input  name="phone_num" id="phone_num"  value="0000000000"  tabindex="" type="number"  /></td>
                   </tr>
                   <tr >
-                    <td><font color="red"></font>Mobile Number </td>
+                    <td><font color="red"></font>Secondary contact number </td>
                     <td><input  name="alt_num" id="alt_num"   tabindex="" type="number"    /></td>
                     <td><font color="red">*</font>Consumer Email </td>
-                    <td><input  name="cust_email" id="cust_email"   tabindex="" type="email" /></td>
+                    <td><input  name="cust_email" id="cust_email"   tabindex="" type="email" value="a@a.com"/></td>
                   </tr>
                   <tr >
                     <td><font color="red"></font>Unit Number </td>
                     <td><input  name="unit_num" id="unit_num"  value=""  tabindex="" type="text"  /></td>
                     <td><font color="red"></font> Unit Type </td>
                     <td><select  tabindex=""  name="unit_type" id="unit_type">
-                        <option selected="selected" value=""> - </option>
-                        <option value="Apartment"> Apartment </option>
+                        <option value=""> - </option>
+                        <option value="Apartment" selected="selected"> Apartment </option>
                         <option value="Cottage"> Cottage </option>
                         <option value="Factory"> Factory </option>
                         <option value="Flat"> Flat </option>
@@ -2432,11 +2086,11 @@ font-size: 35px;">VEEC Assignment Form</td>
                   </tr>
                   <tr >
                     <td><font color="red"></font>Level Number </td>
-                    <td><input  name="level_num" id="level_num" tabindex="" type="text"   /></td>
+                    <td><input  name="level_num" id="level_num" tabindex="" type="text" value="2"  /></td>
                     <td><font color="red"></font> Level Type </td>
                     <td><select  tabindex="" name="level_type" id="level_type">
                         <option  value=""> - </option>
-                        <option value="Block"> Block </option>
+                        <option value="Block" selected="selected"> Block </option>
                         <option value="Floor"> Floor </option>
                         <option value="Level"> Level </option>
                         <option value="Lot"> Lot </option>
@@ -2444,15 +2098,15 @@ font-size: 35px;">VEEC Assignment Form</td>
                   </tr>
                   <tr >
                     <td><font color="red">*</font>Street Number </td>
-                    <td><input  name="street_num" id="street_num"  value=""  tabindex="" type="text" /></td>
+                    <td><input  name="street_num" id="street_num"  value="a"  tabindex="" type="text" /></td>
                     <td><font color="red">*</font>Street Name</td>
-                    <td><input  name="street_name" id="street_name"  value="" class="capfirstchar" tabindex="" type="text" /></td>
+                    <td><input  name="street_name" id="street_name"  value="b" class="capfirstchar" tabindex="" type="text" /></td>
                   </tr>
                   <tr >
                     <td><font color="red">*</font> Street Type </td>
                     <td><select  tabindex=""  name="street_type" id="street_type">
-                        <option selected="selected" value=""> - </option>
-                        <option value="ACCESS"> ACCESS </option>
+                        <option value=""> - </option>
+                        <option value="ACCESS" selected="selected"> ACCESS </option>
                         <option value="ALLEY"> ALLEY </option>
                         <option value="APPROACH"> APPROACH </option>
                         <option value="ARCADE"> ARCADE </option>
@@ -2688,7 +2342,7 @@ font-size: 35px;">VEEC Assignment Form</td>
                     <td><font color="red"></font> Street Type Suffix </td>
                     <td><select  tabindex=""  name="street_type_suff" id="street_type_suff">
                         <option  value=""> - </option>
-                        <option value="Central"> Central </option>
+                        <option value="Central" selected="selected"> Central </option>
                         <option value="East"> East </option>
                         <option value="Extension"> Extension </option>
                         <option value="Lower"> Lower </option>
@@ -2704,14 +2358,14 @@ font-size: 35px;">VEEC Assignment Form</td>
                   </tr>
                   <tr >
                     <td><font color="red">*</font>Town / Suburb</td>
-                    <td><input  name="town" id="town"  value="" class="capfirstchar" tabindex="" type="text" /></td>
+                    <td><input  name="town" id="town"  value="a" class="capfirstchar" tabindex="" type="text" /></td>
                     <td><font color="red">*</font>Postcode </td>
-                    <td><input name="postcode" id="postcode" tabindex="" type="number" /></td>
+                    <td><input name="postcode" id="postcode" tabindex="" type="number" value="7000" /></td>
                   </tr>
                   <tr >
                     <td><font color="red">*</font> State </td>
                     <td><select  tabindex=""  name="state" id="state">
-                        <option  value="VIC"> VIC </option>
+                        <option  value="VIC" selected="selected"> VIC </option>
                         <option value="NSW"> NSW </option>
                         <option value="NT"> NT </option>
                         <option value="QLD"> QLD </option>
@@ -2723,10 +2377,14 @@ font-size: 35px;">VEEC Assignment Form</td>
                     <td></td>
                   </tr>
                   <tr >
+                    <td>Postal address if different from Above </td>
+                    <td colspan="3"><textarea  name="different_postal_address" id="different_postal_address"  tabindex=""  style="height:100px;max-height:100px"></textarea></td>
+                  </tr>
+                  <tr >
                     <td><font color="red">*</font> Length of time at current address </td>
                     <td><select  tabindex=""  name="len_of_time" id="len_of_time">
                         <option value=""> - </option>
-                        <option value="1"> 1 </option>
+                        <option value="1" selected="selected"> 1 </option>
                         <option value="2"> 2 </option>
                         <option value="3"> 3 </option>
                         <option value="4"> 4 </option>
@@ -2790,7 +2448,7 @@ font-size: 35px;">VEEC Assignment Form</td>
                     <td><font color="red">*</font> Duration </td>
                     <td><select  tabindex=""  name="duration" id="duration">
                         <option value=""> - </option>
-                        <option value="Weeks"> Weeks </option>
+                        <option value="Weeks" selected="selected"> Weeks </option>
                         <option value="Months"> Months </option>
                         <option value="Years"> Years </option>
                       </select></td>
@@ -2799,7 +2457,7 @@ font-size: 35px;">VEEC Assignment Form</td>
                     <td>  
                         <select name="tenant_or_owner" id="tenant_or_owner">
                             <option value="">-</option>
-                            <option value="Tenant">Tenant</option>
+                            <option value="Tenant" selected="selected">Tenant</option>
                             <option value="Owner">Owner</option>
                         </select>
                     </td>
@@ -2809,8 +2467,8 @@ font-size: 35px;">VEEC Assignment Form</td>
                 </tbody>
               </table>
             </div>
-          </div>          
-         <!-- end collapsible -->
+          </div>
+          <!-- end collapsible -->
           <h3 class="page_collapsible collapse-close" id="body-section1">Product Information</h3>
           <div style="display: none;" class="container">
             <div class="content">
@@ -2824,15 +2482,17 @@ font-size: 35px;">VEEC Assignment Form</td>
                     <div data-role="fieldcontain">
                         <fieldset data-role="controlgroup" data-type="horizontal">
                             <legend><font size="6" color="red">*</font>Select Product</legend>
-                            <input name="" type="checkbox" value="" id="chck21A" onchange="checkbox_state('chck21A', 'section21A');" />
-                            
-                            <input name="" type="checkbox" value="" id="chck21C240V" onchange="checkbox_state('chck21C240V', 'section21C240V');" />
-                            
-                            
-                            <input name="" type="checkbox" value="" id="chck21C12V" onchange="checkbox_state('chck21C12V', 'section21C12V');" />
-                            
-                            
-                           
+                            <input name="" type="checkbox" value="" id="chck21A" onchange="checkbox_state('chck21A', 'section21A');" >
+                            <input name="" type="checkbox" value="" id="chckDoorSelas" onchange="checkbox_state('chckDoorSelas', 'sectionDoorSeals');" >
+                            <input name="" type="checkbox" value="" id="chck21C240V" onchange="checkbox_state('chck21C240V', 'section21C240V');" >
+                            <input name="" type="checkbox" value="" id="chckChimneyBaloons" onchange="checkbox_state('chckChimneyBaloons', 'sectionChimneyBaloons');" >
+                            <input name="" type="checkbox" onchange="checkbox_state('chckSPC', 'spcinstalled');" value="" id="chckSPC" >
+                            <input name="" type="checkbox" value="" id="chck21C12V" onchange="checkbox_state('chck21C12V', 'section21C12V');" >
+                            <input name="" type="checkbox" value="" style="width:20px; height:20px;" id="chckIHD" onchange="checkbox_state('chckIHD', 'sectionIHD');" >
+                            <label for="chckSPC">SPC</label>
+                            <label for="chckIHD">IHD</label>
+                            <label for="chckDoorSelas">Door Seals</label>
+                            <label for="chckChimneyBaloons">Chimney Baloons</label>
                             <label for="chck21A">21A</label>
                             <label for="chck21C240V">21C</label>
                             <label for="chck21C12V">21D</label>
@@ -2910,7 +2570,7 @@ font-size: 35px;">VEEC Assignment Form</td>
                             <option value="20000+"> 20000+ </option>
                           </select></td>
                         <td><font size="6" color="red">*</font>Number of lamps: </td>
-                        <td><input value="" id="numberoflamps21a" name="numberoflamps21a" tabindex="" type="number" /></td>
+                        <td><input value="2" id="numberoflamps21a" name="numberoflamps21a" tabindex="" type="number" /></td>
                       </tr>
                       <tr>
                         <td colspan="2"><strong><span style="font-size:16px;">
@@ -3092,7 +2752,7 @@ font-size: 35px;">VEEC Assignment Form</td>
                             <option value=""> - </option>
                             <option value="20000+"> 20000+ </option>
                           </select></td>
-                        <td><font size="6" color="red">*</font>Number of lamps: </td>
+                        <td><font size="6" color="red">*</font>Number of lamps 2: </td>
                         <td><input value="" id="numberoflamps21a4" name="numberoflamps21a4" tabindex="" type="number" /></td>
                       </tr>
                       <tr>
@@ -3105,9 +2765,9 @@ font-size: 35px;">VEEC Assignment Form</td>
                   </table>
                 </div>
               </div>
-              <!-- end collapsible -->
-                <br clear="all" />
-                <div class="content">
+              
+               <br clear="all" />
+	            <div class="content">
 	              <table width="100%">
 	                <tbody>
 	                	<tr>
@@ -3129,6 +2789,13 @@ font-size: 35px;">VEEC Assignment Form</td>
 	                </tbody>
 	                </table>
 	             </div>
+              <!-- end collapsible -->            	
+                <!--tr>
+                    <td>Duplicate Justification:</td>
+                    <td> <input name="djcheck21a" id="djcheck21a" type="checkbox" value="1">&nbsp;&nbsp;<br />
+                        <textarea name="measures21a" id="measures21a" rows="5" cols="75"></textarea></td>
+                </tr>-->
+                <br clear="all" />
               </div>
 
               <!-- collapsible -->
@@ -3248,9 +2915,9 @@ font-size: 35px;">VEEC Assignment Form</td>
                             </span></strong></td>
                             <td colspan="2"><div id="imagesDiv9" align="left"></div></td>
                         
-                      </tr>
+                      </tr>                      
                     </tbody>
-                  </table>
+                  </table>                  
                 </div>
               </div>
               <!-- end collapsible -->
@@ -3431,7 +3098,7 @@ font-size: 35px;">VEEC Assignment Form</td>
                 <tbody>
                 <tr>
                     <td width="25%"><font size="5" color="red">*</font>Cost per LED Installed (Inc GST): </td>
-                    <td><input type="text" tabindex="" name="costperled21c" id="costperled21c" value="" class="detailedViewTextBox" /></td>
+                    <td><input type="text" tabindex="" name="costperled21c" id="costperled21c" value="" class="detailedViewTextBox"></td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>                    
                 </tr>
@@ -3453,13 +3120,13 @@ font-size: 35px;">VEEC Assignment Form</td>
                         <option selected="selected" value=""> - </option>
                         <option value="Magnetic"> Magnetic </option>
                         <option value="Electronic"> Electronic </option>
-                        <option value="Both"> Both </option>                        
+                        <option value="Both"> Both </option>
                     </select></td>
                     <td>Method Used:</td>
                     <td><select class="small" tabindex="" name="installedlamps2" id="installedlamps2">
-                        <option selected="selected" value="Multimeter"> Multimeter </option>                        
+                        <option selected="selected" value="Multimeter"> Multimeter </option>
                     </select></td>
-                </tr>                
+                </tr>
                 <tr>
                     <td width="25%">Is the transformer Compatible</td>
                     <td><select class="small" tabindex="" name="installedlamps3" id="installedlamps3">
@@ -3501,13 +3168,9 @@ font-size: 35px;">VEEC Assignment Form</td>
                     </select></td>                    
                     <td width="25%"><font size="5" color="red">*</font>Transformer Model:</td>
                     <td><select class="small" tabindex="" name="productbrand21cTransformerModel" id="productbrand21cTransformerModel">   
-                    </select><input type="text" tabindex="" name="productbrand21cTransformerModel_text" id="productbrand21cTransformerModel_text" value="" style="display: none" /></td>	                
+                    </select></td>	                
                  </tr>
-                 <tr id="other_transformer_row" style="display: none">
-                   <td width="25%"><font size="5" color="red">*</font>Enter other Transformer Name:</td>
-                    <td><input type="text" tabindex="" name="productbrand21cTransformerName_text" id="productbrand21cTransformerName_text" value="" /></td>                    
-                    <td colspan="2">&nbsp;</td>                    	                
-                 </tr>
+                 
                  <tr>
                  	<td width="25%"><font size="5" color="red">*</font>Electrical Safety No. </td>
                     <td><input value="" id="productbrand21cElectricalSafetyNo" name="productbrand21cElectricalSafetyNo" tabindex="" type="text" /></td>
@@ -3533,6 +3196,7 @@ font-size: 35px;">VEEC Assignment Form</td>
               </tbody>
             </table>
         </div>
+                <br clear="all" />
           </div>
 
           <!-- collapsible -->
@@ -4455,7 +4119,7 @@ font-size: 35px;">VEEC Assignment Form</td>
                         </select>
                     </td>
                 </tr>
-                <tr>
+                 <tr>
                    <td colspan="4">
                    	<div data-role="collapsible" data-collapsed="false">
 						
@@ -4487,7 +4151,15 @@ font-size: 35px;">VEEC Assignment Form</td>
                 	<td colspan="3"><textarea name="measures21d" id="measures21d" style="height:100px;max-height:100px"></textarea></td>
                 	<td style="vertical-align:bottom"><span style="font-size:14px; font-weight:bold; float:right;"> Form of Benefit (Reduced Price)</span></td>                
                 </tr>
+                <!--<tr >
+                    <td  >Duplicate Justification:</td>
+                    <td colspan="3"><br /><br /><input name="djcheck21d" id="djcheck21d" type="checkbox" value="1" />
+           &nbsp;&nbsp;<br />
+                    <textarea name="measures21d" id="measures21d" rows="5" cols="75" style="display:none;"></textarea></td>
+         </tr>-->
             </table>
+              
+              <br clear="all" />
           </div>
               <!-- collapsible -->
               <h3 class="page_collapsible collapse-close" id="sectionIHD" style="display: none;"><b>IHD</b></h3>
@@ -4519,18 +4191,36 @@ font-size: 35px;">VEEC Assignment Form</td>
                       <tr>
                          <td><font size="5" color="red">*</font>Cost per IHD Installed <br />
                            (Inc GST): </td>
-                         <td><input type="text" tabindex="" name="costperihd" id="costperihd" value="" class="detailedViewTextBox"></td>
+                         <td><input type="text" tabindex="" name="costperihd" id="costperihd" value="" class="detailedViewTextBox" /></td>
+                         <td colspan="2">&nbsp;</td>
+                      </tr>
+                      <!--
+                      <tr>
                          <td>Duplicate Justification:</td>
                            
                         <td>
-                            <input name="djcheckihd" id="djcheckihd" type="checkbox" value="1" >&nbsp;&nbsp;<br />
+                            <input name="djcheckihd" id="djcheckihd" type="checkbox" value="1" />&nbsp;&nbsp;<br />
                             <textarea name="outputihd" id="outputihd" rows="3" cols="30"></textarea>
-                        </td>
-                       </tr>
+                        </td>                       
+                      </tr>-->                     
                       <tr>
+	                    <td colspan="2">
+	                    <div data-role="fieldcontain" class="ui-hide-label">
+						    <fieldset data-role="controlgroup">
+							   <legend>Duplicate Justification:</legend>
+							   <input type="checkbox" name="djcheckihd" id="djcheckihd" class="custom" value="1"/>
+							   <label for="djcheckihd">Duplicate Justification:</label>
+						    </fieldset>
+						</div>
+	                    </td>
+	                    <td colspan="2">&nbsp;</td>                    
+	                  </tr>
+		               <tr>                	
+		                	<td colspan="3"><textarea name="outputihd" id="outputihd" style="height:100px;max-height:100px"></textarea></td>
+		                	<td style="vertical-align:bottom"><span style="font-size:14px; font-weight:bold; float:right;"> Form of Benefit (Reduced Price)</span></td>                
+		              </tr>
                     </tbody>
                   </table>
-                <span style="font-size:14px; font-weight:bold; float:right;"> Form of Benefit (Reduced Price)</span>
                 </div>
               </div>
               <!-- end collapsible -->
@@ -4732,6 +4422,29 @@ font-size: 35px;">VEEC Assignment Form</td>
       <li><a href="#" class="new_ticket2" onclick="customer_declaration();">Consumer Declaration</a></li>
     </ul>
   </div>
+ <script>
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; //January is 0!
+	
+	var yyyy = today.getFullYear();
+	if(dd<10){dd='0'+dd;} 
+	if(mm<10){mm='0'+mm;} 
+	today = mm+'/'+dd+'/'+yyyy;
+	$('.todaydate').html(today);
+	//$('#todaydate2').html(today);
+	
+	get_loggedin_user_data(function (response) {
+	
+	    console.log('surajit ' + response);
+	    if (response == 1) {
+	       $('.loggedin_user_name').html(logged_in_user_data.name);
+	
+	       console.log('in detail');
+	       console.log(window.localStorage.getItem('customerImagedata'));
+	    }
+	 });
+</script>
 </div>
 </body>
 </html>

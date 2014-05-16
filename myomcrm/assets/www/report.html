@@ -27,14 +27,16 @@ var previouspage;
 
 function submitForm()
 {
-    
-    submitLocalForm(function(response) { 
-        if(response == 1)
-        {
-            previouspage.remove();
-            $.mobile.changePage( "listing.html", {transition: "slide", reverse: true});
-        }
-    });
+	showLoader();
+	setTimeout(function(){
+	    submitLocalForm(function(response) { 
+	        if(response == 1)
+	        {
+	            previouspage.remove();
+	            $.mobile.changePage( "listing.html", {transition: "slide", reverse: true});
+	        }
+	    });
+	},2000);
 }
         
 </script>

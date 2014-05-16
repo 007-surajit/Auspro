@@ -29,6 +29,37 @@ var product21cTranformerModelData = {
 	myselect.selectmenu("refresh");
 }*/
 
+function chkInstalledLampsValue() {
+	var myselect = $("#installedlamps");	
+	if(myselect.val() == "Other") {
+		$("#transformer_manual_entry_row").removeAttr("style");		
+		$("#transformer_label").removeAttr("style");
+		$("#transformer_textfield").removeAttr("style");
+	}else{
+		if($("#installedlamps2").val() != 'Other') {
+			$("#transformer_manual_entry_row").attr("style","display:none");
+		}		
+		$("#transformer_label").attr("style","display:none");
+		$("#transformer_textfield").attr("style","display:none");
+	}
+}
+
+function chkInstalledLamps2Value() {
+	var myselect = $("#installedlamps2");	
+	if(myselect.val() == "Other") {
+		$("#transformer_manual_entry_row").removeAttr("style");
+		$("#method_label").removeAttr("style");
+		$("#method_textfield").removeAttr("style");
+	}else{
+		if($("#installedlamps").val() != 'Other') {
+			$("#transformer_manual_entry_row").attr("style","display:none");
+		}
+		$("#method_label").attr("style","display:none");
+		$("#method_textfield").attr("style","display:none");
+	}
+	
+}
+
 function selectDefaultOption(select_id,ddvalue) {
 	var myselect = $("#"+select_id);	
 	if(myselect[0].length === 2 && myselect[0][0].value === "") {
@@ -57,9 +88,29 @@ function deviceisready()
 {
     //alert('deviceready'+device.cordova);
     isDeviceReady = 1;
-  
-   window.plugins.barcodeScanner.getLocation(function(position){
-   	//alert(position.latitude+' '+position.longitude);
+    /*
+    var onSuccess = function(position) {
+        alert('Latitude: '          + position.coords.latitude          + '\n' +
+              'Longitude: '         + position.coords.longitude         + '\n' +
+              'Altitude: '          + position.coords.altitude          + '\n' +
+              'Accuracy: '          + position.coords.accuracy          + '\n' +
+              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+              'Heading: '           + position.coords.heading           + '\n' +
+              'Speed: '             + position.coords.speed             + '\n' +
+              'Timestamp: '         + position.timestamp                + '\n');
+    };
+
+    // onError Callback receives a PositionError object
+    //
+    function onError(error) {
+        alert('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
+    }
+
+    navigator.geolocation.getCurrentPosition(onSuccess, onError,{ timeout: 60000 , maximumAge: 60000});
+    */  
+    window.plugins.barcodeScanner.getLocation(function(position){
+   	   //alert(position.latitude+' '+position.longitude);
 	   localStorage.setItem("latitude",position.latitude);
        localStorage.setItem("longitude",position.longitude);
 	}, function(error){	
@@ -67,6 +118,7 @@ function deviceisready()
 		localStorage.setItem("latitude",'location error');
 	    localStorage.setItem("longitude",'location error');
     });
+    
     // window.plugins.barcodeScanner.showLoader('My Text ...');    
     //setTimeout(function(){window.plugins.barcodeScanner.hideLoader()},5000);
     db = window.sqlitePlugin.openDatabase({name: "cps.sqlite"});    
@@ -990,16 +1042,16 @@ $('#checklistPage').live('pageshow', function(event){
        				checklistData['option'+(index+1)] = $(this).val();
           		});
        			localStorage.setItem("checklist_data",JSON.stringify(checklistData));
-       			showLoader();
-       			
-       			if($(this).text() == 'Residential') {
+       			showLoader();       			
+   				if($(this).text() == 'Residential') {
            			
            			$.mobile.changePage( "custom-form-residential.html", { transition: "slide"} );
            			
            		}else if($(this).text() == 'Commercial') {
            			
            			$.mobile.changePage( "custom-form-commercial.html", { transition: "slide"} );
-           		}        			
+           		}       				
+       			      			
        		}        		        		
        	}else{
        		
@@ -1141,6 +1193,7 @@ function hideLoader() {
  
  $('#reportPage').live('pageshow', function(event){
 	hideSections();
+	hideLoader();
  });
  
  $('#staticReportPage').live('pagehide', function(event, ui){
@@ -2425,3 +2478,17 @@ $('#staticReportCommercialPage').live('pagebeforeshow', function(event){
 	    
 	    previouspage = data.prevPage;
 });
+ $("#reportCommercialPage").live('pageshow', function(event, data) {
+	    
+	    hideLoader();
+});
+ 
+ $('#listingpage').live('pagecreate', function(event){       
+     
+     refreshPage();
+ });
+ 
+$('#listingpage').live('pageshow', function(event){       
+     
+     setTimeout(hideLoader,1000);
+ });
